@@ -91,6 +91,8 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
+				    <li><a href="/categories/Anaconda/" class="animsition-link">Anaconda<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
 				    
 				</ul>
@@ -197,9 +199,9 @@
         <div class="col-md-8 col-md-offset-2">
       		<p>进来先大喊三声：Anaconda超好用！Anaconda超好用！Anaconda超好用！</p>
 <h3 id="这个坑长啥样"><a href="#这个坑长啥样" class="headerlink" title="这个坑长啥样"></a>这个坑长啥样</h3><p>先说电脑配置：Dell Inspiron5548,Win10.<br>emmm喊完了我们开始说正事。。。第一次用Anaconda集成好的环境和Spyder写程序实在是非常好的体验，但最后写完了却遇到很严重的问题——不能保存不能打开文件，打开两秒钟就弹出python.exe已停止工作，然后Spyder就退出鸟。。。可怜我第一次辛辛苦苦写了那么久的程序啊喂！完全没保存啊！！！<br>调试报错：(python.exe 中)处有未经处理的异常: 0xC0000374: 堆已损坏。</p>
-<p>###那些徒劳的尝试<br>解决这个问题的时候完全是懵逼的，因为不知道是python的问题还是anaconda的问题还是spyder的问题还是windows的问题…所以折腾了很久【怀疑了这么多都没怀疑到Dell!<br><strong>1.升级Spyder </strong><br>    当时出问题的时候我用的版本是3.1.3,用pip升到了写文章时候最新版3.2.3,果然没有用QwQ<br><strong>2.卸载重装Anaconda</strong><br>    怎么折腾的按下不表，结论：还是没用。。。<br><strong>3.卸载自己下载的Python</strong><br>    我最早是自己下载了Python3.5，后来才装了anaconda，担心是二者有冲突。emmmm总之卸载之后看来并不是这样的。。。<br><strong>4.替换ntdll.dll</strong><br>    对为了这个问题我生平第一次改动了system文件夹…可惜结果完全对不起我的勇气QAQ</p>
-<p>###怎么爬出来<br>百度/google/StackOverflow<br>最后跌跌撞撞终于不知道咋地终于找到啊了亲爱的github!<br>问题链接在此↓<br><a href="https://github.com/spyder-ide/spyder/issues/3903" target="_blank" rel="external">https://github.com/spyder-ide/spyder/issues/3903</a><br>从头到尾看下来，帖子重点提取如下<br><strong>1.回退Spyder2.3.9，问题解决</strong>：亲测有效！能用了！但是python也变2.7噜<br><strong>2.与Qt冲突</strong>：反正我卸载了Qt5之后没啥卵用…<br><strong>3.与DellBackupAndRecovery冲突</strong>：开始完全没敢卸载，毕竟是系统出场自带的软件诶…但最后发现卸载了也没啥影响的样子【笑</p>
-<p>###总结<br>亲测有用的解决方案如下：<br>1.退回Spyder2.3.9，Python会默认退回2.7，能不能用Python3我还没试唔…<br>2.卸载Dell Backup and Recovery</p>
+<h3 id="那些徒劳的尝试"><a href="#那些徒劳的尝试" class="headerlink" title="那些徒劳的尝试"></a>那些徒劳的尝试</h3><p>解决这个问题的时候完全是懵逼的，因为不知道是python的问题还是anaconda的问题还是spyder的问题还是windows的问题…所以折腾了很久【怀疑了这么多都没怀疑到Dell!<br><strong>1.升级Spyder </strong><br>    当时出问题的时候我用的版本是3.1.3,用pip升到了写文章时候最新版3.2.3,果然没有用QwQ<br><strong>2.卸载重装Anaconda</strong><br>    怎么折腾的按下不表，结论：还是没用。。。<br><strong>3.卸载自己下载的Python</strong><br>    我最早是自己下载了Python3.5，后来才装了anaconda，担心是二者有冲突。emmmm总之卸载之后看来并不是这样的。。。<br><strong>4.替换ntdll.dll</strong><br>    对为了这个问题我生平第一次改动了system文件夹…可惜结果完全对不起我的勇气QAQ</p>
+<h3 id="怎么爬出来"><a href="#怎么爬出来" class="headerlink" title="怎么爬出来"></a>怎么爬出来</h3><p>百度/google/StackOverflow<br>最后跌跌撞撞终于不知道咋地终于找到啊了亲爱的github!<br>问题链接在此↓<br><a href="https://github.com/spyder-ide/spyder/issues/3903" target="_blank" rel="external">https://github.com/spyder-ide/spyder/issues/3903</a><br>从头到尾看下来，帖子重点提取如下<br><strong>1.回退Spyder2.3.9，问题解决</strong>：亲测有效！能用了！但是python也变2.7噜<br><strong>2.与Qt冲突</strong>：反正我卸载了Qt5之后没啥卵用…<br><strong>3.与DellBackupAndRecovery冲突</strong>：开始完全没敢卸载，毕竟是系统出场自带的软件诶…但最后发现卸载了也没啥影响的样子【笑</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>亲测有用的解决方案如下：<br>1.退回Spyder2.3.9，Python会默认退回2.7，能不能用Python3我还没试唔…<br>2.卸载Dell Backup and Recovery</p>
 <p>最后为我冤死的Qt5掬一把同情泪<em>(:з」∠)</em><br>总之问题解决！希望可以遇到同样问题的人一点参考~</p>
 
             <div class="clearfix"></div>
