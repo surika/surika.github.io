@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>通俗解释Hadoop | Road To Surika</title>
+  <title>Category: Linux | Road To Surika</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -59,7 +59,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -179,55 +179,69 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2017-10-09T09:18:20.000Z" itemprop="datePublished">
-          2017-10-09
-      </time>
-    
-    
-    | 
-    <a href='/tags/DataScience/'>DataScience</a>
-    
-    
-</span>
-                <h1>通俗解释Hadoop</h1>
+      <!-- ============================ Hero Image =========================== -->
+
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/pic.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                        <p></p>
+                        
+                        <h2></h2>
+                        <p>我来到你的城市，走过你来时的路。</p>
+                        
+
+                    </div>
+                </div>
             </div>
+            <!-- // .col-md-12 -->
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>原文出处：<a href="http://os.51cto.com/art/201305/396145.htm" target="_blank" rel="external">http://os.51cto.com/art/201305/396145.htm</a></p>
-<p>众所周知，Hadoop是Apache软件基金会管理的开源软件平台，但Hadoop到底是什么呢？简单来说，<strong>Hadoop是在分布式服务器集群上存储海量数据并运行分布式分析应用的一种方法。</strong><br>Hadoop被设计成一种非常“鲁棒”的系统，即使某台服务器甚至集群宕机了，运行其上的大数据分析应用也不会中断。此外Hadoop的效率也很高，因为它并不需要你在网络间来回捣腾数据。<br>以下是Apache的正式定义：<br>Apache <strong>Hadoop软件库是一个框架</strong>，允许在集群服务器上使用简单的编程模型对大数据集进行分布式处理。Hadoop被设计成能够从单台服务器扩展到数以千计的服务器，每台服务器都有本地的计算和存储资源。Hadoop的高可用性并不依赖硬件，其代码库自身就能在应用层侦测并处理硬件故障，因此能基于服务器集群提供高可用性的服务。<br>如果更深入地分析，我们发现Hadoop还有更加精彩的特性。首先，<strong>Hadoop几乎完全是模块化的</strong>，这意味着你们能用其他软件工具抽换掉Hadoop的模块。这使得Hadoop的架构异常灵活，同时又不牺牲其可靠性和高效率。<br>Hadoop分布式文件系统（HDFS）<br>如果提起Hadoop你的大脑一片空白，那么请牢记住这一点：<strong>Hadoop有两个主要部分：一个数据处理框架和一个分布式数据存储文件系统（HDFS）。</strong><br>HDFS就像Hadoop系统的篮子，你把数据整整齐齐码放在里面等待数据分析大厨出手变成性感的大餐端到CEO的桌面上。当然，你可以在Hadoop进行数据分析，也可以见gHadoop中的数据“抽取转换加载”到其他的工具中进行分析。<br>数据处理框架和MapReduce<br>顾名思义，<strong>数据处理框架是处理数据的工具</strong>。具体来说Hadoop的数据处理框架是基于Jave的系统——MapReduce，你听到MapReduce的次数会比HDFS还要多，这是因为：<br>1.MapReduce是真正完成数据处理任务的工具<br>2.MapReduce往往会把它的用户逼疯<br>在常规意义上的关系型数据库中，数据通过SQL（结构化查询语言）被找到并分析，非关系型数据库也使用查询语句，只是不局限于SQL而已，于是有了一个新名词NoSQL。<br>有一点容易搞混的是，<strong>Hadoop并不是一个真正意义上的数据库：它能存储和抽取数据，但并没有查询语言介入。Hadoop更多是一个数据仓库系统，所以需要MapReduce这样的系统来进行真正的数据处理。</strong><br>MapReduce运行一系列任务，其中每项任务都是单独的Java应用，能够访问数据并抽取有用信息。使用MapReduce而不是查询语言让Hadoop数据分析的功能更加强大和灵活，但同时也导致技术复杂性大幅增加。<br>目前有很多工具能够让Hadoop更容易使用，例如Hive，可以将查询语句转换成MapReduce任务。但是MapReduce的复杂性和局限性（单任务批处理）使得Hadoop在更多情况下都被作为数据仓库使用而非数据分析工具。<br>Hadoop的另外一个独特之处是：所有的功能都是分布式的，而不是传统数据库的集中式系统。</p>
-<hr>
-<p>hadoop是一个平台，是一个适合大数据的分布式存储和计算的平台。<br>分布式存储~HDFS<br>分布式计算~MapReduce</p>
-
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/2017/10/10/SSHIntroduction/" style="float: left;">
-        ← SSHIntroduction
-    </a>
-    
-    
-    <a class="pull-right" href="/2017/10/08/ProgrammingCollectiveIntelligenceChapter2/">
-        《集体智慧编程》读书笔记 - Chapter2 →
-    </a>
-    
-</nav>
-
-        <div class="duoshuo">
-
-
-</div>
+        <div class="herofade beige-dk"></div>
     </div>
 </section>
 
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
 
+<!-- ============================ END Hero Image =========================== -->
+
+
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2017/10/10/SSHIntroduction/">SSHIntroduction</a></h4>
+                            
+                            <p><time datetime="2017-10-10T11:50:48.000Z"><a href="/2017/10/10/SSHIntroduction/">2017-10-10</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
+        </div>
+    </div>
+</section> 
+
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>我必须非常努力，才能不被那些天之骄子落下太远。</p>
+        </div>
+    </div>
+</section>
       
 <!-- ============================ Footer =========================== -->
 
