@@ -95,7 +95,7 @@
 				    
 				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/Lesson/" class="animsition-link">Lesson<small>(2)</small></a></li>
+				    <li><a href="/categories/Lesson/" class="animsition-link">Lesson<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(1)</small></a></li>
 				    
@@ -221,7 +221,49 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2017/10/15/NachosNote1/">NachosNote1</a></h3>
+                    <h3><a href="/2017/10/15/NachosGuide/">Nachos源码解读笔记</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2017-10-15T12:46:15.000Z" itemprop="datePublished">
+          2017-10-15
+      </time>
+    
+    
+    | 
+    <a href='/tags/SDU/'>SDU</a>,
+    
+    <a href='/tags/Nachos/'>Nachos</a>,
+    
+    <a href='/tags/OperatingSystem/'>OperatingSystem</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        摘录自网上广泛流传的《山东大学nachos源码解读》
+1.Nachos内核启动1.1不同project使用的内核不同1.2内核可以通过Kernel.kernel调用
+2.Nachos参数解析、设备创建、Debug方法2.1Nachos设备创建：Machine中的createDevices方法，依次创建中断、定时器等。
+3.Nachos中断4.Nachos内核线程及调度算法4.1 TCB：每个nachos线程对应一个TCB，负责处理Nac
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2017/10/15/NachosGuide/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2017/10/15/NachosNote1/">NachosProject1笔记</a></h3>
                     <span>
                         <span class="post-meta">
       <time datetime="2017-10-15T07:36:35.000Z" itemprop="datePublished">
@@ -243,7 +285,9 @@
                 <div class="col-md-8">
                     <p>
                       
-                        assert:程序一般分为Debug 版本和Release 版本，Debug 版本用于内部调试，Release 版本发行给用户使用。断言assert 是仅在Debug 版本起作用的宏，它用于检查“不应该”发生的情况。在运行过程中，如果assert 的参数为假，那么程序就会中止（一般地还会出现提示对话，说明在什么地方引发了assert）。内核线程与用户线程：转自：http://col1.blog.163.com/blog/static/1
+                        
+assert:程序一般分为Debug 版本和Release 版本，Debug 版本用于内部调试，Release 版本发行给用户使用。断言assert 是仅在Debug 版本起作用的宏，它用于检查“不应该”发生的情况。在运行过程中，如果assert 的参数为假，那么程序就会中止（一般地还会出现提示对话，说明在什么地方引发了assert）。
+内核线程与用户线程：转自：http://col1.blog.163.com/blog/static
                       
                     </p>
                     
@@ -544,46 +588,6 @@ SSH的英文全称是Secure SHell。通过使用SSH，你可以把所有传输�
                     
                     <p class="pull-right readMore">
                         <a href="/2017/10/08/Scikit-learnToy/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2017/10/08/IPythonIntroduction/">Anaconda学习之路 Ⅰ - IPython</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2017-10-08T07:56:02.000Z" itemprop="datePublished">
-          2017-10-08
-      </time>
-    
-    
-    | 
-    <a href='/tags/Anaconda/'>Anaconda</a>,
-    
-    <a href='/tags/IPython/'>IPython</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        IPython是交互式任务的专用工具，它的特殊命令能够帮助开发人人员更好的理解正在编写的代码。踩坑1：IPython是交互式命令行！魔术函数在控制台里输入，不要像我一样傻不拉几写到.py里，不报错才怪【掩面
-
-?与??  输出的详细描述。??比?更详细（书上这么写的，我自己暂时没看出来…但的确是都能用的）
-举个栗子t?Type:        intString form: 1Docstring:int(x=0) -integerint
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2017/10/08/IPythonIntroduction/">Read More...</a>
                     </p>
                     
                 </div>

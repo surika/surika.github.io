@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: DataScience | Road To Surika</title>
+  <title>Nachos源码解读笔记 | Road To Surika</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -59,7 +59,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -183,96 +183,55 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/pic.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>我来到你的城市，走过你来时的路。</p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2017/10/09/HadoopIntroduction/">通俗解释Hadoop</a></h4>
-                            
-                            <p><time datetime="2017-10-09T09:18:20.000Z"><a href="/2017/10/09/HadoopIntroduction/">2017-10-09</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2017/10/08/ProgrammingCollectiveIntelligenceChapter2/">《集体智慧编程》读书笔记 - Chapter2</a></h4>
-                            
-                            <p><time datetime="2017-10-08T12:38:18.000Z"><a href="/2017/10/08/ProgrammingCollectiveIntelligenceChapter2/">2017-10-08</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2017/10/08/Scikit-learnToy/">常用数据集 Ⅰ - Scikit-learn Toy</a></h4>
-                            
-                            <p><time datetime="2017-10-08T09:02:02.000Z"><a href="/2017/10/08/Scikit-learnToy/">2017-10-08</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2017/10/07/AnacondaMirror/">Anaconda清华镜像站</a></h4>
-                            
-                            <p><time datetime="2017-10-07T14:54:56.000Z"><a href="/2017/10/07/AnacondaMirror/">2017-10-07</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-10-15T12:46:15.000Z" itemprop="datePublished">
+          2017-10-15
+      </time>
+    
+    
+    | 
+    <a href='/tags/SDU/'>SDU</a>,
+    
+    <a href='/tags/Nachos/'>Nachos</a>,
+    
+    <a href='/tags/OperatingSystem/'>OperatingSystem</a>
+    
+    
+</span>
+                <h1>Nachos源码解读笔记</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>摘录自网上广泛流传的《山东大学nachos源码解读》</p>
+<h4 id="1-Nachos内核启动"><a href="#1-Nachos内核启动" class="headerlink" title="1.Nachos内核启动"></a>1.Nachos内核启动</h4><p>1.1不同project使用的内核不同<br>1.2内核可以通过Kernel.kernel调用</p>
+<h4 id="2-Nachos参数解析、设备创建、Debug方法"><a href="#2-Nachos参数解析、设备创建、Debug方法" class="headerlink" title="2.Nachos参数解析、设备创建、Debug方法"></a>2.Nachos参数解析、设备创建、Debug方法</h4><p>2.1Nachos设备创建：Machine中的createDevices方法，依次创建<strong>中断、定时器</strong>等。</p>
+<h4 id="3-Nachos中断"><a href="#3-Nachos中断" class="headerlink" title="3.Nachos中断"></a>3.Nachos中断</h4><h4 id="4-Nachos内核线程及调度算法"><a href="#4-Nachos内核线程及调度算法" class="headerlink" title="4.Nachos内核线程及调度算法"></a>4.Nachos内核线程及调度算法</h4><p>4.1 TCB：每个nachos线程对应一个TCB，负责处理Nachos线程调度的部分底层细节。<br>privilege对象赋给TCB类执行特权操作的权利。<br>4.2每个调度器对应一个ThreadQueue子类。无论是线程的全局就绪队列，还是实现join方法时的等待队列，其队列都应该从调度器中获取。<br>入队：waitForAccess,需要人工执行sleep<br>出队：nextThread，出队后可执行run方法运行<br>4.3对于PriorityScheduler提供了改变优先级的方法。优先级通过ThreadState包装KThread实现，增加优先级这一属性。在题目中实现自己的优先队列PriorityQueue，并选取合适的数据结构，可以让出队时间变为O(logn)</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>我必须非常努力，才能不被那些天之骄子落下太远。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2017/10/15/NachosNote1/">
+        NachosProject1笔记 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
