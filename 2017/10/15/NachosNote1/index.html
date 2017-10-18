@@ -99,7 +99,7 @@
 				    
 				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/diary/" class="animsition-link">diary<small>(2)</small></a></li>
+				    <li><a href="/categories/diary/" class="animsition-link">diary<small>(3)</small></a></li>
 				    
 				</ul>
         	</li>
@@ -240,7 +240,7 @@
 <p>（1）资源调度按照进程进行，多个处理机下，同一个进程中的线程只能在同一个处理机下分时复用</p>
 <ul>
 <li><strong>yield（）：</strong><br>理论上，yield意味着放手，放弃，投降。一个调用yield()方法的线程告诉虚拟机它乐意让其他线程占用自己的位置。这表明该线程没有在做一些紧急的事情。注意，这仅是一个暗示，并不能保证不会产生任何影响。</li>
-<li><strong>join():</strong><br>线程实例的方法join()方法可以使得一个线程在另一个线程结束后再执行。如果join()方法在一个线程实例上调用，当前运行着的线程将阻塞直到这个线程实例完成了执行。<br>Join()方法的含义：当前线程a在运行，执行b.join(),则a阻塞，直到线程b结束，a继续执行。<br>加入就绪队列readyQueue.waitForAccess(this);<br>变为就绪状态Machine.autoGrader().readyThread(this);<br><strong>同步机制：</strong><br>锁机制<br>信号量机制(Semaphore)：包括无名线程信号量和命名线程信号量<br>信号机制(Signal)：（用的Condition类）<br>阻塞队列（java）</li>
+<li><strong>join():</strong><br>线程实例的方法join()方法可以使得一个线程在另一个线程结束后再执行。如果join()方法在一个线程实例上调用，当前运行着的线程将阻塞直到这个线程实例完成了执行。<br>Join()方法的含义：当前线程a在运行，执行b.join(),则a阻塞，直到线程b结束，a继续执行。<br>加入就绪队列readyQueue.waitForAccess(this);<br>变为就绪状态Machine.autoGrader().readyThread(this);<br><strong>同步机制：</strong><br>锁机制<br>信号量机制(Semaphore)：包括无名线程信号量和命名线程信号量<br>信号机制(Signal)：（用的Condition类）<br>阻塞队列（java）<br>一个线程的<strong>有效优先级：</strong><br>即其所属的等待队列中所有线程中最高的一个优先级数值</li>
 </ul>
 
             <div class="clearfix"></div>
