@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>常用数据集 Ⅰ - Scikit-learn Toy | Road To Surika</title>
+  <title>常用数据集 | Road To Surika</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -189,8 +189,8 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2017-10-08T09:02:02.000Z" itemprop="datePublished">
-          2017-10-08
+      <time datetime="2017-10-23T15:14:02.000Z" itemprop="datePublished">
+          2017-10-23
       </time>
     
     
@@ -199,26 +199,23 @@
     
     
 </span>
-                <h1>常用数据集 Ⅰ - Scikit-learn Toy</h1>
+                <h1>常用数据集</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>Scikit-learn数据集内嵌在Scikit-learn工具包中，可以通过Python导入命令直接加载，不需要从任何外部网络资源中下载。<br>加载：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line">iris=datasets.load_iris()</div></pre></td></tr></table></figure><br>基本上，所有的Scikit-learn数据集都提供以下方法：<br>.DESCR:提供数据集总体描述（description前五个字母）<br>.data:<br>.feature_names:<br>.target:用数值或类别号表示的分类值<br>.target_names:<br>.shape:可用于.data和.target方法，描述的是观测数据（第一个值）和特征（第二个值，如有）的数量。</p>
+      		<h3 id="Scikit-learn-Toy"><a href="#Scikit-learn-Toy" class="headerlink" title="Scikit-learn Toy"></a>Scikit-learn Toy</h3><p>Scikit-learn数据集内嵌在Scikit-learn工具包中，可以通过Python导入命令直接加载，不需要从任何外部网络资源中下载。<br>加载：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line">iris=datasets.load_iris()</div></pre></td></tr></table></figure><br>基本上，所有的Scikit-learn数据集都提供以下方法：<br>.DESCR:提供数据集总体描述（description前五个字母）<br>.data:<br>.feature_names:<br>.target:用数值或类别号表示的分类值<br>.target_names:<br>.shape:可用于.data和.target方法，描述的是观测数据（第一个值）和特征（第二个值，如有）的数量。</p>
 <p>数据集对象包含的主要数据结构是两个数组：date和target</p>
 <p>Toy数据集聚焦一个易于获得又不复杂的数据问题，能帮助你快速建立数据科学的基础。</p>
+<h3 id="mldata-org公共资源库"><a href="#mldata-org公共资源库" class="headerlink" title="mldata.org公共资源库"></a>mldata.org公共资源库</h3><p>可从机器学习数据资源库或LIBSVM数据网站上直接下载，需要访问互联网。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> fetch_mldata</div><div class="line">earthquakes=fetch_mldata(<span class="string">'global-earthquakes'</span>)</div><div class="line">print(earthquakes.data)</div><div class="line">print(earthquakes.data.shape)</div></pre></td></tr></table></figure></p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2017/10/08/ProgrammingCollectiveIntelligenceChapter2/" style="float: left;">
-        ← 《集体智慧编程》读书笔记 - Chapter2
-    </a>
     
-    
-    <a class="pull-right" href="/2017/10/08/IPythonIntroduction/">
-        Anaconda学习之路 Ⅰ - IPython →
+    <a class="pull-right" href="/2017/10/22/diary171022/">
+        等价交换与他 →
     </a>
     
 </nav>
