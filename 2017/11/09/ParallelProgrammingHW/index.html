@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>并行计算 | Road To Surika</title>
+  <title>多核平台上的并行计算 实验笔记 | Road To Surika</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -97,7 +97,7 @@
 				    
 				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/Lesson/" class="animsition-link">Lesson<small>(4)</small></a></li>
+				    <li><a href="/categories/Lesson/" class="animsition-link">Lesson<small>(5)</small></a></li>
 				    
 				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(1)</small></a></li>
 				    
@@ -191,28 +191,32 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2017-10-27T15:15:50.000Z" itemprop="datePublished">
-          2017-10-27
+      <time datetime="2017-11-09T14:51:08.000Z" itemprop="datePublished">
+          2017-11-09
       </time>
     
+    
+    | 
+    <a href='/tags/ParallelProgramming/'>ParallelProgramming</a>,
+    
+    <a href='/tags/PThreads/'>PThreads</a>
+    
+    
 </span>
-                <h1>并行计算</h1>
+                <h1>多核平台上的并行计算 实验笔记</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<p>信号量与互斥量最大的区别在于信号量是没有个体拥有权的。<br>信号量不是PThreads线程库的一部分，所以需要在使用信号量的程序开头加头文件。<br>条件变量是一个数据对象，允许线程在某个特定条件或事件发生前都处于挂起状态。当时间或条件发生时，另一给线程可以通过信号来唤醒挂起的线程。一个条件变量总是与一个互斥量相关联。</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2017/11/05/diary171105/" style="float: left;">
-        ← 碎碎念 - 20171105
-    </a>
     
-    
-    <a class="pull-right" href="/2017/10/25/DataScienceIntroductionHW1/">
-        数据科学导论HW1 - Text Analysis and Entity Resolution →
+    <a class="pull-right" href="/2017/11/06/NachosNote2/">
+        NachosProject2笔记 →
     </a>
     
 </nav>

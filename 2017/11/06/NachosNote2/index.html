@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Nachos源码解读笔记 | Road To Surika</title>
+  <title>NachosProject2笔记 | Road To Surika</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -191,8 +191,8 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2017-10-15T12:46:15.000Z" itemprop="datePublished">
-          2017-10-15
+      <time datetime="2017-11-06T08:48:35.000Z" itemprop="datePublished">
+          2017-11-06
       </time>
     
     
@@ -205,27 +205,27 @@
     
     
 </span>
-                <h1>Nachos源码解读笔记</h1>
+                <h1>NachosProject2笔记</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>摘录自网上广泛流传的《山东大学nachos源码解读》</p>
-<h4 id="1-Nachos内核启动"><a href="#1-Nachos内核启动" class="headerlink" title="1.Nachos内核启动"></a>1.Nachos内核启动</h4><p>1.1不同project使用的内核不同<br>1.2内核可以通过Kernel.kernel调用</p>
-<h4 id="2-Nachos参数解析、设备创建、Debug方法"><a href="#2-Nachos参数解析、设备创建、Debug方法" class="headerlink" title="2.Nachos参数解析、设备创建、Debug方法"></a>2.Nachos参数解析、设备创建、Debug方法</h4><p>2.1Nachos设备创建：Machine中的createDevices方法，依次创建<strong>中断、定时器</strong>等。</p>
-<h4 id="3-Nachos中断"><a href="#3-Nachos中断" class="headerlink" title="3.Nachos中断"></a>3.Nachos中断</h4><h4 id="4-Nachos内核线程及调度算法"><a href="#4-Nachos内核线程及调度算法" class="headerlink" title="4.Nachos内核线程及调度算法"></a>4.Nachos内核线程及调度算法</h4><p>4.1 TCB：每个nachos线程对应一个TCB，负责处理Nachos线程调度的部分底层细节。<br>privilege对象赋给TCB类执行特权操作的权利。<br>4.2每个调度器对应一个ThreadQueue子类。无论是线程的全局就绪队列，还是实现join方法时的等待队列，其队列都应该从调度器中获取。<br>入队：waitForAccess,需要人工执行sleep<br>出队：nextThread，出队后可执行run方法运行<br>4.3对于PriorityScheduler提供了改变优先级的方法。优先级通过ThreadState包装KThread实现，增加优先级这一属性。在题目中实现自己的优先队列PriorityQueue，并选取合适的数据结构，可以让出队时间变为O(logn)</p>
+      		<p>UserKernel 继承自 ThreadedKernel。<br>整个需要装入的进程是一个 machine.CoffSection 类型的对象<br>对 java 文件操作进行包装，向上提供为 StubFileSystem 的接口。</p>
+<p>用户进程是通过UserProcess.load 方法将程序载入内存的。而每个可执行文件用一个 Coff 对象包装。对传入的每个文件名， load 方法先根据文件名读取该文件，然后将文件作为构造方法参数构造一个 Coff 对象，在 Coff 对象中，会对文件进行一个整体的解析，获取代码段<br>（ CoffSection）数目、程序入口等信息，并构造代码段。然后 load方法会获取该程序的每段代码段，统计页的数目和参数的数目，参数会占一页内存，进而将代码段和参数按页载入内存。</p>
+<p>在 test 目录 stdio.h 中，可以看到 typedef int FILE，说明 c 代码中的 FILE 是该文件的<br>标识符。<br>对于创建文件、打开文件、关闭文件、读取文件以及删除文件，在 handleSyscall 方<br>法中模仿 halt 的写法，依赖 syscall.h 中各个系统调用的参数值，分别书写<br>handleFileCreate、 handleFileOpen、 handleFileClose、 handleFileRead、 handleFileUnlink<br>方法，传入对应的参数，通过 ThreadedKernel.fileSystem（第 9 条提示）可以调用到<br>系统已经实现的 StubFileSystem，进行各类文件操作。<br>对于文件的创建及打开，会返回整型文件描述符，不存在返回-1。可向 open 方法<br>中传入一个文件名，检查返回是否是-1 进而确定文件是否存在。文件读写都要传入<br>文件标识符、缓冲区数组、读取/写入的字节数，会返回实际读写的字节数。关闭<br>和删除传入的参数不同，但都是通过返回 0 来表示操作成功， -1 表示错误发生。</p>
+<p>从当前进程中取用FileDesc，从内存中取用FilenamePtr</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2017/10/16/NachosClassNoteW6/" style="float: left;">
-        ← Nachos第六周课堂笔记User-level processes
+    <a class="pull-left" href="/2017/11/09/ParallelProgrammingHW/" style="float: left;">
+        ← 多核平台上的并行计算 实验笔记
     </a>
     
     
-    <a class="pull-right" href="/2017/10/15/NachosNote1/">
-        NachosProject1笔记 →
+    <a class="pull-right" href="/2017/11/05/diary171105/">
+        碎碎念 - 20171105 →
     </a>
     
 </nav>
