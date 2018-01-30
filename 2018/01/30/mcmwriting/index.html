@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>CNN | Road To Surika</title>
+  <title>《正确写作美国大学生数学建模竞赛论文》笔记 | Road To Surika</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -191,51 +191,28 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2018-01-04T12:22:37.000Z" itemprop="datePublished">
-          2018-01-04
+      <time datetime="2018-01-30T07:47:33.000Z" itemprop="datePublished">
+          2018-01-30
       </time>
     
 </span>
-                <h1>CNN</h1>
+                <h1>《正确写作美国大学生数学建模竞赛论文》笔记</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>CNN是深度学习在图像领域的一个应用。那么它相对于原来的神经网络方法有什么不同？为什么它适用于图像领域？<br>原来：全连接神经网络</p>
-<p>需要的参数过多，例如1000*1000的图像，则输入层有10^6个节点，若隐藏层也有10^6个节点，则输入层到隐藏层的参数有10^12个。</p>
-<p>CNN：局部感知、权值共享</p>
-<p>CNN用局部感知和权值共享大大减少了参数，同时还具备其它优点。它们与自然图像自身具有的特性：特征的局部性与重复性完美贴合。</p>
-<p>局部感知：</p>
-<p>（是什么）即网络部分连通，每个神经元只与上一层的部分神经元相连，只感知局部，而不是整幅图像。（滑窗实现）</p>
-<p>（可行性）局部像素关系紧密，较远像素相关性弱。</p>
-<p>因此只需要局部感知，在更高层将局部的信息综合起来就得到了全局的信息。</p>
-<p>受启发于生物视觉系统：局部敏感；对外界认知从局部到全局。</p>
-<p>权值共享：</p>
-<p>（是什么）从一个局部区域学习到的信息，应用到图像的其它地方去。即用一个相同的卷积核去卷积整幅图像，相当于对图像做一个全图滤波。一个卷积核对应的特征比如是边缘，那么用该卷积核去对图像做全图滤波，即是将图像各个位置的边缘都滤出来。（帮助实现不变性）。不同的特征靠多个不同的卷积核实现。</p>
-<p>（可行性）图像的局部统计特征在整幅图像上具有重复性（即位置无关性）。即如果图像中存在某个基本图形，该基本图形可能出现在任意位置，那么不同位置共享相同权值可实现在数据的不同位置检测相同的模式。比如我们在第一个窗口卷积后得到的特征是边缘，那么这个卷积核对应的就是边缘特征的提取方式，那么我们就可以用这个卷积核去提取其它区域的边缘特征。</p>
-<p>CNN为什么具有仿射不变性（平移、缩放、旋转等线性变换）？<br>局部感知、权值共享、池化共同影响形成。</p>
-<p>1)局部感知和权值共享，使得CNN能够在浅层学到比较基础的特征，比如点、线、边缘，高层特征是这些基础浅层特征的组合，即使发生仿射变化，这些基础的特征依然不变，因此最后的识别结果不受到影响。</p>
-<p>用具体的人脸识别的例子来说，到高层时，CNN将这些浅层基础特征组成成更高级的特征，比如人的眼睛、鼻子等，直到全连接层将这种两个眼睛一个鼻子的组合识别为人脸。因此，即使对图像进行平移、缩放、旋转，在浅层依旧能提取出点、线、边缘等基础特征，到高层就能将它们组合成眼睛鼻子，从而最终依旧能被识别为人脸。（一个说法是，平移旋转后的图像到高层对应的特征图一定程度上也是平移旋转后的。过多的平移旋转，最终可能影响到图像的识别，因此更鼓励用data augmentation来实现对旋转的鲁棒。）</p>
-<p>2)池化，比如max pooling，它是取一个区域的最大值。因此当图像发生平移、缩放、旋转等较小的变化时，依然很有可能在同一位置取到最大值，与变化前的响应相同，由此实现了仿射不变性。average pooling同理，发生较小的仿射变化后，均值可能依然不变。</p>
-<p>3)但上述对CNN仿射不变性的解释，都建立在“发生较小的仿射变化”这样的约束上，当发生较大的仿射变化后，可能对CNN的识别结果造成影响。因此，鼓励获取更加丰富的训练样本（进行data augmentation）使得CNN在应用时对新样本有较好的鲁棒性。</p>
-<p>参考：</p>
-<p><a href="http://blog.csdn.net/stdcoutzyx/article/details/41596663/" target="_blank" rel="external">http://blog.csdn.net/stdcoutzyx/article/details/41596663/</a></p>
-<p><a href="http://blog.csdn.net/zouxy09/article/details/8781543/" target="_blank" rel="external">http://blog.csdn.net/zouxy09/article/details/8781543/</a></p>
-<p><a href="http://blog.csdn.net/yeeman/article/details/6325693" target="_blank" rel="external">http://blog.csdn.net/yeeman/article/details/6325693</a></p>
-<p><a href="http://dataunion.org/11692.html" target="_blank" rel="external">http://dataunion.org/11692.html</a></p>
-<p><a href="http://www.voidcn.com/article/p-ahduptmb-dx.html" target="_blank" rel="external">http://www.voidcn.com/article/p-ahduptmb-dx.html</a> CNN十大问</p>
+      		<p>#Ⅰ.简介</p>
+<p>#Ⅱ论文结构</p>
+<p>##1.小节划分<br>Summary<br>1.Restatement of the Problem重述并澄清赛题<br>2.Assumptions<br>3.Justification of Our Approach<br>4.The Model<br>5.Testing the Model<br>6.Results<br>7.Strengths and Weaknesses<br>References<br>重要的句子，包括首次定义的概念，应该用黑体或斜体书写。<br>重要的数学公式应另起新行单独列出。<br>能用列表就用列表<br>图表加上简单明确的文字说明。</p>
+<p>##2.写好引言<br>引言=Introduction=问题重述<br>    对赛题的解读、对现有研究成果的综述与评论以及对解题思路和主要方法的简要介绍。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2018/01/30/mcmwriting/" style="float: left;">
-        ← 《正确写作美国大学生数学建模竞赛论文》笔记
-    </a>
     
-    
-    <a class="pull-right" href="/2017/11/23/NetworkOverview/">
-        计算机网络概括 →
+    <a class="pull-right" href="/2018/01/04/CNN/">
+        CNN →
     </a>
     
 </nav>
