@@ -223,6 +223,46 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
+                    <h3><a href="/2017/11/06/NachosNote2/">NachosProject2笔记</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2017-11-06T08:48:35.000Z" itemprop="datePublished">
+          2017-11-06
+      </time>
+    
+    
+    | 
+    <a href='/tags/SDU/'>SDU</a>,
+    
+    <a href='/tags/Nachos/'>Nachos</a>,
+    
+    <a href='/tags/OperatingSystem/'>OperatingSystem</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        UserKernel 继承自 ThreadedKernel。整个需要装入的进程是一个 machine.CoffSection 类型的对象对 java 文件操作进行包装，向上提供为 StubFileSystem 的接口。
+用户进程是通过UserProcess.load 方法将程序载入内存的。而每个可执行文件用一个 Coff 对象包装。对传入的每个文件名， load 方法先根据文件名读取该文件，然后将文件作为构造方法参数构造一个 Coff 
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2017/11/06/NachosNote2/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
                     <h3><a href="/2017/11/05/diary171105/">碎碎念 - 20171105</a></h3>
                     <span>
                         <span class="post-meta">
@@ -553,48 +593,6 @@ coff：Unix世界中的格式noff：Nachos专用格式，一个简化版的二�
                     
                     <p class="pull-right readMore">
                         <a href="/2017/10/16/NachosClassNoteW6/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2017/10/15/NachosGuide/">Nachos源码解读笔记</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2017-10-15T12:46:15.000Z" itemprop="datePublished">
-          2017-10-15
-      </time>
-    
-    
-    | 
-    <a href='/tags/SDU/'>SDU</a>,
-    
-    <a href='/tags/Nachos/'>Nachos</a>,
-    
-    <a href='/tags/OperatingSystem/'>OperatingSystem</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        摘录自网上广泛流传的《山东大学nachos源码解读》
-1.Nachos内核启动1.1不同project使用的内核不同1.2内核可以通过Kernel.kernel调用
-2.Nachos参数解析、设备创建、Debug方法2.1Nachos设备创建：Machine中的createDevices方法，依次创建中断、定时器等。
-3.Nachos中断4.Nachos内核线程及调度算法4.1 TCB：每个nachos线程对应一个TCB，负责处理Nac
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2017/10/15/NachosGuide/">Read More...</a>
                     </p>
                     
                 </div>
