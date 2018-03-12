@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>180309 | Road To Surika</title>
+  <title>《A Comprehensiv Survey of Graph Embedding Problems Techniques and Applications》笔记 | Road To Surika</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -191,28 +191,96 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2018-03-09T14:58:51.000Z" itemprop="datePublished">
-          2018-03-09
+      <time datetime="2018-03-10T06:09:57.000Z" itemprop="datePublished">
+          2018-03-10
       </time>
     
+    
+    | 
+    <a href='/tags/Graph/'>Graph</a>
+    
+    
 </span>
-                <h1>180309</h1>
+                <h1>《A Comprehensiv Survey of Graph Embedding Problems Techniques and Applications》笔记</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<p>Questions:</p>
+<ul>
+<li>auxiliary-node feature(text feature)</li>
+<li>方法之间的区别</li>
+<li></li>
+</ul>
+<p>图嵌入的意义：降低图研究的复杂程度</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h1><p>因为要利用图中隐含的信息，所以要对图进行研究。但是图的规模太大，直接研究计算开销太大，因此要用合理的方式来给图换一种表示方法，同时要尽可能的保留原有的结构信息。<br><strong>Graph embedding converts a graph into a low dimensional space in which the graph information is preserved.</strong><br>区分图表示与图嵌入。graph representation不需要降维，graph embedding需要降维。</p>
+<h1 id="2-Problem-Formalization"><a href="#2-Problem-Formalization" class="headerlink" title="2.Problem Formalization"></a>2.Problem Formalization</h1><p>##2.1 Notataion and Definition</p>
+<ul>
+<li>graph</li>
+<li>homogeneous graph：节点、边的类型只有一种。</li>
+<li>heterogeneous graph：节点、边的类型不止一种。</li>
+<li>knowledge graph：（h,r,t）（实体1，关系，实体2）可以看做一种异构图的特例。</li>
+<li>first-order proximity：<br>  直接相邻的邻居之间，边的权值越大相似度越高</li>
+<li>second-order proximity<br>  公共邻居越多越相似，由邻居的结构决定。用余弦相似度计算。<br>#3.Problem Settings<br>从问题的角度分类，可以根据输入数据的类型，也可以根据需要的输出类型。<br>因为携带的数据/需要保留的信息不同，所以说嵌入信息的方法也不同，评价嵌入结果的方法也不同。<br>##3.1 Input<br>Fixed and given.<br>不同的输入类型携带了不同的需要保存的信息。<br>###3.1.1 Homogeneous Graph<br>最普通最直观的是无权无向图，近来也有考虑其中之一或者两者都考虑的。<br>Challenge:如何保存连接模式的多样性/结构信息（因为只有这个需要保存）<br>###3.1.2 Heterogeneous Graph<br>常用于三种应用场景：</li>
+<li>社区问答</li>
+<li>多媒体网络</li>
+<li>知识图谱？<br>Challenge:如何在不同的类型之间保持一致与平衡？<br>###3.1.3 Graph with Auxiliaary Information<br>点/边/全图除了结构之外，也可能自己带有一些相关信息。主要分类有：</li>
+<li>Label:打了不同标签的节点在表示时距离应该尽量的远</li>
+<li>Attribute：属性值既可以是离散的，也可以是连续的。</li>
+<li>Node feature节点特征：大多数的节点特征是文本特征，可以代表words/documents.<br>丰富的无结构信息。使归纳成为可能。</li>
+<li>Information propagation信息传播：可能是级联的</li>
+<li>Knowledge base基于知识库。<br>Challenge:这些信息往往丰富而无结构。如何体现这样的信息，使结构与附加信息同时保存下来？//对比于Homogeneous，只需要考虑结构。<br>###3.1.4 Graph Constructed from Non-relational Data<br>Input data is assumed to lie in a low dimensional maniofold.输入数据来自于低维流形空间<br>①Pairwise similarity based.点对之间的相似度。<br>不能采用欧氏距离。可以用KNN,Isomap,Anchor等.<br>②Node co-occurrence based.基于节点同现<br>③etc.<br>Challenge:如何计算相似程度<br>##3.2 Output<br>Task driven.由解决的任务决定<br>首要的挑战就是如何根据不同的问题选择合适的输出粒度(输出类型)。<br>###3.2.1 Node**最常见的一种<br>与邻居的相似度<br>Challenge：如何定义、编码”邻近度”<br>###3.2.2 Edge<br>常用于预测类的任务。预测关系是什么（边的意义）？预测是否有边（有关系）？<br>Challenge：如何定义边的相似度？不对称的边如何建模？（可能有向）<br>###3.2.3 Hybrid<br>//最终产物是substructure<br>如何生成子结构？在统一的空间里如何表示不同的子结构？<br>###3.2.4 Whole-Graph<br>//substructure只是中间产物，是分析问题的一个步骤<br>全图级别的相似度<br>分析不同规模的子结构。<br>Challenge:①如何归纳全图的信息②分析全图需要的开销很大，如何实现效率与表达能力的平衡。<h1 id="4-Graph-Embedding-Techniques"><a href="#4-Graph-Embedding-Techniques" class="headerlink" title="4.Graph Embedding Techniques"></a>4.Graph Embedding Techniques</h1><h2 id="4-1-Matrix-Factorization矩阵分解"><a href="#4-1-Matrix-Factorization矩阵分解" class="headerlink" title="4.1 Matrix Factorization矩阵分解"></a>4.1 Matrix Factorization矩阵分解</h2>多数情况下input from on-relational high dimensional data features,<br>输出为node.<h3 id="4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射"><a href="#4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射" class="headerlink" title="4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射"></a>4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射</h3>The graph property to be preserved can be interpreted as pairwise node similarities,and thus a larger penalty is imposed if two nodes with larger similarity are embedded far apart.<br>相似度高的两节点映射到低维空间之后仍然应保持距离相近。<h3 id="4-1-2-Node-Proximity-Matrix-Factorization"><a href="#4-1-2-Node-Proximity-Matrix-Factorization" class="headerlink" title="4.1.2 Node Proximity Matrix Factorization"></a>4.1.2 Node Proximity Matrix Factorization</h3>Node proximity can be approximated in a low-dimensional space using matrix factorization.The objective of preserving node proximity is therefore to minimize the loss during the approximation.<br>利用矩阵分解可以在低维空间中近似地逼近节点的邻近度。因此，保持节点邻近度的目标是在逼近过程中尽量减少损失。<br><strong>Summary</strong><br>Matrix factorization is mostly used to embed the graph constructed from non-relational data for node embedding as this is the original setting of the graph Laplacian eigenmaps based problems.In a few work,it is also used to embed homogeneous graphs.//从输入的角度总结<br>矩阵分解主要用于嵌入由非关系数据构建的图，用于节点嵌入，因为这是基于问题的图拉普拉斯特征映射的原始设置。在一些工作中，它也被用来嵌入齐次图形。<br>##4.2 Deep Learning<br>可以从别的研究方向推广而来。<br>输入①边采样paths sampled from a graph②全图the whole graph<br>依据<strong>边采样是否采用了随机游走</strong>分类<br>鲁棒，高效，已经广泛应用。<br>###4.2.1 DL based Graph Embedding with Random Work<br>刻画了网络的局部信息。<br>两节点联系越紧密，在随机游走中共现的可能性就越大。如果不连通，就不可能共现。<br>基础算法DeepWalk，其他算法在此基础上引申。<br>从NLP/语言模型领域推广而来，思想来自于word2vec.<br>e.g.DeepWalk的游走方法是随机DFS,node2vec是由参数控制的随机游走，加入了BFS。<br>###4.2.2…without Random Walk<br>基于全图.</li>
+<li>Autoencoder</li>
+<li>Deep Neural Network<br>不同算法的区别是在图上生成类似卷积的操作。<br>##4.3 Edge Reconstruction based Optimization<br>The edges established based on node embedding should be as similar to those in the input graph as possible.<br>基于边重建，重建的边应该近似于输入<br>###4.3.1 Maximizing Edge Reconstruction Probability最大化概率<br>###4.3.2 Minimizing Distance-based Loss最小化基于距离的损失<br>###4.3.3 Minimizing Margin-based Ranking Loss最小化基于<br>图中一些节点可能与<strong>一组</strong>相关的节点有关<br>A node’s embedding is more similar to the embedding of relevant nodes than that of any other irrellevant node.<br>##4.4 Graph Kernel<br>把握全局特征。针对全图而生<br>全图表示。拆分成分解出来的子结构<br>The whole graph structure can be represented as a vector containing the counts of elementary substructures that are decomposed from it.<br>子结构分类：</li>
+<li>Graphlet</li>
+<li>Subtree Patterns </li>
+<li>Random Walks<br>适合的输入类型：</li>
+<li>homogeneous同质</li>
+<li>auxiliary info.辅助信息<br>##4.5 Generative Model<br>适用场景： 输出node,edge；输入heterogeneous,auxiliary infomation。<br>###4.5.1 Embed Graph Into The Latent Semantic Space<br>嵌入到潜在语义空间<br>###4.5.2 Incorporate Latent Semantics for Graph Embedding<br>##4.6 Hybrid &amp; Others</li>
+</ul>
+<p>#5.Appliacation#<br>该节是按照输出类型分类的。</p>
+<p>##5.1 Node Related##</p>
+<ul>
+<li>Node Classfication</li>
+<li>Node Clustering</li>
+<li>Node Recommendation/Retrieval/Ranking推荐、检索、排序<br>##5.2 Edge Related</li>
+<li>Link Prediction联系预测</li>
+<li>Triple Classification三元组分类<br>##5.3 Graph Related Applicaitons</li>
+<li>Graph Classification图像分类</li>
+<li>Visualization 可视化<br>##5.4 Other</li>
+<li>Knowledge graph related</li>
+<li>Multimedia network</li>
+<li>Information propagation</li>
+<li>Socail networks alignment</li>
+<li>Image<br>#6.Future Directions</li>
+<li>Computation</li>
+<li>Problem settings<br>动态的，随时间而变的</li>
+<li>Techniques</li>
+<li>Applications<br>#7.Conclusion<br>Graph embedding的正式定义、基本概念<br>两种分类方法，将现有工作分为①四输入四输出，分别的挑战②技术<br>总结应用<br>四个未来研究方向</li>
+</ul>
+<hr>
+<p>DeepWalk:Online Learning of Social Representations</p>
+<p>#1.Introduction</p>
+<p>#2.Problem Definition</p>
+<p>#3.<br>Social representations应有的特征：</p>
+<ul>
+<li>Adaptability适应性。能够适应社交网络的演化</li>
+<li>Community aware.”有社区意识”，用距离度量相似度，有利于同质网络的泛化。</li>
+<li>Low dimensional低维</li>
+<li>Continuous连续<br>##3.1 Random Walks<br>可用于相似度的度量。<br>容易并行化<br>适应小的变化<br>##3.2 Connection:Power Laws<br>网络结构和语言结构是相似的。<br>##3.3 Language Model<br>#4.Method<br>##4.1<br>##4.2 Algorithm:DeepWalk<br>###4.2.1 SkipGram<br>###4.2.2 Hierarchical Softmax<br>为了提高性能，加速计算。<br>###4.2.3 Optimization<br>随机梯度下降</li>
+</ul>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2018/03/10/AComprehensivSurveyofGraphEmbeddingProblemsTechniquesandApplications/" style="float: left;">
-        ← 《A Comprehensiv Survey of Graph Embedding Problems Techniques and Applications》笔记
+    <a class="pull-left" href="/2018/03/12/SkipGram/" style="float: left;">
+        ← SkipGram模型的理解
     </a>
     
     
-    <a class="pull-right" href="/2018/03/06/180306/">
-        180306 →
+    <a class="pull-right" href="/2018/03/09/180309/">
+        180309 →
     </a>
     
 </nav>
