@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Target-Guided Open-Domain Conversation | Road To Surika</title>
+  <title>为什么信息熵要定义成log的形式 | Road To Surika</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -191,62 +191,26 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2019-09-24T14:08:09.000Z" itemprop="datePublished">
-          2019-09-24
+      <time datetime="2019-09-25T09:14:00.000Z" itemprop="datePublished">
+          2019-09-25
       </time>
     
 </span>
-                <h1>Target-Guided Open-Domain Conversation</h1>
+                <h1>为什么信息熵要定义成log的形式</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>ACL 2019</p>
-<h2 id="任务："><a href="#任务：" class="headerlink" title="任务："></a>任务：</h2><p>在开放域上自然地聊天，并主动将对话引导到预先设定好的目标话题上</p>
-<h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p>将整个系统解耦成独立的模块，在不同粒度上分别解决这些挑战。</p>
-<h2 id="要求："><a href="#要求：" class="headerlink" title="要求："></a>要求：</h2><ol>
-<li><p>transition smoothness 转换流畅，引导过程切合当前对话上下文</p>
-</li>
-<li><p>target achievement 达成目标</p>
-</li>
-<li><p>a turn-level keyword transition predictor (section 4.1)<br>用于预测下一句回复的关键词，获得其分布</p>
-</li>
-</ol>
-<p>这一部分主要用于生成流畅的对话，而不考虑引导对话主题</p>
-<p>文章使用了三种方法:</p>
-<ul>
-<li>Parawise PMI-based Transition 点互信息</li>
-<li>基于神经网络预测</li>
-<li>基于核的混合方法<br>第三种效果最佳</li>
-</ul>
-<ol start="2">
-<li>a discourse-level target-guiding strategy (section 4.2)<br>用于完成主动将对话主题引导到目标的任务。即选择下一句生成回复的主题</li>
-</ol>
-<p>要求：</p>
-<ul>
-<li>相关度更高</li>
-<li>离目标更近</li>
-</ul>
-<p>使用基于规则的方法</p>
-<p>关键在于the augmentation of interpretable coarse-grained keywords 粗粒度关键词的可解释性的提升</p>
-<ol start="3">
-<li>Keyword-augmented response retriever (section 4.3).<br>目标：基于对话历史和预测关键词生成回复</li>
-</ol>
-<p>使用检索式方法</p>
-<p>用RNN编码输入对话历史和关键词，以及从数据库中得到的候选回复，然后计算候选特征与历史特征、候选特征与关键词特征(feature)之间的element-wise乘积。拼接得到的两个向量，输入到带sigmoid单个单元(single-unit)的全连接层来获取候选回复的匹配概率值</p>
-<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>tbc.</p>
+      		<p>如果我们有俩个不相关的事件x和y，那么我们观察到的俩个事件同时发生时获得的信息应该等于观察到的事件各自发生时获得的信息之和，即：h(x,y) = h(x) + h(y)由于x，y是俩个不相关的事件，那么满足p(x,y) = p(x)*p(y).根据上面推导，我们很容易看出h(x)一定与p(x)的对数有关（因为只有对数形式的真数相乘之后，能够对应对数的相加形式，可以试试）。因此我们有信息量公式如下：</p>
+<p>作者：忆臻<br>链接：<a href="https://www.zhihu.com/question/30828247/answer/160647576" target="_blank" rel="noopener">https://www.zhihu.com/question/30828247/answer/160647576</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2019/09/25/entropy-and-log/" style="float: left;">
-        ← 为什么信息熵要定义成log的形式
-    </a>
     
-    
-    <a class="pull-right" href="/2019/09/21/GitWithProxy/">
-        GitWithProxy →
+    <a class="pull-right" href="/2019/09/24/Target-Guided-Open-Domain-Conversation/">
+        Target-Guided Open-Domain Conversation →
     </a>
     
 </nav>
