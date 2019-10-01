@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang>
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>Generating Responses with a Specific Emotion in Dialog | Road To Surika</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="Surika">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/img/flower.png">
+	<link rel="apple-touch-icon" href="/img/flower.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Road To Surika">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Generating Responses with a Specific Emotion in Dialog | Road To Surika">
+	<meta property="og:description" content>
+	<meta property="og:url" content="http://yoursite.com/2019/08/13/Generating Responses with a Specific Emotion in Dialog/">
+
+	
+	<meta property="article:published_time" content="2019-08-13T21:08:00+08:00"> 
+	<meta property="article:author" content="Surika">
+	<meta property="article:published_first" content="Road To Surika, /2019/08/13/Generating Responses with a Specific Emotion in Dialog/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Road To Surika">
+                    <img src="/img/58851587_p0.png" alt="Road To Surika">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/surika" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    
+    
+    <a class="social-link" title="bilibili" href="https://space.bilibili.com/177405158" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M360.896 183.968l-90.912-88.096s-14.208-17.472 9.824-37.248c24.16-19.648 25.376-10.912 33.504-5.472s135.2 130.816 135.2 130.816zm301.952 3.264l90.912-88.096s14.208-17.472-9.824-37.248c-24.032-19.648-25.376-10.912-33.504-5.472s-135.2 130.816-135.2 130.816zM1004 350.336c-3.264-137.984-123.168-164.192-123.168-164.192s-614.336-4.96-742.496 0C10.176 222.304 20 350.336 20 350.336s1.696 274.272-.128 413.12c13.824 138.848 120.864 160.928 120.864 160.928s42.72.864 73.92.864c3.264 8.992 5.696 52.544 54.24 52.544 48.416 0 54.24-52.544 54.24-52.544s354.88-1.696 384.352-1.696c1.696 14.816 8.992 54.976 57.536 54.24 48.416-.864 51.712-57.536 51.712-57.536s16.384-1.696 65.664 0C997.344 898.88 1004 764.192 1004 764.192s-1.568-275.872 0-413.856zm-98.912 439.232c0 21.728-17.248 39.456-38.464 39.456H167.2c-21.248 0-38.464-17.6-38.464-39.456V326.336c0-21.728 17.248-39.456 38.464-39.456h699.424c21.248 0 38.464 17.6 38.464 39.456zM202.4 457.152l205.344-39.456 15.52 77.184-203.648 39.456zm638.976 0l-205.344-39.456-15.648 77.184 203.776 39.456zm-418.08 191.392s45.152 81.312 95.264-26.336c48.416 105.088 101.824 27.904 101.824 27.904l30.336 19.776s-56.672 91.136-131.424 22.208c-63.232 68.928-129.728-21.952-129.728-21.952z"/></svg>
+    </a>
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-08-13T13:45:32.000Z">
+                    2019-08-13
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                
+            </div>
+            <h1 class="post-full-title">Generating Responses with a Specific Emotion in Dialog</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="Generating-Responses-with-a-Specific-Emotion-in-Dialog"><a href="#Generating-Responses-with-a-Specific-Emotion-in-Dialog" class="headerlink" title="Generating Responses with a Specific Emotion in Dialog"></a>Generating Responses with a Specific Emotion in Dialog</h1><h2 id="0-Abstract"><a href="#0-Abstract" class="headerlink" title="0 Abstract"></a>0 Abstract</h2><p>用强烈或含蓄的方式表达感情<br>有意义且结构连贯</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>at least two ways to put feelings into words<br>两种表达感情的方法<br>one is to describe emotional states by explicitly using strong emotional words associated with the categories一种是显式的使用强烈的感情词语<br>another is to increase the intensify of the emotional experiences not by using words i emotion lexicon, bu ty implicitly combining neutral words in distinct ways on emotion.<br>另一种是含蓄地结合中性词汇表达情感<br>seq2seq框架，基于词典的注意力机制拓展，机制鼓励用情感词典中的同义词代替回复中的词<br>回复的生成过程由序列级的情感分类器指导，它帮助增强情感表达的强度，识别情感句子中是否包含情感词<br>半监督方法 创建情感词典，相对准确地表示情感状态</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><h2 id="3-Method"><a href="#3-Method" class="headerlink" title="3 Method"></a>3 Method</h2><p>(1) seq2seq framework<br>(2) lexicon-based attention mechanism：plug in the desired emotional words 插入需要的情感词汇<br>(3) sequence-level emotion classifier：recognize the emotional sentences without any emotional word 识别没有情感词汇的情感句子<br>(4) diverse decoding algorithm: foster diversity in response generation 回复生成多样性<br>(5) semi-supervised method: produce an emotion lexicon that can properly represent the mental perceptions of the emotional states 产生一个情感词汇，能够恰当地表示对情感状态的心理感知</p>
+<h3 id="3-1-Problem-Definition"><a href="#3-1-Problem-Definition" class="headerlink" title="3.1 Problem Definition"></a>3.1 Problem Definition</h3><p>输入：<br>post $X = {x_1,x_2,…,x_M}$<br>emotion category $e$<br>目标：<br>生成response $Y = {y_1, y_2,…,y_N}$，在意义和情感上都合适<br>其中$x_i \in V$和$y_i \in V$分别是post和response中的词语<br>$M,N$分别是post和response的长度，<br>$V=V_g \cup V_e$是词典，包含了通用词典$V_g$和情感和一个情感词语$V_e$。$V_g \cap V_e = \emptyset$<br>$V_e$可以进一步分为几个子集$V^z_e$,每一个保存了有关情感分类$z$的词语。</p>
+<h3 id="3-2-Dialogue-System-with-Lexicon-based-Attention-Mechanism-基于词典的注意力机制"><a href="#3-2-Dialogue-System-with-Lexicon-based-Attention-Mechanism-基于词典的注意力机制" class="headerlink" title="3.2 Dialogue System with Lexicon-based Attention Mechanism 基于词典的注意力机制"></a>3.2 Dialogue System with Lexicon-based Attention Mechanism 基于词典的注意力机制</h3><p>基于seq2seq框架<br>lexicon-based attention mechanism: “plug” emotional words into the generated texts at the right time steps 在正确的时间步将情感词语插入到生成的文本中<br><strong>encoder</strong>: 双向LSTM，将输入转化为向量表示<br><strong>docoder</strong>: a separate LSTM enhanced with a lexicon-based attention mechanism 带基于lexicon的注意力机制的单个LSTM<br>输入： 之前预测的词语$y_{j-1}$和情感向量$e_j$ 来更新隐状态；$y_{j-1}$的嵌入和$e_j$串接(concatenate)<br>情感向量$e_j$是对于给定的类别$z$, $V^z_e$中词语的加权和<br>（3）<br>对于$V^z_e$中的每个情感词语$w^z_k$来说，每个时间步$j$的注意力分数$a_{jk}$由三部分决定：</p>
+<ul>
+<li>decoder的前一个隐藏状态$s_{j-1}$</li>
+<li>输入post的编码表示$h_M$</li>
+<li>$V^z_e$中第k个词的嵌入$Emb(w^z_k)$<h3 id="3-3-Emotion-Classification"><a href="#3-3-Emotion-Classification" class="headerlink" title="3.3 Emotion Classification"></a>3.3 Emotion Classification</h3>sequence-level emotion classifier 序列级情感分类器，识别传递特定情感但不包含情感词语的回复<br>expected word embedding 期望词嵌入 每个时间步所有可能的词的加权和</li>
+</ul>
+<p>引入的情感分类器不仅能够增加情绪表达的强度，还可以识别情感回复中是否包含情感词语。情感分类器只用在训练过程中，可以作为情感表达的全局指导</p>
+<h3 id="3-4-Training-Objective"><a href="#3-4-Training-Objective" class="headerlink" title="3.4 Training Objective"></a>3.4 Training Objective</h3><p>由generation与classification 生成与分类 两部分组成<br>生成损失$L_{MCE}$确保decoder可以产生结构连贯有意义的回复<br>分类损失$L_{CLA}$确保在产生的回复中特定情感可以合适的传达</p>
+<h3 id="3-5-Diverse-Decoding-Algorithm"><a href="#3-5-Diverse-Decoding-Algorithm" class="headerlink" title="3.5 Diverse Decoding Algorithm"></a>3.5 Diverse Decoding Algorithm</h3><p>集束搜索beam search生成的结果大多相似<br>强制开头的词语of N-candidates必须不同，然后在开头的词语确定后，继续用贪心解码策略生成回复。最后从最好的N个候选中选择感情分数最高的。</p>
+<h3 id="3-6-Emotion-Lexicon-Construction"><a href="#3-6-Emotion-Lexicon-Construction" class="headerlink" title="3.6 Emotion Lexicon Construction"></a>3.6 Emotion Lexicon Construction</h3><p>如何用半监督方法从包含了句子和对应情感分类的语料库中建立需要的情感词典<br>The meaning of words is rated on a number of different bipolar adjective scales.单词的意思是用一些不同的双极性形容词量表来评定的。<br>对一个感情类别，每个词表示为$w=(p_w,n_w)$，其中$p_w$表示指定类别的概率，$n_w$表示另一个，即positiive和negative.<br>给定n个词组成的序列的句子s，<br>如果句子表示了情感，则标记为二维情感向量$z=(1,0)$，否则则标记为$z=(0,1)$.。每个词用一个小的随机值初始化，并最小化交叉熵<em>__损失来训练，其中m是语料库中句子的数目。<br>移除所有的的停止词，映射识别的“digit数字”“E-mail电子邮件”“URL”“data日期”“foreign word外来词”到特殊符号。<br>跟在否定词后面的词在生成感情向量前被转化成 $(-p_w;-n_w)$<br>如果词语是最高级或比较级修饰的形容词或副词，更新表示时学习率的值会相应变为两倍或三倍<br>训练过程可以被分为两个阶段，第一阶段使用标准反向传播；当预测accuracy大于一个预定的阈值(如90%)时，进入第二阶段，开始使用maximum margin learning strategy，直到达到收敛。在训练结束时，计算平均值$v=\frac{1}{n}\sum^n</em>{i=1}(p_w-n_w)$以及方差$\sigma$值$\frac{1}{\sigma}(p_w-n_w-v)$大于特定阈值的词将会被视作情感词语。</p>
+<h2 id="4-Experiments"><a href="#4-Experiments" class="headerlink" title="4.Experiments"></a>4.Experiments</h2><h3 id="4-1-Data-Preparation"><a href="#4-1-Data-Preparation" class="headerlink" title="4.1 Data Preparation"></a>4.1 Data Preparation</h3><p>目前没有现成的感情的对话数据，所以我们给予Short Text Conversation (STC)数据集建立了自己的实验数据集，我们首先在NLPCC数据集上训练出了一个情感分类器，然后使用这个分类器标注STC数据集。这个分类器使用Bi-LSTM.<br>NLPCC包含anger, disgust, contentment, joy, sadness, fear, surprise, neutral，移除不常见的类别fear和surprise，还剩六类，用bilstm分类器标注情感标签。训练、验证、测试集划分为9:0.5:0.5</p>
+<h3 id="4-2-Training-Details"><a href="#4-2-Training-Details" class="headerlink" title="4.2 Training Details"></a>4.2 Training Details</h3><h3 id="4-3-Baseline-Models"><a href="#4-3-Baseline-Models" class="headerlink" title="4.3 Baseline Models"></a>4.3 Baseline Models</h3><ul>
+<li>Seq2Seq</li>
+<li>EmoEmb</li>
+<li>ECM</li>
+<li>EmoDS-MLE</li>
+<li>EmoDS-EV 使用外部情感词典，而不是内部的</li>
+<li>EmoDS-BS 原始集束搜索beam search，而不是我们的多样化解码<h3 id="4-4-Automatic-Evaluation"><a href="#4-4-Automatic-Evaluation" class="headerlink" title="4.4 Automatic Evaluation"></a>4.4 Automatic Evaluation</h3></li>
+<li>Embedding Score</li>
+<li>BLEU Score</li>
+<li>Distinct</li>
+<li>Emotion Evaluation<h3 id="5-Conclusion"><a href="#5-Conclusion" class="headerlink" title="5 Conclusion"></a>5 Conclusion</h3>情感状态可以用语言来表达，可以明确地使用强烈的情感词，也可以用不同的模式形成中性词，我们提出了一个创新的情感对话系统，可以以任一方式传达想要的情感，并生成有意义且连贯的结构。<br>seq2seq框架用基于词典的注意力机制扩展，提高每个时间步中情感词进入文章的概率；情感分类器用于指导回复生成过程，确保特定的感情在生成文本中被合适的表达。</li>
+</ul>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="如何读论文" href="/2019/09/21/HowToReadPapers/">
+            ← 如何读论文
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NEW_TEST" href="/2019/08/07/NEW-TEST/">
+            NEW_TEST →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Generating-Responses-with-a-Specific-Emotion-in-Dialog"><span class="toc-text">Generating Responses with a Specific Emotion in Dialog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-Abstract"><span class="toc-text">0 Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-text">1 Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2"><span class="toc-text">2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Method"><span class="toc-text">3 Method</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Problem-Definition"><span class="toc-text">3.1 Problem Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Dialogue-System-with-Lexicon-based-Attention-Mechanism-基于词典的注意力机制"><span class="toc-text">3.2 Dialogue System with Lexicon-based Attention Mechanism 基于词典的注意力机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Emotion-Classification"><span class="toc-text">3.3 Emotion Classification</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-Training-Objective"><span class="toc-text">3.4 Training Objective</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-Diverse-Decoding-Algorithm"><span class="toc-text">3.5 Diverse Decoding Algorithm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-Emotion-Lexicon-Construction"><span class="toc-text">3.6 Emotion Lexicon Construction</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Experiments"><span class="toc-text">4.Experiments</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Data-Preparation"><span class="toc-text">4.1 Data Preparation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Training-Details"><span class="toc-text">4.2 Training Details</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Baseline-Models"><span class="toc-text">4.3 Baseline Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Automatic-Evaluation"><span class="toc-text">4.4 Automatic Evaluation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Conclusion"><span class="toc-text">5 Conclusion</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Road To Surika &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2019/10/01/gitwithsocks/">git代理</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/09/26/Personalized-Dialogue-Generation-with-Diversified-Traits/">Personalized Dialogue Generation with Diversified Traits</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/09/25/entropy-and-log/">为什么信息熵要定义成log的形式</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Anaconda/">Anaconda</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataScience/">DataScience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lesson/">Lesson</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/Anaconda/" style="font-size: 18px;">Anaconda</a> <a href="/tags/DataScience/" style="font-size: 20px;">DataScience</a> <a href="/tags/Graph/" style="font-size: 18px;">Graph</a> <a href="/tags/Hadoop/" style="font-size: 14px;">Hadoop</a> <a href="/tags/Hbase/" style="font-size: 14px;">Hbase</a> <a href="/tags/Hexo/" style="font-size: 16px;">Hexo</a> <a href="/tags/IPython/" style="font-size: 14px;">IPython</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 14px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 16px;">NLP</a> <a href="/tags/Nachos/" style="font-size: 22px;">Nachos</a> <a href="/tags/OperatingSystem/" style="font-size: 22px;">OperatingSystem</a> <a href="/tags/PThreads/" style="font-size: 14px;">PThreads</a> <a href="/tags/Paper/" style="font-size: 14px;">Paper</a> <a href="/tags/ParallelProgramming/" style="font-size: 14px;">ParallelProgramming</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/SDU/" style="font-size: 24px;">SDU</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/SoftwareEngineer/" style="font-size: 14px;">SoftwareEngineer</a> <a href="/tags/diary/" style="font-size: 22px;">diary</a> <a href="/tags/集体智慧编程/" style="font-size: 14px;">集体智慧编程</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/img/flower.png" alt="Road To Surika">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Road To Surika">Road To Surika &copy; 2019</a>
+			
+				
+			        <span hidden="true" id="/2019/08/13/Generating Responses with a Specific Emotion in Dialog/" class="leancloud-visitors" data-flag-title="Generating Responses with a Specific Emotion in Dialog">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        var bLazy = new Blazy()
+    })
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function(){
+        searchFunc("/")
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

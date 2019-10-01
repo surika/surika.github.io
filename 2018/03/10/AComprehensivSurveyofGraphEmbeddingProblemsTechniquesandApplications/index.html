@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang>
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>《A Comprehensiv Survey of Graph Embedding Problems Techniques and Applications》笔记 | Road To Surika</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="Surika">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/img/flower.png">
+	<link rel="apple-touch-icon" href="/img/flower.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Road To Surika">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="《A Comprehensiv Survey of Graph Embedding Problems Techniques and Applications》笔记 | Road To Surika">
+	<meta property="og:description" content>
+	<meta property="og:url" content="http://yoursite.com/2018/03/10/AComprehensivSurveyofGraphEmbeddingProblemsTechniquesandApplications/">
+
+	
+	<meta property="article:published_time" content="2018-03-10T14:03:00+08:00"> 
+	<meta property="article:author" content="Surika">
+	<meta property="article:published_first" content="Road To Surika, /2018/03/10/AComprehensivSurveyofGraphEmbeddingProblemsTechniquesandApplications/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Road To Surika">
+                    <img src="/img/58851587_p0.png" alt="Road To Surika">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/surika" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    
+    
+    <a class="social-link" title="bilibili" href="https://space.bilibili.com/177405158" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M360.896 183.968l-90.912-88.096s-14.208-17.472 9.824-37.248c24.16-19.648 25.376-10.912 33.504-5.472s135.2 130.816 135.2 130.816zm301.952 3.264l90.912-88.096s14.208-17.472-9.824-37.248c-24.032-19.648-25.376-10.912-33.504-5.472s-135.2 130.816-135.2 130.816zM1004 350.336c-3.264-137.984-123.168-164.192-123.168-164.192s-614.336-4.96-742.496 0C10.176 222.304 20 350.336 20 350.336s1.696 274.272-.128 413.12c13.824 138.848 120.864 160.928 120.864 160.928s42.72.864 73.92.864c3.264 8.992 5.696 52.544 54.24 52.544 48.416 0 54.24-52.544 54.24-52.544s354.88-1.696 384.352-1.696c1.696 14.816 8.992 54.976 57.536 54.24 48.416-.864 51.712-57.536 51.712-57.536s16.384-1.696 65.664 0C997.344 898.88 1004 764.192 1004 764.192s-1.568-275.872 0-413.856zm-98.912 439.232c0 21.728-17.248 39.456-38.464 39.456H167.2c-21.248 0-38.464-17.6-38.464-39.456V326.336c0-21.728 17.248-39.456 38.464-39.456h699.424c21.248 0 38.464 17.6 38.464 39.456zM202.4 457.152l205.344-39.456 15.52 77.184-203.648 39.456zm638.976 0l-205.344-39.456-15.648 77.184 203.776 39.456zm-418.08 191.392s45.152 81.312 95.264-26.336c48.416 105.088 101.824 27.904 101.824 27.904l30.336 19.776s-56.672 91.136-131.424 22.208c-63.232 68.928-129.728-21.952-129.728-21.952z"/></svg>
+    </a>
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2018-03-10T06:09:57.000Z">
+                    2018-03-10
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                
+            </div>
+            <h1 class="post-full-title">《A Comprehensiv Survey of Graph Embedding Problems Techniques and Applications》笔记</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <p>Questions:</p>
+<ul>
+<li>auxiliary-node feature(text feature)</li>
+<li>方法之间的区别</li>
+<li></li>
+</ul>
+<p>图嵌入的意义：降低图研究的复杂程度</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h1><p>因为要利用图中隐含的信息，所以要对图进行研究。但是图的规模太大，直接研究计算开销太大，因此要用合理的方式来给图换一种表示方法，同时要尽可能的保留原有的结构信息。<br><strong>Graph embedding converts a graph into a low dimensional space in which the graph information is preserved.</strong><br>区分图表示与图嵌入。graph representation不需要降维，graph embedding需要降维。</p>
+<h1 id="2-Problem-Formalization"><a href="#2-Problem-Formalization" class="headerlink" title="2.Problem Formalization"></a>2.Problem Formalization</h1><h2 id="2-1-Notataion-and-Definition"><a href="#2-1-Notataion-and-Definition" class="headerlink" title="2.1 Notataion and Definition"></a>2.1 Notataion and Definition</h2><ul>
+<li>graph</li>
+<li>homogeneous graph：节点、边的类型只有一种。</li>
+<li>heterogeneous graph：节点、边的类型不止一种。</li>
+<li>knowledge graph：（h,r,t）（实体1，关系，实体2）可以看做一种异构图的特例。</li>
+<li>first-order proximity：<br>  直接相邻的邻居之间，边的权值越大相似度越高</li>
+<li>second-order proximity<br>  公共邻居越多越相似，由邻居的结构决定。用余弦相似度计算。<h1 id="3-Problem-Settings"><a href="#3-Problem-Settings" class="headerlink" title="3.Problem Settings"></a>3.Problem Settings</h1>从问题的角度分类，可以根据输入数据的类型，也可以根据需要的输出类型。<br>因为携带的数据/需要保留的信息不同，所以说嵌入信息的方法也不同，评价嵌入结果的方法也不同。<h2 id="3-1-Input"><a href="#3-1-Input" class="headerlink" title="3.1 Input"></a>3.1 Input</h2>Fixed and given.<br>不同的输入类型携带了不同的需要保存的信息。<h3 id="3-1-1-Homogeneous-Graph"><a href="#3-1-1-Homogeneous-Graph" class="headerlink" title="3.1.1 Homogeneous Graph"></a>3.1.1 Homogeneous Graph</h3>最普通最直观的是无权无向图，近来也有考虑其中之一或者两者都考虑的。<br>Challenge:如何保存连接模式的多样性/结构信息（因为只有这个需要保存）<h3 id="3-1-2-Heterogeneous-Graph"><a href="#3-1-2-Heterogeneous-Graph" class="headerlink" title="3.1.2 Heterogeneous Graph"></a>3.1.2 Heterogeneous Graph</h3>常用于三种应用场景：</li>
+<li>社区问答</li>
+<li>多媒体网络</li>
+<li>知识图谱？<br>Challenge:如何在不同的类型之间保持一致与平衡？<h3 id="3-1-3-Graph-with-Auxiliaary-Information"><a href="#3-1-3-Graph-with-Auxiliaary-Information" class="headerlink" title="3.1.3 Graph with Auxiliaary Information"></a>3.1.3 Graph with Auxiliaary Information</h3>点/边/全图除了结构之外，也可能自己带有一些相关信息。主要分类有：</li>
+<li>Label:打了不同标签的节点在表示时距离应该尽量的远</li>
+<li>Attribute：属性值既可以是离散的，也可以是连续的。</li>
+<li>Node feature节点特征：大多数的节点特征是文本特征，可以代表words/documents.<br>丰富的无结构信息。使归纳成为可能。</li>
+<li>Information propagation信息传播：可能是级联的</li>
+<li>Knowledge base基于知识库。<br>Challenge:这些信息往往丰富而无结构。如何体现这样的信息，使结构与附加信息同时保存下来？//对比于Homogeneous，只需要考虑结构。<h3 id="3-1-4-Graph-Constructed-from-Non-relational-Data"><a href="#3-1-4-Graph-Constructed-from-Non-relational-Data" class="headerlink" title="3.1.4 Graph Constructed from Non-relational Data"></a>3.1.4 Graph Constructed from Non-relational Data</h3>Input data is assumed to lie in a low dimensional maniofold.输入数据来自于低维流形空间<br>①Pairwise similarity based.点对之间的相似度。<br>不能采用欧氏距离。可以用KNN,Isomap,Anchor等.<br>②Node co-occurrence based.基于节点同现<br>③etc.<br>Challenge:如何计算相似程度<h2 id="3-2-Output"><a href="#3-2-Output" class="headerlink" title="3.2 Output"></a>3.2 Output</h2>Task driven.由解决的任务决定<br>首要的挑战就是如何根据不同的问题选择合适的输出粒度(输出类型)。<h3 id="3-2-1-Node-最常见的一种"><a href="#3-2-1-Node-最常见的一种" class="headerlink" title="3.2.1 Node**最常见的一种"></a>3.2.1 Node**最常见的一种</h3>与邻居的相似度<br>Challenge：如何定义、编码”邻近度”<h3 id="3-2-2-Edge"><a href="#3-2-2-Edge" class="headerlink" title="3.2.2 Edge"></a>3.2.2 Edge</h3>常用于预测类的任务。预测关系是什么（边的意义）？预测是否有边（有关系）？<br>Challenge：如何定义边的相似度？不对称的边如何建模？（可能有向）<h3 id="3-2-3-Hybrid"><a href="#3-2-3-Hybrid" class="headerlink" title="3.2.3 Hybrid"></a>3.2.3 Hybrid</h3>//最终产物是substructure<br>如何生成子结构？在统一的空间里如何表示不同的子结构？<h3 id="3-2-4-Whole-Graph"><a href="#3-2-4-Whole-Graph" class="headerlink" title="3.2.4 Whole-Graph"></a>3.2.4 Whole-Graph</h3>//substructure只是中间产物，是分析问题的一个步骤<br>全图级别的相似度<br>分析不同规模的子结构。<br>Challenge:①如何归纳全图的信息②分析全图需要的开销很大，如何实现效率与表达能力的平衡。<h1 id="4-Graph-Embedding-Techniques"><a href="#4-Graph-Embedding-Techniques" class="headerlink" title="4.Graph Embedding Techniques"></a>4.Graph Embedding Techniques</h1><h2 id="4-1-Matrix-Factorization矩阵分解"><a href="#4-1-Matrix-Factorization矩阵分解" class="headerlink" title="4.1 Matrix Factorization矩阵分解"></a>4.1 Matrix Factorization矩阵分解</h2>多数情况下input from on-relational high dimensional data features,<br>输出为node.<h3 id="4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射"><a href="#4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射" class="headerlink" title="4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射"></a>4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射</h3>The graph property to be preserved can be interpreted as pairwise node similarities,and thus a larger penalty is imposed if two nodes with larger similarity are embedded far apart.<br>相似度高的两节点映射到低维空间之后仍然应保持距离相近。<h3 id="4-1-2-Node-Proximity-Matrix-Factorization"><a href="#4-1-2-Node-Proximity-Matrix-Factorization" class="headerlink" title="4.1.2 Node Proximity Matrix Factorization"></a>4.1.2 Node Proximity Matrix Factorization</h3>Node proximity can be approximated in a low-dimensional space using matrix factorization.The objective of preserving node proximity is therefore to minimize the loss during the approximation.<br>利用矩阵分解可以在低维空间中近似地逼近节点的邻近度。因此，保持节点邻近度的目标是在逼近过程中尽量减少损失。</li>
+</ul>
+<p><strong>Summary</strong><br>Matrix factorization is mostly used to embed the graph constructed from non-relational data for node embedding as this is the original setting of the graph Laplacian eigenmaps based problems.In a few work,it is also used to embed homogeneous graphs.//从输入的角度总结<br>矩阵分解主要用于嵌入由非关系数据构建的图，用于节点嵌入，因为这是基于问题的图拉普拉斯特征映射的原始设置。在一些工作中，它也被用来嵌入齐次图形。</p>
+<h2 id="4-2-Deep-Learning"><a href="#4-2-Deep-Learning" class="headerlink" title="4.2 Deep Learning"></a>4.2 Deep Learning</h2><p>可以从别的研究方向推广而来。<br>输入①边采样paths sampled from a graph②全图the whole graph<br>依据<strong>边采样是否采用了随机游走</strong>分类<br>鲁棒，高效，已经广泛应用。</p>
+<h3 id="4-2-1-DL-based-Graph-Embedding-with-Random-Work"><a href="#4-2-1-DL-based-Graph-Embedding-with-Random-Work" class="headerlink" title="4.2.1 DL based Graph Embedding with Random Work"></a>4.2.1 DL based Graph Embedding with Random Work</h3><p>刻画了网络的局部信息。<br>两节点联系越紧密，在随机游走中共现的可能性就越大。如果不连通，就不可能共现。<br>基础算法DeepWalk，其他算法在此基础上引申。<br>从NLP/语言模型领域推广而来，思想来自于word2vec.<br>e.g.DeepWalk的游走方法是随机DFS,node2vec是由参数控制的随机游走，加入了BFS。</p>
+<h3 id="4-2-2…without-Random-Walk"><a href="#4-2-2…without-Random-Walk" class="headerlink" title="4.2.2…without Random Walk"></a>4.2.2…without Random Walk</h3><p>基于全图.</p>
+<ul>
+<li>Autoencoder</li>
+<li>Deep Neural Network<br>不同算法的区别是在图上生成类似卷积的操作。<h2 id="4-3-Edge-Reconstruction-based-Optimization"><a href="#4-3-Edge-Reconstruction-based-Optimization" class="headerlink" title="4.3 Edge Reconstruction based Optimization"></a>4.3 Edge Reconstruction based Optimization</h2>The edges established based on node embedding should be as similar to those in the input graph as possible.<br>基于边重建，重建的边应该近似于输入<h3 id="4-3-1-Maximizing-Edge-Reconstruction-Probability最大化概率"><a href="#4-3-1-Maximizing-Edge-Reconstruction-Probability最大化概率" class="headerlink" title="4.3.1 Maximizing Edge Reconstruction Probability最大化概率"></a>4.3.1 Maximizing Edge Reconstruction Probability最大化概率</h3><h3 id="4-3-2-Minimizing-Distance-based-Loss最小化基于距离的损失"><a href="#4-3-2-Minimizing-Distance-based-Loss最小化基于距离的损失" class="headerlink" title="4.3.2 Minimizing Distance-based Loss最小化基于距离的损失"></a>4.3.2 Minimizing Distance-based Loss最小化基于距离的损失</h3><h3 id="4-3-3-Minimizing-Margin-based-Ranking-Loss最小化基于"><a href="#4-3-3-Minimizing-Margin-based-Ranking-Loss最小化基于" class="headerlink" title="4.3.3 Minimizing Margin-based Ranking Loss最小化基于"></a>4.3.3 Minimizing Margin-based Ranking Loss最小化基于</h3>图中一些节点可能与<strong>一组</strong>相关的节点有关<br>A node’s embedding is more similar to the embedding of relevant nodes than that of any other irrellevant node.<h2 id="4-4-Graph-Kernel"><a href="#4-4-Graph-Kernel" class="headerlink" title="4.4 Graph Kernel"></a>4.4 Graph Kernel</h2>把握全局特征。针对全图而生<br>全图表示。拆分成分解出来的子结构<br>The whole graph structure can be represented as a vector containing the counts of elementary substructures that are decomposed from it.<br>子结构分类：</li>
+<li>Graphlet</li>
+<li>Subtree Patterns </li>
+<li>Random Walks<br>适合的输入类型：</li>
+<li>homogeneous同质</li>
+<li>auxiliary info.辅助信息<h2 id="4-5-Generative-Model"><a href="#4-5-Generative-Model" class="headerlink" title="4.5 Generative Model"></a>4.5 Generative Model</h2>适用场景： 输出node,edge；输入heterogeneous,auxiliary infomation。<h3 id="4-5-1-Embed-Graph-Into-The-Latent-Semantic-Space"><a href="#4-5-1-Embed-Graph-Into-The-Latent-Semantic-Space" class="headerlink" title="4.5.1 Embed Graph Into The Latent Semantic Space"></a>4.5.1 Embed Graph Into The Latent Semantic Space</h3>嵌入到潜在语义空间<h3 id="4-5-2-Incorporate-Latent-Semantics-for-Graph-Embedding"><a href="#4-5-2-Incorporate-Latent-Semantics-for-Graph-Embedding" class="headerlink" title="4.5.2 Incorporate Latent Semantics for Graph Embedding"></a>4.5.2 Incorporate Latent Semantics for Graph Embedding</h3><h2 id="4-6-Hybrid-amp-Others"><a href="#4-6-Hybrid-amp-Others" class="headerlink" title="4.6 Hybrid &amp; Others"></a>4.6 Hybrid &amp; Others</h2></li>
+</ul>
+<h1 id="5-Appliacation"><a href="#5-Appliacation" class="headerlink" title="5.Appliacation"></a>5.Appliacation</h1><p>该节是按照输出类型分类的。</p>
+<h2 id="5-1-Node-Related"><a href="#5-1-Node-Related" class="headerlink" title="5.1 Node Related"></a>5.1 Node Related</h2><ul>
+<li>Node Classfication</li>
+<li>Node Clustering</li>
+<li>Node Recommendation/Retrieval/Ranking推荐、检索、排序<h2 id="5-2-Edge-Related"><a href="#5-2-Edge-Related" class="headerlink" title="5.2 Edge Related"></a>5.2 Edge Related</h2></li>
+<li>Link Prediction联系预测</li>
+<li>Triple Classification三元组分类 <h2 id="5-3-Graph-Related-Applicaitons"><a href="#5-3-Graph-Related-Applicaitons" class="headerlink" title="5.3 Graph Related Applicaitons"></a>5.3 Graph Related Applicaitons</h2></li>
+<li>Graph Classification图像分类</li>
+<li>Visualization 可视化<h2 id="5-4-Other"><a href="#5-4-Other" class="headerlink" title="5.4 Other"></a>5.4 Other</h2></li>
+<li>Knowledge graph related</li>
+<li>Multimedia network</li>
+<li>Information propagation</li>
+<li>Socail networks alignment</li>
+<li>Image<h1 id="6-Future-Directions"><a href="#6-Future-Directions" class="headerlink" title="6.Future Directions"></a>6.Future Directions</h1></li>
+<li>Computation</li>
+<li>Problem settings<br>动态的，随时间而变的</li>
+<li>Techniques</li>
+<li>Applications<h1 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7.Conclusion"></a>7.Conclusion</h1>Graph embedding的正式定义、基本概念<br>两种分类方法，将现有工作分为①四输入四输出，分别的挑战②技术<br>总结应用<br>四个未来研究方向</li>
+</ul>
+<hr>
+<p>DeepWalk:Online Learning of Social Representations</p>
+<h1 id="1-Introduction-1"><a href="#1-Introduction-1" class="headerlink" title="1.Introduction"></a>1.Introduction</h1><h1 id="2-Problem-Definition"><a href="#2-Problem-Definition" class="headerlink" title="2.Problem Definition"></a>2.Problem Definition</h1><h1 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h1><p>Social representations应有的特征：</p>
+<ul>
+<li>Adaptability适应性。能够适应社交网络的演化</li>
+<li>Community aware.”有社区意识”，用距离度量相似度，有利于同质网络的泛化。</li>
+<li>Low dimensional低维</li>
+<li>Continuous连续<h2 id="3-1-Random-Walks"><a href="#3-1-Random-Walks" class="headerlink" title="3.1 Random Walks"></a>3.1 Random Walks</h2>可用于相似度的度量。<br>容易并行化<br>适应小的变化<h2 id="3-2-Connection-Power-Laws"><a href="#3-2-Connection-Power-Laws" class="headerlink" title="3.2 Connection:Power Laws"></a>3.2 Connection:Power Laws</h2>网络结构和语言结构是相似的。<h2 id="3-3-Language-Model"><a href="#3-3-Language-Model" class="headerlink" title="3.3 Language Model"></a>3.3 Language Model</h2><h1 id="4-Method"><a href="#4-Method" class="headerlink" title="4.Method"></a>4.Method</h1><h2 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h2><h2 id="4-2-Algorithm-DeepWalk"><a href="#4-2-Algorithm-DeepWalk" class="headerlink" title="4.2 Algorithm:DeepWalk"></a>4.2 Algorithm:DeepWalk</h2><h3 id="4-2-1-SkipGram"><a href="#4-2-1-SkipGram" class="headerlink" title="4.2.1 SkipGram"></a>4.2.1 SkipGram</h3><h3 id="4-2-2-Hierarchical-Softmax"><a href="#4-2-2-Hierarchical-Softmax" class="headerlink" title="4.2.2 Hierarchical Softmax"></a>4.2.2 Hierarchical Softmax</h3>为了提高性能，加速计算。<h3 id="4-2-3-Optimization"><a href="#4-2-3-Optimization" class="headerlink" title="4.2.3 Optimization"></a>4.2.3 Optimization</h3>随机梯度下降</li>
+</ul>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/Graph/" rel="tag"># Graph</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="SkipGram模型的理解" href="/2018/03/12/SkipGram/">
+            ← SkipGram模型的理解
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="180309" href="/2018/03/09/180309/">
+            180309 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Introduction"><span class="toc-text">1.Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Problem-Formalization"><span class="toc-text">2.Problem Formalization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Notataion-and-Definition"><span class="toc-text">2.1 Notataion and Definition</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Problem-Settings"><span class="toc-text">3.Problem Settings</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Input"><span class="toc-text">3.1 Input</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-Homogeneous-Graph"><span class="toc-text">3.1.1 Homogeneous Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-Heterogeneous-Graph"><span class="toc-text">3.1.2 Heterogeneous Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-Graph-with-Auxiliaary-Information"><span class="toc-text">3.1.3 Graph with Auxiliaary Information</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4-Graph-Constructed-from-Non-relational-Data"><span class="toc-text">3.1.4 Graph Constructed from Non-relational Data</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Output"><span class="toc-text">3.2 Output</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-Node-最常见的一种"><span class="toc-text">3.2.1 Node**最常见的一种</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-Edge"><span class="toc-text">3.2.2 Edge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-Hybrid"><span class="toc-text">3.2.3 Hybrid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4-Whole-Graph"><span class="toc-text">3.2.4 Whole-Graph</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Graph-Embedding-Techniques"><span class="toc-text">4.Graph Embedding Techniques</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Matrix-Factorization矩阵分解"><span class="toc-text">4.1 Matrix Factorization矩阵分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射"><span class="toc-text">4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-Node-Proximity-Matrix-Factorization"><span class="toc-text">4.1.2 Node Proximity Matrix Factorization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Deep-Learning"><span class="toc-text">4.2 Deep Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-DL-based-Graph-Embedding-with-Random-Work"><span class="toc-text">4.2.1 DL based Graph Embedding with Random Work</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2…without-Random-Walk"><span class="toc-text">4.2.2…without Random Walk</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Edge-Reconstruction-based-Optimization"><span class="toc-text">4.3 Edge Reconstruction based Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-Maximizing-Edge-Reconstruction-Probability最大化概率"><span class="toc-text">4.3.1 Maximizing Edge Reconstruction Probability最大化概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-Minimizing-Distance-based-Loss最小化基于距离的损失"><span class="toc-text">4.3.2 Minimizing Distance-based Loss最小化基于距离的损失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-Minimizing-Margin-based-Ranking-Loss最小化基于"><span class="toc-text">4.3.3 Minimizing Margin-based Ranking Loss最小化基于</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-Graph-Kernel"><span class="toc-text">4.4 Graph Kernel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-Generative-Model"><span class="toc-text">4.5 Generative Model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-1-Embed-Graph-Into-The-Latent-Semantic-Space"><span class="toc-text">4.5.1 Embed Graph Into The Latent Semantic Space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-2-Incorporate-Latent-Semantics-for-Graph-Embedding"><span class="toc-text">4.5.2 Incorporate Latent Semantics for Graph Embedding</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-Hybrid-amp-Others"><span class="toc-text">4.6 Hybrid &amp; Others</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Appliacation"><span class="toc-text">5.Appliacation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-Node-Related"><span class="toc-text">5.1 Node Related</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-Edge-Related"><span class="toc-text">5.2 Edge Related</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-Graph-Related-Applicaitons"><span class="toc-text">5.3 Graph Related Applicaitons</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-Other"><span class="toc-text">5.4 Other</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Future-Directions"><span class="toc-text">6.Future Directions</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-Conclusion"><span class="toc-text">7.Conclusion</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Introduction-1"><span class="toc-text">1.Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Problem-Definition"><span class="toc-text">2.Problem Definition</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3"><span class="toc-text">3.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Random-Walks"><span class="toc-text">3.1 Random Walks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Connection-Power-Laws"><span class="toc-text">3.2 Connection:Power Laws</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Language-Model"><span class="toc-text">3.3 Language Model</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Method"><span class="toc-text">4.Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-text">4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Algorithm-DeepWalk"><span class="toc-text">4.2 Algorithm:DeepWalk</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-SkipGram"><span class="toc-text">4.2.1 SkipGram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-Hierarchical-Softmax"><span class="toc-text">4.2.2 Hierarchical Softmax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-Optimization"><span class="toc-text">4.2.3 Optimization</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Road To Surika &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2019/10/01/gitwithsocks/">git代理</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/09/26/Personalized-Dialogue-Generation-with-Diversified-Traits/">Personalized Dialogue Generation with Diversified Traits</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/09/25/entropy-and-log/">为什么信息熵要定义成log的形式</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Anaconda/">Anaconda</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataScience/">DataScience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lesson/">Lesson</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/Anaconda/" style="font-size: 18px;">Anaconda</a> <a href="/tags/DataScience/" style="font-size: 20px;">DataScience</a> <a href="/tags/Graph/" style="font-size: 18px;">Graph</a> <a href="/tags/Hadoop/" style="font-size: 14px;">Hadoop</a> <a href="/tags/Hbase/" style="font-size: 14px;">Hbase</a> <a href="/tags/Hexo/" style="font-size: 16px;">Hexo</a> <a href="/tags/IPython/" style="font-size: 14px;">IPython</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 14px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 16px;">NLP</a> <a href="/tags/Nachos/" style="font-size: 22px;">Nachos</a> <a href="/tags/OperatingSystem/" style="font-size: 22px;">OperatingSystem</a> <a href="/tags/PThreads/" style="font-size: 14px;">PThreads</a> <a href="/tags/Paper/" style="font-size: 14px;">Paper</a> <a href="/tags/ParallelProgramming/" style="font-size: 14px;">ParallelProgramming</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/SDU/" style="font-size: 24px;">SDU</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/SoftwareEngineer/" style="font-size: 14px;">SoftwareEngineer</a> <a href="/tags/diary/" style="font-size: 22px;">diary</a> <a href="/tags/集体智慧编程/" style="font-size: 14px;">集体智慧编程</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/img/flower.png" alt="Road To Surika">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Road To Surika">Road To Surika &copy; 2019</a>
+			
+				
+			        <span hidden="true" id="/2018/03/10/AComprehensivSurveyofGraphEmbeddingProblemsTechniquesandApplications/" class="leancloud-visitors" data-flag-title="《A Comprehensiv Survey of Graph Embedding Problems Techniques and Applications》笔记">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        var bLazy = new Blazy()
+    })
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function(){
+        searchFunc("/")
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
