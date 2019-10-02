@@ -156,16 +156,16 @@
 <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>at least two ways to put feelings into words<br>两种表达感情的方法<br>one is to describe emotional states by explicitly using strong emotional words associated with the categories一种是显式的使用强烈的感情词语<br>another is to increase the intensify of the emotional experiences not by using words i emotion lexicon, bu ty implicitly combining neutral words in distinct ways on emotion.<br>另一种是含蓄地结合中性词汇表达情感<br>seq2seq框架，基于词典的注意力机制拓展，机制鼓励用情感词典中的同义词代替回复中的词<br>回复的生成过程由序列级的情感分类器指导，它帮助增强情感表达的强度，识别情感句子中是否包含情感词<br>半监督方法 创建情感词典，相对准确地表示情感状态</p>
 <h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><h2 id="3-Method"><a href="#3-Method" class="headerlink" title="3 Method"></a>3 Method</h2><p>(1) seq2seq framework<br>(2) lexicon-based attention mechanism：plug in the desired emotional words 插入需要的情感词汇<br>(3) sequence-level emotion classifier：recognize the emotional sentences without any emotional word 识别没有情感词汇的情感句子<br>(4) diverse decoding algorithm: foster diversity in response generation 回复生成多样性<br>(5) semi-supervised method: produce an emotion lexicon that can properly represent the mental perceptions of the emotional states 产生一个情感词汇，能够恰当地表示对情感状态的心理感知</p>
 <h3 id="3-1-Problem-Definition"><a href="#3-1-Problem-Definition" class="headerlink" title="3.1 Problem Definition"></a>3.1 Problem Definition</h3><p>输入：<br>post <script type="math/tex">X = {x_1,x_2,...,x_M}</script><br>emotion category \(e\)<br>目标：<br>生成response <script type="math/tex">Y = {y_1, y_2,...,y_N}</script> ，在意义和情感上都合适<br>其中 <script type="math/tex">x_i \in V</script> 和$y_i \in V$分别是post和response中的词语<br>$M,N$分别是post和response的长度，<br>$V=V_g \cup V_e$是词典，包含了通用词典$V_g$和情感和一个情感词语$V_e$。$V_g \cap V_e = \emptyset$<br>$V_e$可以进一步分为几个子集$V^z_e$,每一个保存了有关情感分类$z$的词语。</p>
-<h3 id="3-2-Dialogue-System-with-Lexicon-based-Attention-Mechanism-基于词典的注意力机制"><a href="#3-2-Dialogue-System-with-Lexicon-based-Attention-Mechanism-基于词典的注意力机制" class="headerlink" title="3.2 Dialogue System with Lexicon-based Attention Mechanism 基于词典的注意力机制"></a>3.2 Dialogue System with Lexicon-based Attention Mechanism 基于词典的注意力机制</h3><p>基于seq2seq框架<br>lexicon-based attention mechanism: “plug” emotional words into the generated texts at the right time steps 在正确的时间步将情感词语插入到生成的文本中<br><strong>encoder</strong>: 双向LSTM，将输入转化为向量表示<br><strong>docoder</strong>: a separate LSTM enhanced with a lexicon-based attention mechanism 带基于lexicon的注意力机制的单个LSTM<br>输入： 之前预测的词语$y<em>{j-1}$和情感向量$e_j$ 来更新隐状态；$y</em>{j-1}$的嵌入和$e<em>j$串接(concatenate)<br>情感向量$e_j$是对于给定的类别$z$, $V^z_e$中词语的加权和<br>（3）<br>对于$V^z_e$中的每个情感词语$w^z_k$来说，每个时间步$j$的注意力分数$a</em>{jk}$由三部分决定：</p>
+<h3 id="3-2-Dialogue-System-with-Lexicon-based-Attention-Mechanism-基于词典的注意力机制"><a href="#3-2-Dialogue-System-with-Lexicon-based-Attention-Mechanism-基于词典的注意力机制" class="headerlink" title="3.2 Dialogue System with Lexicon-based Attention Mechanism 基于词典的注意力机制"></a>3.2 Dialogue System with Lexicon-based Attention Mechanism 基于词典的注意力机制</h3><p>基于seq2seq框架<br>lexicon-based attention mechanism: “plug” emotional words into the generated texts at the right time steps 在正确的时间步将情感词语插入到生成的文本中<br><strong>encoder</strong>: 双向LSTM，将输入转化为向量表示<br><strong>docoder</strong>: a separate LSTM enhanced with a lexicon-based attention mechanism 带基于lexicon的注意力机制的单个LSTM<br>输入： 之前预测的词语$y_{j-1}$和情感向量$e_j$ 来更新隐状态；$y_{j-1}$的嵌入和$e_j$串接(concatenate)<br>情感向量$e_j$是对于给定的类别$z$, $V^z_e$中词语的加权和<br>（3）<br>对于$V^z_e$中的每个情感词语$w^z_k$来说，每个时间步$j$的注意力分数$a_{jk}$由三部分决定：</p>
 <ul>
 <li>decoder的前一个隐藏状态$s_{j-1}$</li>
 <li>输入post的编码表示$h_M$</li>
 <li>$V^z_e$中第k个词的嵌入$Emb(w^z_k)$<h3 id="3-3-Emotion-Classification"><a href="#3-3-Emotion-Classification" class="headerlink" title="3.3 Emotion Classification"></a>3.3 Emotion Classification</h3>sequence-level emotion classifier 序列级情感分类器，识别传递特定情感但不包含情感词语的回复<br>expected word embedding 期望词嵌入 每个时间步所有可能的词的加权和</li>
 </ul>
 <p>引入的情感分类器不仅能够增加情绪表达的强度，还可以识别情感回复中是否包含情感词语。情感分类器只用在训练过程中，可以作为情感表达的全局指导</p>
-<h3 id="3-4-Training-Objective"><a href="#3-4-Training-Objective" class="headerlink" title="3.4 Training Objective"></a>3.4 Training Objective</h3><p>由generation与classification 生成与分类 两部分组成<br>生成损失$L<em>{MCE}$确保decoder可以产生结构连贯有意义的回复<br>分类损失$L</em>{CLA}$确保在产生的回复中特定情感可以合适的传达</p>
+<h3 id="3-4-Training-Objective"><a href="#3-4-Training-Objective" class="headerlink" title="3.4 Training Objective"></a>3.4 Training Objective</h3><p>由generation与classification 生成与分类 两部分组成<br>生成损失$L_{MCE}$确保decoder可以产生结构连贯有意义的回复<br>分类损失$L_{CLA}$确保在产生的回复中特定情感可以合适的传达</p>
 <h3 id="3-5-Diverse-Decoding-Algorithm"><a href="#3-5-Diverse-Decoding-Algorithm" class="headerlink" title="3.5 Diverse Decoding Algorithm"></a>3.5 Diverse Decoding Algorithm</h3><p>集束搜索beam search生成的结果大多相似<br>强制开头的词语of N-candidates必须不同，然后在开头的词语确定后，继续用贪心解码策略生成回复。最后从最好的N个候选中选择感情分数最高的。</p>
-<h3 id="3-6-Emotion-Lexicon-Construction"><a href="#3-6-Emotion-Lexicon-Construction" class="headerlink" title="3.6 Emotion Lexicon Construction"></a>3.6 Emotion Lexicon Construction</h3><p>如何用半监督方法从包含了句子和对应情感分类的语料库中建立需要的情感词典<br>The meaning of words is rated on a number of different bipolar adjective scales.单词的意思是用一些不同的双极性形容词量表来评定的。<br>对一个感情类别，每个词表示为$w=(p<em>w,n<em>w)$，其中$p<em>w$表示指定类别的概率，$n_w$表示另一个，即positiive和negative.<br>给定n个词组成的序列的句子s，<br>如果句子表示了情感，则标记为二维情感向量$z=(1,0)$，否则则标记为$z=(0,1)$.。每个词用一个小的随机值初始化，并最小化交叉熵</em></em></em>损失来训练，其中m是语料库中句子的数目。<br>移除所有的的停止词，映射识别的“digit数字”“E-mail电子邮件”“URL”“data日期”“foreign word外来词”到特殊符号。<br>跟在否定词后面的词在生成感情向量前被转化成 $(-p<em>w;-n_w)$<br>如果词语是最高级或比较级修饰的形容词或副词，更新表示时学习率的值会相应变为两倍或三倍<br>训练过程可以被分为两个阶段，第一阶段使用标准反向传播；当预测accuracy大于一个预定的阈值(如90%)时，进入第二阶段，开始使用maximum margin learning strategy，直到达到收敛。在训练结束时，计算平均值$v=\frac{1}{n}\sum^n</em>{i=1}(p_w-n_w)$以及方差$\sigma$值$\frac{1}{\sigma}(p_w-n_w-v)$大于特定阈值的词将会被视作情感词语。</p>
+<h3 id="3-6-Emotion-Lexicon-Construction"><a href="#3-6-Emotion-Lexicon-Construction" class="headerlink" title="3.6 Emotion Lexicon Construction"></a>3.6 Emotion Lexicon Construction</h3><p>如何用半监督方法从包含了句子和对应情感分类的语料库中建立需要的情感词典<br>The meaning of words is rated on a number of different bipolar adjective scales.单词的意思是用一些不同的双极性形容词量表来评定的。<br>对一个感情类别，每个词表示为$w=(p_w,n_w)$，其中$p_w$表示指定类别的概率，$n_w$表示另一个，即positiive和negative.<br>给定n个词组成的序列的句子s，<br>如果句子表示了情感，则标记为二维情感向量$z=(1,0)$，否则则标记为$z=(0,1)$.。每个词用一个小的随机值初始化，并最小化交叉熵___损失来训练，其中m是语料库中句子的数目。<br>移除所有的的停止词，映射识别的“digit数字”“E-mail电子邮件”“URL”“data日期”“foreign word外来词”到特殊符号。<br>跟在否定词后面的词在生成感情向量前被转化成 $(-p_w;-n_w)$<br>如果词语是最高级或比较级修饰的形容词或副词，更新表示时学习率的值会相应变为两倍或三倍<br>训练过程可以被分为两个阶段，第一阶段使用标准反向传播；当预测accuracy大于一个预定的阈值(如90%)时，进入第二阶段，开始使用maximum margin learning strategy，直到达到收敛。在训练结束时，计算平均值$v=\frac{1}{n}\sum^n_{i=1}(p_w-n_w)$以及方差$\sigma$值$\frac{1}{\sigma}(p_w-n_w-v)$大于特定阈值的词将会被视作情感词语。</p>
 <h2 id="4-Experiments"><a href="#4-Experiments" class="headerlink" title="4.Experiments"></a>4.Experiments</h2><h3 id="4-1-Data-Preparation"><a href="#4-1-Data-Preparation" class="headerlink" title="4.1 Data Preparation"></a>4.1 Data Preparation</h3><p>目前没有现成的感情的对话数据，所以我们给予Short Text Conversation (STC)数据集建立了自己的实验数据集，我们首先在NLPCC数据集上训练出了一个情感分类器，然后使用这个分类器标注STC数据集。这个分类器使用Bi-LSTM.<br>NLPCC包含anger, disgust, contentment, joy, sadness, fear, surprise, neutral，移除不常见的类别fear和surprise，还剩六类，用bilstm分类器标注情感标签。训练、验证、测试集划分为9:0.5:0.5</p>
 <h3 id="4-2-Training-Details"><a href="#4-2-Training-Details" class="headerlink" title="4.2 Training Details"></a>4.2 Training Details</h3><h3 id="4-3-Baseline-Models"><a href="#4-3-Baseline-Models" class="headerlink" title="4.3 Baseline Models"></a>4.3 Baseline Models</h3><ul>
 <li>Seq2Seq</li>
@@ -326,6 +326,12 @@
       
       
       <li>
+        <a href="/2019/10/02/hexo-with-mathjax/">在hexo上使用mathjax展示公式(非NexT主题)</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/10/01/gitwithsocks/">git代理</a>
       </li>
       
@@ -336,10 +342,6 @@
       </li>
       
       
-      
-      <li>
-        <a href="/2019/09/25/entropy-and-log/">为什么信息熵要定义成log的形式</a>
-      </li>
       
       
       
@@ -579,15 +581,21 @@
     document.getElementById('scriptLoad').addEventListener('load', function(){
         searchFunc("/")
     });
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"right","hOffset":30,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"right","hOffset":30,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/clicklove.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 

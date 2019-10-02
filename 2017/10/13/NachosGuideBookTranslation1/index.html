@@ -154,7 +154,7 @@
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <p>虽然不是看不懂，但密密麻麻的英语小字实在是辣眼睛，还是翻译一下，顺便逼自己加快进度别懒了。。。<em>(:з」∠)</em></p>
+                    <p>虽然不是看不懂，但密密麻麻的英语小字实在是辣眼睛，还是翻译一下，顺便逼自己加快进度别懒了。。。_(:з」∠)_</p>
 <h3 id="Phase-1-为内核进程建立线程系统"><a href="#Phase-1-为内核进程建立线程系统" class="headerlink" title="Phase 1 为内核进程建立线程系统"></a>Phase 1 为内核进程建立线程系统</h3><h4 id="Tasks"><a href="#Tasks" class="headerlink" title="Tasks:"></a>Tasks:</h4><p>1.（5%，5行，5/100）实现KThread.join()<br>    注意join方法只能被调用一次，即使是不同的线程也禁止二次调用。<br>2.（5%，20行，10/100）直接实现条件变量，通过开关中断来提供原子性。<br>    已经用信号量实现了一个例子，你的任务是不用信号量来完成等价的实现。<br>    可以用锁，即使锁也是间接使用了信号量。<br>    你完成的版本在类nachos.threads.Condition2中。<br>3.（10%，40行，20/100）实现waitUntil(long x)方法来完成Alarm类。<br>    调用这个函数可以挂起自己本身的执行，直到时间now+x。<br>    （这对实时操作的线程很有用。举例来说，每秒光标闪烁一次。）<br>    线程被唤醒后不需要立即开始执行，只要在它们等待一定时间后，将它们放在定时器中断处理程序的就绪队列中即可。<br>    不要fork多余的线程来实现waitUntil,你只需要修改waitUnti()和定时器中断处理程序。<br>    waitUntil不只限于一个线程，任何数量的线程可以同时调用并被挂起。<br>4.（20%，40/100）实现同步收发一个词的消息。用条件变量，不要用信号量！<br><strong>flag:不看代码下边讲解愣是一个字没看懂。。。喵的，待会看完源码回来翻译</strong><br>5.（35%，75/100）通过补全PriorityScheduler类实现优先级调度。<br>    实时调度是建造实时系统block的关键。<br>    为了使用你的优先级调度，你需要更改nachos.conf中的一行来指明要用的调度程序类。ThreadedKernel.scheduler初始值为nachos.threads.RoundRobinScheduler。当你想用优先级调度来运行Nachos时，你需要将它改成nachos.threads.PriorityScheduler。<br>    必须实现方法:getPriority(),getEffectivePriority()与setPriority().<br>    可选实现方法：increasePriority()与decreasePriority()<br>    在选择哪个线程出列时，调度程序总应该选择效率最高的线程。如果有许多相同高优先级的线程在等待，调度程序要选等待最久的那个。</p>
 <pre><code>- 优先级转化问题：如果一个高优先级线程需要等待一个低优先级线程，并且另一个高优先级线程已经在就绪列表中，那么这个高优先级线程将永远不能得到CPU,因为低优先级线程将不会获得任何CPU时间。
 - 一个部分的修正方案是当等待的线程持有锁时，将它的优先级donate给低优先级线程。
@@ -328,6 +328,12 @@
       
       
       <li>
+        <a href="/2019/10/02/hexo-with-mathjax/">在hexo上使用mathjax展示公式(非NexT主题)</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/10/01/gitwithsocks/">git代理</a>
       </li>
       
@@ -338,10 +344,6 @@
       </li>
       
       
-      
-      <li>
-        <a href="/2019/09/25/entropy-and-log/">为什么信息熵要定义成log的形式</a>
-      </li>
       
       
       
@@ -581,15 +583,21 @@
     document.getElementById('scriptLoad').addEventListener('load', function(){
         searchFunc("/")
     });
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"right","hOffset":30,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"right","hOffset":30,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/clicklove.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
