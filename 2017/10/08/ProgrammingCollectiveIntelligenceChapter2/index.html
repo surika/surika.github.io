@@ -8,7 +8,7 @@
 
 
 <head>
-	<meta charset="utf-8">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="preconnect" href="//www.googletagmanager.com">
 	<link rel="preconnect" href="//zz.bdstatic.com">
@@ -60,14 +60,14 @@
 
 	
 	
-	<link rel="stylesheet" href="/css/allinonecss.min.css">
+	<link rel="stylesheet" href="/css/allinonecss.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 	
 	
 	
 </head>
 <body class="post-template">
-	<div class="site-wrapper">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
 		
 
 
@@ -152,9 +152,7 @@
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <p><strong>评价相似度</strong><br>1.欧几里得距离</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sim_distance</span><span class="params">(prefs,person1,person2)</span>:</span></span><br><span class="line">    si=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> prefs[person1]:</span><br><span class="line">        <span class="keyword">if</span> item <span class="keyword">in</span> prefs[person2]:</span><br><span class="line">            si[item]=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> len(si)==<span class="number">0</span>:<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        sum_of_squares=sum([pow(prefs[person1][item]-prefs[person2][item],<span class="number">2</span>) </span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> prefs[person1] <span class="keyword">if</span> item <span class="keyword">in</span> prefs[person2]])</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>/(<span class="number">1</span>+sqrt(sum_of_squares))</span><br></pre></td></tr></table></figure>
-<p>2.皮尔逊相关系数：判断两组数据与某一直线拟合程度的一种度量。对应的公示比欧几里得距离评价的计算公式要复杂，但是他在数据不是很规范的时候，会倾向于给出更好的结果。</p>
+                    <p><strong>评价相似度</strong><br>1.欧几里得距离<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sim_distance</span><span class="params">(prefs,person1,person2)</span>:</span></span><br><span class="line">    si=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> prefs[person1]:</span><br><span class="line">        <span class="keyword">if</span> item <span class="keyword">in</span> prefs[person2]:</span><br><span class="line">            si[item]=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> len(si)==<span class="number">0</span>:<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        sum_of_squares=sum([pow(prefs[person1][item]-prefs[person2][item],<span class="number">2</span>) </span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> prefs[person1] <span class="keyword">if</span> item <span class="keyword">in</span> prefs[person2]])</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>/(<span class="number">1</span>+sqrt(sum_of_squares))</span><br></pre></td></tr></table></figure><br>2.皮尔逊相关系数：判断两组数据与某一直线拟合程度的一种度量。对应的公示比欧几里得距离评价的计算公式要复杂，但是他在数据不是很规范的时候，会倾向于给出更好的结果。</p>
 
                 </article>
                 <ul class="tags-postTags">
@@ -563,7 +561,7 @@
     document.getElementById('scriptLoad').addEventListener('load', function(){
         searchFunc("/")
     });
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -572,3 +570,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"right","hOffset":30,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
 </html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+

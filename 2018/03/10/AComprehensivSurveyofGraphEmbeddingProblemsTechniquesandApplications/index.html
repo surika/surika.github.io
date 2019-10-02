@@ -8,7 +8,7 @@
 
 
 <head>
-	<meta charset="utf-8">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="preconnect" href="//www.googletagmanager.com">
 	<link rel="preconnect" href="//zz.bdstatic.com">
@@ -60,14 +60,14 @@
 
 	
 	
-	<link rel="stylesheet" href="/css/allinonecss.min.css">
+	<link rel="stylesheet" href="/css/allinonecss.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 	
 	
 	
 </head>
 <body class="post-template">
-	<div class="site-wrapper">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
 		
 
 
@@ -174,13 +174,7 @@
 <li>Attribute：属性值既可以是离散的，也可以是连续的。</li>
 <li>Node feature节点特征：大多数的节点特征是文本特征，可以代表words/documents.<br>丰富的无结构信息。使归纳成为可能。</li>
 <li>Information propagation信息传播：可能是级联的</li>
-<li>Knowledge base基于知识库。<br>Challenge:这些信息往往丰富而无结构。如何体现这样的信息，使结构与附加信息同时保存下来？//对比于Homogeneous，只需要考虑结构。<h3 id="3-1-4-Graph-Constructed-from-Non-relational-Data"><a href="#3-1-4-Graph-Constructed-from-Non-relational-Data" class="headerlink" title="3.1.4 Graph Constructed from Non-relational Data"></a>3.1.4 Graph Constructed from Non-relational Data</h3>Input data is assumed to lie in a low dimensional maniofold.输入数据来自于低维流形空间<br>①Pairwise similarity based.点对之间的相似度。<br>不能采用欧氏距离。可以用KNN,Isomap,Anchor等.<br>②Node co-occurrence based.基于节点同现<br>③etc.<br>Challenge:如何计算相似程度<h2 id="3-2-Output"><a href="#3-2-Output" class="headerlink" title="3.2 Output"></a>3.2 Output</h2>Task driven.由解决的任务决定<br>首要的挑战就是如何根据不同的问题选择合适的输出粒度(输出类型)。<h3 id="3-2-1-Node-最常见的一种"><a href="#3-2-1-Node-最常见的一种" class="headerlink" title="3.2.1 Node**最常见的一种"></a>3.2.1 Node**最常见的一种</h3>与邻居的相似度<br>Challenge：如何定义、编码”邻近度”<h3 id="3-2-2-Edge"><a href="#3-2-2-Edge" class="headerlink" title="3.2.2 Edge"></a>3.2.2 Edge</h3>常用于预测类的任务。预测关系是什么（边的意义）？预测是否有边（有关系）？<br>Challenge：如何定义边的相似度？不对称的边如何建模？（可能有向）<h3 id="3-2-3-Hybrid"><a href="#3-2-3-Hybrid" class="headerlink" title="3.2.3 Hybrid"></a>3.2.3 Hybrid</h3>//最终产物是substructure<br>如何生成子结构？在统一的空间里如何表示不同的子结构？<h3 id="3-2-4-Whole-Graph"><a href="#3-2-4-Whole-Graph" class="headerlink" title="3.2.4 Whole-Graph"></a>3.2.4 Whole-Graph</h3>//substructure只是中间产物，是分析问题的一个步骤<br>全图级别的相似度<br>分析不同规模的子结构。<br>Challenge:①如何归纳全图的信息②分析全图需要的开销很大，如何实现效率与表达能力的平衡。<h1 id="4-Graph-Embedding-Techniques"><a href="#4-Graph-Embedding-Techniques" class="headerlink" title="4.Graph Embedding Techniques"></a>4.Graph Embedding Techniques</h1><h2 id="4-1-Matrix-Factorization矩阵分解"><a href="#4-1-Matrix-Factorization矩阵分解" class="headerlink" title="4.1 Matrix Factorization矩阵分解"></a>4.1 Matrix Factorization矩阵分解</h2>多数情况下input from on-relational high dimensional data features,<br>输出为node.<h3 id="4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射"><a href="#4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射" class="headerlink" title="4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射"></a>4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射</h3>The graph property to be preserved can be interpreted as pairwise node similarities,and thus a larger penalty is imposed if two nodes with larger similarity are embedded far apart.<br>相似度高的两节点映射到低维空间之后仍然应保持距离相近。<h3 id="4-1-2-Node-Proximity-Matrix-Factorization"><a href="#4-1-2-Node-Proximity-Matrix-Factorization" class="headerlink" title="4.1.2 Node Proximity Matrix Factorization"></a>4.1.2 Node Proximity Matrix Factorization</h3>Node proximity can be approximated in a low-dimensional space using matrix factorization.The objective of preserving node proximity is therefore to minimize the loss during the approximation.<br>利用矩阵分解可以在低维空间中近似地逼近节点的邻近度。因此，保持节点邻近度的目标是在逼近过程中尽量减少损失。</li>
-</ul>
-<p><strong>Summary</strong><br>Matrix factorization is mostly used to embed the graph constructed from non-relational data for node embedding as this is the original setting of the graph Laplacian eigenmaps based problems.In a few work,it is also used to embed homogeneous graphs.//从输入的角度总结<br>矩阵分解主要用于嵌入由非关系数据构建的图，用于节点嵌入，因为这是基于问题的图拉普拉斯特征映射的原始设置。在一些工作中，它也被用来嵌入齐次图形。</p>
-<h2 id="4-2-Deep-Learning"><a href="#4-2-Deep-Learning" class="headerlink" title="4.2 Deep Learning"></a>4.2 Deep Learning</h2><p>可以从别的研究方向推广而来。<br>输入①边采样paths sampled from a graph②全图the whole graph<br>依据<strong>边采样是否采用了随机游走</strong>分类<br>鲁棒，高效，已经广泛应用。</p>
-<h3 id="4-2-1-DL-based-Graph-Embedding-with-Random-Work"><a href="#4-2-1-DL-based-Graph-Embedding-with-Random-Work" class="headerlink" title="4.2.1 DL based Graph Embedding with Random Work"></a>4.2.1 DL based Graph Embedding with Random Work</h3><p>刻画了网络的局部信息。<br>两节点联系越紧密，在随机游走中共现的可能性就越大。如果不连通，就不可能共现。<br>基础算法DeepWalk，其他算法在此基础上引申。<br>从NLP/语言模型领域推广而来，思想来自于word2vec.<br>e.g.DeepWalk的游走方法是随机DFS,node2vec是由参数控制的随机游走，加入了BFS。</p>
-<h3 id="4-2-2…without-Random-Walk"><a href="#4-2-2…without-Random-Walk" class="headerlink" title="4.2.2…without Random Walk"></a>4.2.2…without Random Walk</h3><p>基于全图.</p>
-<ul>
+<li>Knowledge base基于知识库。<br>Challenge:这些信息往往丰富而无结构。如何体现这样的信息，使结构与附加信息同时保存下来？//对比于Homogeneous，只需要考虑结构。<h3 id="3-1-4-Graph-Constructed-from-Non-relational-Data"><a href="#3-1-4-Graph-Constructed-from-Non-relational-Data" class="headerlink" title="3.1.4 Graph Constructed from Non-relational Data"></a>3.1.4 Graph Constructed from Non-relational Data</h3>Input data is assumed to lie in a low dimensional maniofold.输入数据来自于低维流形空间<br>①Pairwise similarity based.点对之间的相似度。<br>不能采用欧氏距离。可以用KNN,Isomap,Anchor等.<br>②Node co-occurrence based.基于节点同现<br>③etc.<br>Challenge:如何计算相似程度<h2 id="3-2-Output"><a href="#3-2-Output" class="headerlink" title="3.2 Output"></a>3.2 Output</h2>Task driven.由解决的任务决定<br>首要的挑战就是如何根据不同的问题选择合适的输出粒度(输出类型)。<h3 id="3-2-1-Node-最常见的一种"><a href="#3-2-1-Node-最常见的一种" class="headerlink" title="3.2.1 Node**最常见的一种"></a>3.2.1 Node**最常见的一种</h3>与邻居的相似度<br>Challenge：如何定义、编码”邻近度”<h3 id="3-2-2-Edge"><a href="#3-2-2-Edge" class="headerlink" title="3.2.2 Edge"></a>3.2.2 Edge</h3>常用于预测类的任务。预测关系是什么（边的意义）？预测是否有边（有关系）？<br>Challenge：如何定义边的相似度？不对称的边如何建模？（可能有向）<h3 id="3-2-3-Hybrid"><a href="#3-2-3-Hybrid" class="headerlink" title="3.2.3 Hybrid"></a>3.2.3 Hybrid</h3>//最终产物是substructure<br>如何生成子结构？在统一的空间里如何表示不同的子结构？<h3 id="3-2-4-Whole-Graph"><a href="#3-2-4-Whole-Graph" class="headerlink" title="3.2.4 Whole-Graph"></a>3.2.4 Whole-Graph</h3>//substructure只是中间产物，是分析问题的一个步骤<br>全图级别的相似度<br>分析不同规模的子结构。<br>Challenge:①如何归纳全图的信息②分析全图需要的开销很大，如何实现效率与表达能力的平衡。<h1 id="4-Graph-Embedding-Techniques"><a href="#4-Graph-Embedding-Techniques" class="headerlink" title="4.Graph Embedding Techniques"></a>4.Graph Embedding Techniques</h1><h2 id="4-1-Matrix-Factorization矩阵分解"><a href="#4-1-Matrix-Factorization矩阵分解" class="headerlink" title="4.1 Matrix Factorization矩阵分解"></a>4.1 Matrix Factorization矩阵分解</h2>多数情况下input from on-relational high dimensional data features,<br>输出为node.<h3 id="4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射"><a href="#4-1-1-Graph-Laplacian-Eigenmaps图拉普拉斯特征映射" class="headerlink" title="4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射"></a>4.1.1 Graph Laplacian Eigenmaps图拉普拉斯特征映射</h3>The graph property to be preserved can be interpreted as pairwise node similarities,and thus a larger penalty is imposed if two nodes with larger similarity are embedded far apart.<br>相似度高的两节点映射到低维空间之后仍然应保持距离相近。<h3 id="4-1-2-Node-Proximity-Matrix-Factorization"><a href="#4-1-2-Node-Proximity-Matrix-Factorization" class="headerlink" title="4.1.2 Node Proximity Matrix Factorization"></a>4.1.2 Node Proximity Matrix Factorization</h3>Node proximity can be approximated in a low-dimensional space using matrix factorization.The objective of preserving node proximity is therefore to minimize the loss during the approximation.<br>利用矩阵分解可以在低维空间中近似地逼近节点的邻近度。因此，保持节点邻近度的目标是在逼近过程中尽量减少损失。<br><strong>Summary</strong><br>Matrix factorization is mostly used to embed the graph constructed from non-relational data for node embedding as this is the original setting of the graph Laplacian eigenmaps based problems.In a few work,it is also used to embed homogeneous graphs.//从输入的角度总结<br>矩阵分解主要用于嵌入由非关系数据构建的图，用于节点嵌入，因为这是基于问题的图拉普拉斯特征映射的原始设置。在一些工作中，它也被用来嵌入齐次图形。<h2 id="4-2-Deep-Learning"><a href="#4-2-Deep-Learning" class="headerlink" title="4.2 Deep Learning"></a>4.2 Deep Learning</h2>可以从别的研究方向推广而来。<br>输入①边采样paths sampled from a graph②全图the whole graph<br>依据<strong>边采样是否采用了随机游走</strong>分类<br>鲁棒，高效，已经广泛应用。<h3 id="4-2-1-DL-based-Graph-Embedding-with-Random-Work"><a href="#4-2-1-DL-based-Graph-Embedding-with-Random-Work" class="headerlink" title="4.2.1 DL based Graph Embedding with Random Work"></a>4.2.1 DL based Graph Embedding with Random Work</h3>刻画了网络的局部信息。<br>两节点联系越紧密，在随机游走中共现的可能性就越大。如果不连通，就不可能共现。<br>基础算法DeepWalk，其他算法在此基础上引申。<br>从NLP/语言模型领域推广而来，思想来自于word2vec.<br>e.g.DeepWalk的游走方法是随机DFS,node2vec是由参数控制的随机游走，加入了BFS。<h3 id="4-2-2…without-Random-Walk"><a href="#4-2-2…without-Random-Walk" class="headerlink" title="4.2.2…without Random Walk"></a>4.2.2…without Random Walk</h3>基于全图.</li>
 <li>Autoencoder</li>
 <li>Deep Neural Network<br>不同算法的区别是在图上生成类似卷积的操作。<h2 id="4-3-Edge-Reconstruction-based-Optimization"><a href="#4-3-Edge-Reconstruction-based-Optimization" class="headerlink" title="4.3 Edge Reconstruction based Optimization"></a>4.3 Edge Reconstruction based Optimization</h2>The edges established based on node embedding should be as similar to those in the input graph as possible.<br>基于边重建，重建的边应该近似于输入<h3 id="4-3-1-Maximizing-Edge-Reconstruction-Probability最大化概率"><a href="#4-3-1-Maximizing-Edge-Reconstruction-Probability最大化概率" class="headerlink" title="4.3.1 Maximizing Edge Reconstruction Probability最大化概率"></a>4.3.1 Maximizing Edge Reconstruction Probability最大化概率</h3><h3 id="4-3-2-Minimizing-Distance-based-Loss最小化基于距离的损失"><a href="#4-3-2-Minimizing-Distance-based-Loss最小化基于距离的损失" class="headerlink" title="4.3.2 Minimizing Distance-based Loss最小化基于距离的损失"></a>4.3.2 Minimizing Distance-based Loss最小化基于距离的损失</h3><h3 id="4-3-3-Minimizing-Margin-based-Ranking-Loss最小化基于"><a href="#4-3-3-Minimizing-Margin-based-Ranking-Loss最小化基于" class="headerlink" title="4.3.3 Minimizing Margin-based Ranking Loss最小化基于"></a>4.3.3 Minimizing Margin-based Ranking Loss最小化基于</h3>图中一些节点可能与<strong>一组</strong>相关的节点有关<br>A node’s embedding is more similar to the embedding of relevant nodes than that of any other irrellevant node.<h2 id="4-4-Graph-Kernel"><a href="#4-4-Graph-Kernel" class="headerlink" title="4.4 Graph Kernel"></a>4.4 Graph Kernel</h2>把握全局特征。针对全图而生<br>全图表示。拆分成分解出来的子结构<br>The whole graph structure can be represented as a vector containing the counts of elementary substructures that are decomposed from it.<br>子结构分类：</li>
 <li>Graphlet</li>
@@ -621,7 +615,7 @@
     document.getElementById('scriptLoad').addEventListener('load', function(){
         searchFunc("/")
     });
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -630,3 +624,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"right","hOffset":30,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
 </html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+

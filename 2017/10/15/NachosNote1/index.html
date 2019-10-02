@@ -8,7 +8,7 @@
 
 
 <head>
-	<meta charset="utf-8">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="preconnect" href="//www.googletagmanager.com">
 	<link rel="preconnect" href="//zz.bdstatic.com">
@@ -60,14 +60,14 @@
 
 	
 	
-	<link rel="stylesheet" href="/css/allinonecss.min.css">
+	<link rel="stylesheet" href="/css/allinonecss.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 	
 	
 	
 </head>
 <body class="post-template">
-	<div class="site-wrapper">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
 		
 
 
@@ -155,10 +155,9 @@
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
                     <ul>
-<li><p><strong>assert:</strong>程序一般分为Debug 版本和Release 版本，Debug 版本用于内部调试，Release 版本发行给用户使用。断言assert 是仅在Debug 版本起作用的宏，它用于检查“不应该”发生的情况。在运行过程中，如果assert 的参数为假，那么程序就会中止（一般地还会出现提示对话，说明在什么地方引发了assert）。</p>
-</li>
+<li><strong>assert:</strong>程序一般分为Debug 版本和Release 版本，Debug 版本用于内部调试，Release 版本发行给用户使用。断言assert 是仅在Debug 版本起作用的宏，它用于检查“不应该”发生的情况。在运行过程中，如果assert 的参数为假，那么程序就会中止（一般地还会出现提示对话，说明在什么地方引发了assert）。</li>
 <li><p><strong>内核线程与用户线程：</strong><br>转自：<a href="http://col1.blog.163.com/blog/static/1909775192012719114033352/" target="_blank" rel="noopener">http://col1.blog.163.com/blog/static/1909775192012719114033352/</a><br>1 .内核级线程:切换由内核控制，当线程进行切换的时候，由用户态转化为内核态。切换完毕要从内核态返回用户态；可以很好的利用smp，即利用多核cpu。windows线程就是这样的。</p>
-<ol start="2">
+<ol>
 <li>用户级线程内核的切换由用户态程序自己控制内核切换,不需要内核干涉，少了进出内核态的消耗，但不能很好的利用多核Cpu,目前Linux pthread大体是这么做的。</li>
 </ol>
 </li>
@@ -188,9 +187,8 @@
 <p>（1）资源调度按照进程进行，多个处理机下，同一个进程中的线程只能在同一个处理机下分时复用</p>
 <ul>
 <li><strong>yield（）：</strong><br>理论上，yield意味着放手，放弃，投降。一个调用yield()方法的线程告诉虚拟机它乐意让其他线程占用自己的位置。这表明该线程没有在做一些紧急的事情。注意，这仅是一个暗示，并不能保证不会产生任何影响。</li>
-<li><strong>join():</strong><br>线程实例的方法join()方法可以使得一个线程在另一个线程结束后再执行。如果join()方法在一个线程实例上调用，当前运行着的线程将阻塞直到这个线程实例完成了执行。<br>Join()方法的含义：当前线程a在运行，执行b.join(),则a阻塞，直到线程b结束，a继续执行。<br>加入就绪队列readyQueue.waitForAccess(this);<br>变为就绪状态Machine.autoGrader().readyThread(this);</li>
+<li><strong>join():</strong><br>线程实例的方法join()方法可以使得一个线程在另一个线程结束后再执行。如果join()方法在一个线程实例上调用，当前运行着的线程将阻塞直到这个线程实例完成了执行。<br>Join()方法的含义：当前线程a在运行，执行b.join(),则a阻塞，直到线程b结束，a继续执行。<br>加入就绪队列readyQueue.waitForAccess(this);<br>变为就绪状态Machine.autoGrader().readyThread(this);<br><strong>同步机制：</strong><br>锁机制<br>信号量机制(Semaphore)：包括无名线程信号量和命名线程信号量<br>信号机制(Signal)：（用的Condition类）<br>阻塞队列（java）<br>一个线程的<strong>有效优先级：</strong><br>即其所属的等待队列中所有线程中最高的一个优先级数值</li>
 </ul>
-<p><strong>同步机制：</strong><br>锁机制<br>信号量机制(Semaphore)：包括无名线程信号量和命名线程信号量<br>信号机制(Signal)：（用的Condition类）<br>阻塞队列（java）<br>一个线程的<strong>有效优先级：</strong><br>即其所属的等待队列中所有线程中最高的一个优先级数值</p>
 
                 </article>
                 <ul class="tags-postTags">
@@ -603,7 +601,7 @@
     document.getElementById('scriptLoad').addEventListener('load', function(){
         searchFunc("/")
     });
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -612,3 +610,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"right","hOffset":30,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
 </html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+
