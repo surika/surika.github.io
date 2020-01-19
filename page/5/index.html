@@ -149,6 +149,55 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
+					<a class="post-card-content-link" title="多核平台上的并行计算 实验笔记" href="/2017/11/09/ParallelProgrammingHW/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2017-11-09T14:51:08.000Z">
+									2017-11-09
+								</time>
+							</span>
+							<h2 class="post-card-title">多核平台上的并行计算 实验笔记</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								
+								
+								信号量与互斥量最大的区别在于信号量是没有个体拥有权的。信号量不是PThreads线程库的一部分，所以需要在使用信号量的程序开头加头文件。条件变量是一个数据对象，
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Surika</div>
+								
+								<a href="/about" class="static-avatar">
+									<img class="author-profile-image" src="/img/58851587_p0.png" alt="Surika">
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							0
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
 					<a class="post-card-content-link" title="NachosProject2笔记" href="/2017/11/06/NachosNote2/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
@@ -171,9 +220,8 @@
 								
 								
 								
-								
-								
-								UserKernel 继承自 ThreadedKernel。整个需要装入的进程是一个 machine.CoffSection 类型的对象对 java 文件操作进
+								UserKernel 继承自 ThreadedKernel。整个需要装入的进程是一个 machine.CoffSection 类型的对象对 java 文件操作进行包装，向上提供为 StubFileSystem 的接口。
+用户进程是通过UserProcess.load 方法将程序载入内存的。而每个可执行文件用一个 Coff 对象包装。对传入的每个文件名， load 方法先根据文件名读取该文件，然后将文件作为构造方法参数构造一个 Coff 对象，在 Coff 对象中，会对文件进行
 								...
 							</p>
 						</div>
@@ -602,56 +650,6 @@ OverviewEntity resolution is a common, yet difficult problem in data cleaning an
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="Nachos第六周课堂笔记User-level processes" href="/2017/10/16/NachosClassNoteW6/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								
-								Lesson
-								| 
-								
-								<time datetime="2017-10-16T00:02:48.000Z">
-									2017-10-16
-								</time>
-							</span>
-							<h2 class="post-card-title">Nachos第六周课堂笔记User-level processes</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								系统调用运行时刻的应用程序如何陷入内核
-coff：Unix世界中的格式noff：Nachos专用格式，一个简化版的二进制文件格式    Noff header文件头：从一开始开始，包含了各个段的指针，描述其他部分。unix用magicnumber标识文件类型。nachos现版本每次只支持一个进程运行，因为逻辑地址和物理地址是一对一的。若要支持多道程序运行，进程的切换需要写页面blabla，用nachos另外两个内核函数Nachos的程序跑在虚拟的MIPS架构的Machine上
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">Surika</div>
-								
-								<a href="/about" class="static-avatar">
-									<img class="author-profile-image" src="/img/58851587_p0.png" alt="Surika">
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							1
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
 		</div>
 	</div>
 </div>
@@ -696,6 +694,12 @@ coff：Unix世界中的格式noff：Nachos专用格式，一个简化版的二�
       
       
       <li>
+        <a href="/2020/01/20/linux-alias/">linux alias命令的使用</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2020/01/18/python-algorithm-templetes/">python算法与数据结构模板</a>
       </li>
       
@@ -706,10 +710,6 @@ coff：Unix世界中的格式noff：Nachos专用格式，一个简化版的二�
       </li>
       
       
-      
-      <li>
-        <a href="/2020/01/18/2020-winter-leetcode/">寒假面试刷题指北</a>
-      </li>
       
       
       
