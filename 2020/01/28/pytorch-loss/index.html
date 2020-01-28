@@ -20,7 +20,7 @@
 	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
 	<link rel="preconnect" href="//gravatar.loli.net">
 
-	<title>Target-Guided Open-Domain Conversation | Road To Surika</title>
+	<title>pytorch loss | Road To Surika</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -48,14 +48,14 @@
 
 	<meta property="og:site_name" content="Road To Surika">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Target-Guided Open-Domain Conversation | Road To Surika">
+	<meta property="og:title" content="pytorch loss | Road To Surika">
 	<meta property="og:description" content>
-	<meta property="og:url" content="http://yoursite.com/2019/09/24/Target-Guided-Open-Domain-Conversation/">
+	<meta property="og:url" content="http://yoursite.com/2020/01/28/pytorch-loss/">
 
 	
-	<meta property="article:published_time" content="2019-09-24T22:09:00+08:00"> 
+	<meta property="article:published_time" content="2020-01-28T21:01:00+08:00"> 
 	<meta property="article:author" content="Surika">
-	<meta property="article:published_first" content="Road To Surika, /2019/09/24/Target-Guided-Open-Domain-Conversation/">
+	<meta property="article:published_first" content="Road To Surika, /2020/01/28/pytorch-loss/">
 	
 
 	
@@ -138,54 +138,21 @@
     <div class="inner">
         <header class="post-full-header">
             <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-09-24T14:08:09.000Z">
-                    2019-09-24
+                <time class="post-full-meta-date" datetime="2020-01-28T13:30:09.000Z">
+                    2020-01-28
                 </time>
                 
                 <span class="date-divider">/</span>
                 
                 
             </div>
-            <h1 class="post-full-title">Target-Guided Open-Domain Conversation</h1>
+            <h1 class="post-full-title">pytorch loss</h1>
         </header>
         <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <p>ACL 2019</p>
-<h2 id="任务："><a href="#任务：" class="headerlink" title="任务："></a>任务：</h2><p>在开放域上自然地聊天，并主动将对话引导到预先设定好的目标话题上</p>
-<h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p>将整个系统解耦成独立的模块，在不同粒度上分别解决这些挑战。</p>
-<h2 id="要求："><a href="#要求：" class="headerlink" title="要求："></a>要求：</h2><ol>
-<li><p>transition smoothness 转换流畅，引导过程切合当前对话上下文</p>
-</li>
-<li><p>target achievement 达成目标</p>
-</li>
-<li><p>a turn-level keyword transition predictor (section 4.1)<br>用于预测下一句回复的关键词，获得其分布</p>
-</li>
-</ol>
-<p>这一部分主要用于生成流畅的对话，而不考虑引导对话主题</p>
-<p>文章使用了三种方法:</p>
-<ul>
-<li>Parawise PMI-based Transition 点互信息</li>
-<li>基于神经网络预测</li>
-<li>基于核的混合方法<br>第三种效果最佳</li>
-</ul>
-<ol>
-<li>a discourse-level target-guiding strategy (section 4.2)<br>用于完成主动将对话主题引导到目标的任务。即选择下一句生成回复的主题</li>
-</ol>
-<p>要求：</p>
-<ul>
-<li>相关度更高</li>
-<li>离目标更近</li>
-</ul>
-<p>使用基于规则的方法</p>
-<p>关键在于the augmentation of interpretable coarse-grained keywords 粗粒度关键词的可解释性的提升</p>
-<ol>
-<li>Keyword-augmented response retriever (section 4.3).<br>目标：基于对话历史和预测关键词生成回复</li>
-</ol>
-<p>使用检索式方法</p>
-<p>用RNN编码输入对话历史和关键词，以及从数据库中得到的候选回复，然后计算候选特征与历史特征、候选特征与关键词特征(feature)之间的element-wise乘积。拼接得到的两个向量，输入到带sigmoid单个单元(single-unit)的全连接层来获取候选回复的匹配概率值</p>
-<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>tbc.</p>
+                    <p><a href="https://blog.csdn.net/u011995719/article/details/85107524" target="_blank" rel="noopener">https://blog.csdn.net/u011995719/article/details/85107524</a><br><a href="https://www.cnblogs.com/wanghui-garcia/p/10862733.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghui-garcia/p/10862733.html</a><br><a href="https://blog.csdn.net/u011995719/article/details/85107524#6KLDivLoss_101" target="_blank" rel="noopener">https://blog.csdn.net/u011995719/article/details/85107524#6KLDivLoss_101</a></p>
 
                 </article>
                 <ul class="tags-postTags">
@@ -198,14 +165,10 @@
     
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="为什么信息熵要定义成log的形式" href="/2019/09/25/entropy-and-log/">
-            ← 为什么信息熵要定义成log的形式
-        </a>
-        
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="GitWithProxy" href="/2019/09/21/GitWithProxy/">
-            GitWithProxy →
+        <a class="next-post" title="python trick" href="/2020/01/28/python-trick/">
+            python trick →
         </a>
         
     </nav>
@@ -231,7 +194,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#任务："><span class="toc-text">任务：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法："><span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#要求："><span class="toc-text">要求：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据集"><span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验"><span class="toc-text">实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        
     </div>
 </div>
 
@@ -546,7 +509,7 @@
 			<a href="/" title="Road To Surika">Road To Surika &copy; 2020</a>
 			
 				
-			        <span hidden="true" id="/2019/09/24/Target-Guided-Open-Domain-Conversation/" class="leancloud-visitors" data-flag-title="Target-Guided Open-Domain Conversation">
+			        <span hidden="true" id="/2020/01/28/pytorch-loss/" class="leancloud-visitors" data-flag-title="pytorch loss">
 			            <span>阅读量 </span>
 			            <span class="leancloud-visitors-count">0</span>
 			        </span>
