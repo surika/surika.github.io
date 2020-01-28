@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang>
+
+
+
+
+
+
+
+<head>
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>pytorch常用代码段 | Road To Surika</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="Surika">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/img/flower.png">
+	<link rel="apple-touch-icon" href="/img/flower.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Road To Surika">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="pytorch常用代码段 | Road To Surika">
+	<meta property="og:description" content>
+	<meta property="og:url" content="http://yoursite.com/2020/01/28/pytorch-common-code/">
+
+	
+	<meta property="article:published_time" content="2020-01-28T10:01:00+08:00"> 
+	<meta property="article:author" content="Surika">
+	<meta property="article:published_first" content="Road To Surika, /2020/01/28/pytorch-common-code/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Road To Surika">
+                    <img src="/img/58851587_p0.png" alt="Road To Surika">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/surika" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    
+    
+    <a class="social-link" title="bilibili" href="https://space.bilibili.com/177405158" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M360.896 183.968l-90.912-88.096s-14.208-17.472 9.824-37.248c24.16-19.648 25.376-10.912 33.504-5.472s135.2 130.816 135.2 130.816zm301.952 3.264l90.912-88.096s14.208-17.472-9.824-37.248c-24.032-19.648-25.376-10.912-33.504-5.472s-135.2 130.816-135.2 130.816zM1004 350.336c-3.264-137.984-123.168-164.192-123.168-164.192s-614.336-4.96-742.496 0C10.176 222.304 20 350.336 20 350.336s1.696 274.272-.128 413.12c13.824 138.848 120.864 160.928 120.864 160.928s42.72.864 73.92.864c3.264 8.992 5.696 52.544 54.24 52.544 48.416 0 54.24-52.544 54.24-52.544s354.88-1.696 384.352-1.696c1.696 14.816 8.992 54.976 57.536 54.24 48.416-.864 51.712-57.536 51.712-57.536s16.384-1.696 65.664 0C997.344 898.88 1004 764.192 1004 764.192s-1.568-275.872 0-413.856zm-98.912 439.232c0 21.728-17.248 39.456-38.464 39.456H167.2c-21.248 0-38.464-17.6-38.464-39.456V326.336c0-21.728 17.248-39.456 38.464-39.456h699.424c21.248 0 38.464 17.6 38.464 39.456zM202.4 457.152l205.344-39.456 15.52 77.184-203.648 39.456zm638.976 0l-205.344-39.456-15.648 77.184 203.776 39.456zm-418.08 191.392s45.152 81.312 95.264-26.336c48.416 105.088 101.824 27.904 101.824 27.904l30.336 19.776s-56.672 91.136-131.424 22.208c-63.232 68.928-129.728-21.952-129.728-21.952z"/></svg>
+    </a>
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2020-01-28T02:55:57.000Z">
+                    2020-01-28
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/Pytorch/">Pytorch</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">pytorch常用代码段</h1>
+        </header>
+        <div class="post-full ">
+            
+            <figure class="post-full-image" style="background-image: url(/images/62160962_p0.jpg)">
+            </figure>
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <p>转载自 <a href="https://zhuanlan.zhihu.com/p/104019160" target="_blank" rel="noopener">[深度学习框架]PyTorch常用代码段</a></p>
+<h1 id="1-基本配置"><a href="#1-基本配置" class="headerlink" title="1. 基本配置"></a>1. 基本配置</h1><h2 id="导入包和版本查询"><a href="#导入包和版本查询" class="headerlink" title="导入包和版本查询"></a>导入包和版本查询</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line">print(torch.__version__)</span><br><span class="line">print(torch.version.cuda)</span><br><span class="line">print(torch.backends.cudnn.version())</span><br><span class="line">print(torch.cuda.get_device_name(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="可复现性-随机种子"><a href="#可复现性-随机种子" class="headerlink" title="可复现性 - 随机种子"></a>可复现性 - 随机种子</h2><p>在硬件设备（CPU、GPU）不同时，完全的可复现性无法保证，即使随机种子相同。但是，在同一个设备上，应该保证可复现性。具体做法是，在程序开始的时候固定torch的随机种子，同时也把numpy的随机种子固定。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">torch.manual_seed(<span class="number">0</span>)</span><br><span class="line">torch.cuda.manual_seed_all(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">torch.backends.cudnn.deterministic = <span class="literal">True</span></span><br><span class="line">torch.backends.cudnn.benchmark = <span class="literal">False</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="显卡设置"><a href="#显卡设置" class="headerlink" title="显卡设置"></a>显卡设置</h2><p>如果只需要一张显卡<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Device configuration</span></span><br><span class="line">device = torch.device(<span class="string">'cuda'</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">'cpu'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>如果需要指定多张显卡，比如0，1号显卡。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">'CUDA_VISIBLE_DEVICES'</span>] = <span class="string">'0,1'</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以在命令行运行代码时设置显卡：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=0,1 python train.py</span><br></pre></td></tr></table></figure></p>
+<h2 id="清除显存"><a href="#清除显存" class="headerlink" title="清除显存"></a>清除显存</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.cuda.empty_cache()</span><br></pre></td></tr></table></figure>
+<p>也可以使用在命令行重置GPU的指令<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi --gpu-reset -i [gpu_id]</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-张量-Tensor-处理"><a href="#2-张量-Tensor-处理" class="headerlink" title="2. 张量(Tensor)处理"></a>2. 张量(Tensor)处理</h1><h2 id="张量的数据类型"><a href="#张量的数据类型" class="headerlink" title="张量的数据类型"></a>张量的数据类型</h2><p>PyTorch有9种CPU张量类型和9种GPU张量类型。<br><img alt class="post-img b-lazy" data-img="/images/pytorch-data-type.jpg" data-index="0" data-src="/images/pytorch-data-type.jpg"></p>
+<h2 id="张量基本信息"><a href="#张量基本信息" class="headerlink" title="张量基本信息"></a>张量基本信息</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tensor = torch.randn(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">print(tensor.type())  <span class="comment"># 数据类型</span></span><br><span class="line">print(tensor.size())  <span class="comment"># 张量的shape，是个元组</span></span><br><span class="line">print(tensor.dim())   <span class="comment"># 维度的数量</span></span><br></pre></td></tr></table></figure>
+<h2 id="命名张量"><a href="#命名张量" class="headerlink" title="命名张量"></a>命名张量</h2><p>张量命名是一个非常有用的方法，这样可以方便地使用维度的名字来做索引或其他操作，大大提高了可读性、易用性，防止出错。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在PyTorch 1.3之前，需要使用注释</span></span><br><span class="line"><span class="comment"># Tensor[N, C, H, W]</span></span><br><span class="line">images = torch.randn(<span class="number">32</span>, <span class="number">3</span>, <span class="number">56</span>, <span class="number">56</span>)</span><br><span class="line">images.sum(dim=<span class="number">1</span>)</span><br><span class="line">images.select(dim=<span class="number">1</span>, index=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># PyTorch 1.3之后</span></span><br><span class="line">NCHW = [‘N’, ‘C’, ‘H’, ‘W’]</span><br><span class="line">images = torch.randn(<span class="number">32</span>, <span class="number">3</span>, <span class="number">56</span>, <span class="number">56</span>, names=NCHW)</span><br><span class="line">images.sum(<span class="string">'C'</span>)</span><br><span class="line">images.select(<span class="string">'C'</span>, index=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 也可以这么设置</span></span><br><span class="line">tensor = torch.rand(<span class="number">3</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>,names=(<span class="string">'C'</span>, <span class="string">'N'</span>, <span class="string">'H'</span>, <span class="string">'W'</span>))</span><br><span class="line"><span class="comment"># 使用align_to可以对维度方便地排序</span></span><br><span class="line">tensor = tensor.align_to(<span class="string">'N'</span>, <span class="string">'C'</span>, <span class="string">'H'</span>, <span class="string">'W'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置默认类型，pytorch中的FloatTensor远远快于DoubleTensor</span></span><br><span class="line">torch.set_default_tensor_type(torch.FloatTensor)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 类型转换</span></span><br><span class="line">tensor = tensor.cuda()</span><br><span class="line">tensor = tensor.cpu()</span><br><span class="line">tensor = tensor.float()</span><br><span class="line">tensor = tensor.long()</span><br></pre></td></tr></table></figure>
+<h2 id="torch-Tensor与np-ndarray转换"><a href="#torch-Tensor与np-ndarray转换" class="headerlink" title="torch.Tensor与np.ndarray转换"></a>torch.Tensor与np.ndarray转换</h2><p>除了CharTensor，其他所有CPU上的张量都支持转换为numpy格式然后再转换回来。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ndarray = tensor.cpu().numpy()</span><br><span class="line">tensor = torch.from_numpy(ndarray).float()</span><br><span class="line">tensor = torch.from_numpy(ndarray.copy()).float() <span class="comment"># If ndarray has negative stri</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Torch-tensor与PIL-Image转换"><a href="#Torch-tensor与PIL-Image转换" class="headerlink" title="Torch.tensor与PIL.Image转换"></a>Torch.tensor与PIL.Image转换</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pytorch中的张量默认采用[N, C, H, W]的顺序，并且数据范围在[0,1]，需要进行转置和规范化</span></span><br><span class="line"><span class="comment"># torch.Tensor -&gt; PIL.Image</span></span><br><span class="line">image = PIL.Image.fromarray(torch.clamp(tensor*<span class="number">255</span>, min=<span class="number">0</span>, max=<span class="number">255</span>).byte().permute(<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>).cpu().numpy())</span><br><span class="line">image = torchvision.transforms.functional.to_pil_image(tensor)  <span class="comment"># Equivalently way</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># PIL.Image -&gt; torch.Tensor</span></span><br><span class="line">path = <span class="string">r'./figure.jpg'</span></span><br><span class="line">tensor = torch.from_numpy(np.asarray(PIL.Image.open(path))).permute(<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>).float() / <span class="number">255</span></span><br><span class="line">tensor = torchvision.transforms.functional.to_tensor(PIL.Image.open(path)) <span class="comment"># Equivalently way</span></span><br></pre></td></tr></table></figure>
+<h2 id="np-ndarray与PIL-Image的转换"><a href="#np-ndarray与PIL-Image的转换" class="headerlink" title="np.ndarray与PIL.Image的转换"></a>np.ndarray与PIL.Image的转换</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">image = PIL.Image.fromarray(ndarray.astype(np.uint8))</span><br><span class="line"></span><br><span class="line">ndarray = np.asarray(PIL.Image.open(path))</span><br></pre></td></tr></table></figure>
+<h2 id="从只包含一个元素的张量中提取值"><a href="#从只包含一个元素的张量中提取值" class="headerlink" title="从只包含一个元素的张量中提取值"></a>从只包含一个元素的张量中提取值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value = torch.rand(<span class="number">1</span>).item()</span><br></pre></td></tr></table></figure>
+<h2 id="张量形变"><a href="#张量形变" class="headerlink" title="张量形变"></a>张量形变</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在将卷积层输入全连接层的情况下通常需要对张量做形变处理，</span></span><br><span class="line"><span class="comment"># 相比torch.view，torch.reshape可以自动处理输入张量不连续的情况。</span></span><br><span class="line">tensor = torch.rand(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">shape = (<span class="number">6</span>, <span class="number">4</span>)</span><br><span class="line">tensor = torch.reshape(tensor, shape)</span><br></pre></td></tr></table></figure>
+<h2 id="打乱顺序"><a href="#打乱顺序" class="headerlink" title="打乱顺序"></a>打乱顺序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor = tensor[torch.randperm(tensor.size(<span class="number">0</span>))]  <span class="comment"># 打乱第一个维度</span></span><br></pre></td></tr></table></figure>
+<h2 id="水平翻转"><a href="#水平翻转" class="headerlink" title="水平翻转"></a>水平翻转</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pytorch不支持tensor[::-1]这样的负步长操作，水平翻转可以通过张量索引实现</span></span><br><span class="line"><span class="comment"># 假设张量的维度为[N, D, H, W].</span></span><br><span class="line">tensor = tensor[:,:,:,torch.arange(tensor.size(<span class="number">3</span>) - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>).long()]</span><br></pre></td></tr></table></figure>
+<h2 id="复制张量"><a href="#复制张量" class="headerlink" title="复制张量"></a>复制张量</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Operation                 |  New/Shared memory | Still in computation graph |</span></span><br><span class="line">tensor.clone()            <span class="comment"># |        New         |          Yes               |</span></span><br><span class="line">tensor.detach()           <span class="comment"># |      Shared        |          No                |</span></span><br><span class="line">tensor.detach.clone()()   <span class="comment"># |        New         |          No                |</span></span><br></pre></td></tr></table></figure>
+<h2 id="张量拼接"><a href="#张量拼接" class="headerlink" title="张量拼接"></a>张量拼接</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">注意torch.cat和torch.stack的区别在于torch.cat沿着给定的维度拼接，</span></span><br><span class="line"><span class="string">而torch.stack会新增一维。例如当参数是3个10x5的张量，torch.cat的结果是30x5的张量，</span></span><br><span class="line"><span class="string">而torch.stack的结果是3x10x5的张量。</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">tensor = torch.cat(list_of_tensors, dim=<span class="number">0</span>)</span><br><span class="line">tensor = torch.stack(list_of_tensors, dim=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="将整数标签转为one-hot编码"><a href="#将整数标签转为one-hot编码" class="headerlink" title="将整数标签转为one-hot编码"></a>将整数标签转为one-hot编码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pytorch的标记默认从0开始</span></span><br><span class="line">tensor = torch.tensor([<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>])</span><br><span class="line">N = tensor.size(<span class="number">0</span>)</span><br><span class="line">num_classes = <span class="number">4</span></span><br><span class="line">one_hot = torch.zeros(N, num_classes).long()</span><br><span class="line">one_hot.scatter_(dim=<span class="number">1</span>, index=torch.unsqueeze(tensor, dim=<span class="number">1</span>), src=torch.ones(N, num_classes).long())</span><br></pre></td></tr></table></figure>
+<h2 id="得到非零元素"><a href="#得到非零元素" class="headerlink" title="得到非零元素"></a>得到非零元素</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">torch.nonzero(tensor)               <span class="comment"># index of non-zero elements</span></span><br><span class="line">torch.nonzero(tensor==<span class="number">0</span>)            <span class="comment"># index of zero elements</span></span><br><span class="line">torch.nonzero(tensor).size(<span class="number">0</span>)       <span class="comment"># number of non-zero elements</span></span><br><span class="line">torch.nonzero(tensor == <span class="number">0</span>).size(<span class="number">0</span>)  <span class="comment"># number of zero elements</span></span><br></pre></td></tr></table></figure>
+<h2 id="判断两个张量相等"><a href="#判断两个张量相等" class="headerlink" title="判断两个张量相等"></a>判断两个张量相等</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">torch.allclose(tensor1, tensor2)  <span class="comment"># float tensor</span></span><br><span class="line">torch.equal(tensor1, tensor2)     <span class="comment"># int tensor</span></span><br></pre></td></tr></table></figure>
+<h2 id="张量扩展"><a href="#张量扩展" class="headerlink" title="张量扩展"></a>张量扩展</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Expand tensor of shape 64*512 to shape 64*512*7*7.</span></span><br><span class="line">tensor = torch.rand(<span class="number">64</span>,<span class="number">512</span>)</span><br><span class="line">torch.reshape(tensor, (<span class="number">64</span>, <span class="number">512</span>, <span class="number">1</span>, <span class="number">1</span>)).expand(<span class="number">64</span>, <span class="number">512</span>, <span class="number">7</span>, <span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Matrix multiplcation: (m*n) * (n*p) * -&gt; (m*p).</span></span><br><span class="line">result = torch.mm(tensor1, tensor2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Batch matrix multiplication: (b*m*n) * (b*n*p) -&gt; (b*m*p)</span></span><br><span class="line">result = torch.bmm(tensor1, tensor2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Element-wise multiplication.</span></span><br><span class="line">result = tensor1 * tensor2</span><br></pre></td></tr></table></figure>
+<h2 id="计算两组数据之间的两两欧式距离"><a href="#计算两组数据之间的两两欧式距离" class="headerlink" title="计算两组数据之间的两两欧式距离"></a>计算两组数据之间的两两欧式距离</h2><p>利用broadcast机制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dist = torch.sqrt(torch.sum((X1[:,<span class="literal">None</span>,:] - X2) ** <span class="number">2</span>, dim=<span class="number">2</span>))</span><br></pre></td></tr></table></figure></p>
+<h1 id="3-模型定义和操作"><a href="#3-模型定义和操作" class="headerlink" title="3. 模型定义和操作"></a>3. 模型定义和操作</h1><h2 id="一个简单两层卷积网络的示例"><a href="#一个简单两层卷积网络的示例" class="headerlink" title="一个简单两层卷积网络的示例"></a>一个简单两层卷积网络的示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                </article>
+                <ul class="tags-postTags">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="动态规划" href="/2020/01/23/dynamic-programming/">
+            动态规划 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-基本配置"><span class="toc-text">1. 基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导入包和版本查询"><span class="toc-text">导入包和版本查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可复现性-随机种子"><span class="toc-text">可复现性 - 随机种子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#显卡设置"><span class="toc-text">显卡设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清除显存"><span class="toc-text">清除显存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-张量-Tensor-处理"><span class="toc-text">2. 张量(Tensor)处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#张量的数据类型"><span class="toc-text">张量的数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#张量基本信息"><span class="toc-text">张量基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名张量"><span class="toc-text">命名张量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型转换"><span class="toc-text">数据类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#torch-Tensor与np-ndarray转换"><span class="toc-text">torch.Tensor与np.ndarray转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Torch-tensor与PIL-Image转换"><span class="toc-text">Torch.tensor与PIL.Image转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np-ndarray与PIL-Image的转换"><span class="toc-text">np.ndarray与PIL.Image的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从只包含一个元素的张量中提取值"><span class="toc-text">从只包含一个元素的张量中提取值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#张量形变"><span class="toc-text">张量形变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打乱顺序"><span class="toc-text">打乱顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#水平翻转"><span class="toc-text">水平翻转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复制张量"><span class="toc-text">复制张量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#张量拼接"><span class="toc-text">张量拼接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将整数标签转为one-hot编码"><span class="toc-text">将整数标签转为one-hot编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#得到非零元素"><span class="toc-text">得到非零元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断两个张量相等"><span class="toc-text">判断两个张量相等</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#张量扩展"><span class="toc-text">张量扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#矩阵乘法"><span class="toc-text">矩阵乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算两组数据之间的两两欧式距离"><span class="toc-text">计算两组数据之间的两两欧式距离</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-模型定义和操作"><span class="toc-text">3. 模型定义和操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个简单两层卷积网络的示例"><span class="toc-text">一个简单两层卷积网络的示例</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Road To Surika &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020/01/28/pytorch-common-code/">pytorch常用代码段</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020/01/23/dynamic-programming/">动态规划</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020/01/22/2020-winter-interview/">实习准备知识点总结</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Anaconda/">Anaconda</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataScience/">DataScience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/Algorithms/">Algorithms</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lesson/">Lesson</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Pytorch/">Pytorch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/Anaconda/" style="font-size: 18px;">Anaconda</a> <a href="/tags/DataScience/" style="font-size: 20px;">DataScience</a> <a href="/tags/Graph/" style="font-size: 18px;">Graph</a> <a href="/tags/Hadoop/" style="font-size: 14px;">Hadoop</a> <a href="/tags/Hbase/" style="font-size: 14px;">Hbase</a> <a href="/tags/Hexo/" style="font-size: 16px;">Hexo</a> <a href="/tags/IPython/" style="font-size: 14px;">IPython</a> <a href="/tags/LaTeX/" style="font-size: 14px;">LaTeX</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 14px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 16px;">NLP</a> <a href="/tags/Nachos/" style="font-size: 22px;">Nachos</a> <a href="/tags/OperatingSystem/" style="font-size: 22px;">OperatingSystem</a> <a href="/tags/PThreads/" style="font-size: 14px;">PThreads</a> <a href="/tags/Paper/" style="font-size: 14px;">Paper</a> <a href="/tags/ParallelProgramming/" style="font-size: 14px;">ParallelProgramming</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/SDU/" style="font-size: 24px;">SDU</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/SoftwareEngineer/" style="font-size: 14px;">SoftwareEngineer</a> <a href="/tags/diary/" style="font-size: 22px;">diary</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/集体智慧编程/" style="font-size: 14px;">集体智慧编程</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/img/flower.png" alt="Road To Surika">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Road To Surika">Road To Surika &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2020/01/28/pytorch-common-code/" class="leancloud-visitors" data-flag-title="pytorch常用代码段">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        var bLazy = new Blazy()
+    })
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function(){
+        searchFunc("/")
+    });
+</script>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"left","hOffset":30,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
