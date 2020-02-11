@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang>
+
+
+
+
+
+
+
+<head>
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>The Design and Implementation of XiaoIce, an Empathetic Social Chatbot | Road To Surika</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="Surika">
+	<meta name="description" content="微软小冰">
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/img/flower.png">
+	<link rel="apple-touch-icon" href="/img/flower.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Road To Surika">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="The Design and Implementation of XiaoIce, an Empathetic Social Chatbot | Road To Surika">
+	<meta property="og:description" content="微软小冰">
+	<meta property="og:url" content="http://yoursite.com/2020/02/11/The-Design-and-Implementation-of-XiaoIce-an-Empathetic-Social-Chatbot/">
+
+	
+	<meta property="article:published_time" content="2020-02-11T15:02:00+08:00"> 
+	<meta property="article:author" content="Surika">
+	<meta property="article:published_first" content="Road To Surika, /2020/02/11/The-Design-and-Implementation-of-XiaoIce-an-Empathetic-Social-Chatbot/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Road To Surika">
+                    <img src="/img/58851587_p0.png" alt="Road To Surika">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/surika" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    
+    
+    <a class="social-link" title="bilibili" href="https://space.bilibili.com/177405158" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M360.896 183.968l-90.912-88.096s-14.208-17.472 9.824-37.248c24.16-19.648 25.376-10.912 33.504-5.472s135.2 130.816 135.2 130.816zm301.952 3.264l90.912-88.096s14.208-17.472-9.824-37.248c-24.032-19.648-25.376-10.912-33.504-5.472s-135.2 130.816-135.2 130.816zM1004 350.336c-3.264-137.984-123.168-164.192-123.168-164.192s-614.336-4.96-742.496 0C10.176 222.304 20 350.336 20 350.336s1.696 274.272-.128 413.12c13.824 138.848 120.864 160.928 120.864 160.928s42.72.864 73.92.864c3.264 8.992 5.696 52.544 54.24 52.544 48.416 0 54.24-52.544 54.24-52.544s354.88-1.696 384.352-1.696c1.696 14.816 8.992 54.976 57.536 54.24 48.416-.864 51.712-57.536 51.712-57.536s16.384-1.696 65.664 0C997.344 898.88 1004 764.192 1004 764.192s-1.568-275.872 0-413.856zm-98.912 439.232c0 21.728-17.248 39.456-38.464 39.456H167.2c-21.248 0-38.464-17.6-38.464-39.456V326.336c0-21.728 17.248-39.456 38.464-39.456h699.424c21.248 0 38.464 17.6 38.464 39.456zM202.4 457.152l205.344-39.456 15.52 77.184-203.648 39.456zm638.976 0l-205.344-39.456-15.648 77.184 203.776 39.456zm-418.08 191.392s45.152 81.312 95.264-26.336c48.416 105.088 101.824 27.904 101.824 27.904l30.336 19.776s-56.672 91.136-131.424 22.208c-63.232 68.928-129.728-21.952-129.728-21.952z"/></svg>
+    </a>
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2020-02-11T07:06:19.000Z">
+                    2020-02-11
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/Dialogue-System/">Dialogue System</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">The Design and Implementation of XiaoIce, an Empathetic Social Chatbot</h1>
+        </header>
+        <div class="post-full ">
+            
+            <figure class="post-full-image" style="background-image: url(/images/Another_Heaven_Tannodress.png)">
+            </figure>
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <p>小冰被设计成一个具有情感连接的人工智能伴侣，以满足人类交流、情感和社会归属感的需求。我们再系统设计中同时考虑了智商IQ和情商EQ，将人机社交聊天作为对马尔科夫决策过程的决策</p>
+<p>小冰的主要设计目标是成为一个人工智能伴侣，与用户建立长期的情感联系。作为一个开放领域的社交机器人，小冰能够与人类用户建立<strong>长期</strong>联系，这不仅是小冰与早期社交聊天机器人的区别，也是小冰与苹果Siri，亚马逊Alexa，谷歌Assistant和微软小娜Cortana等人工智能会话个人助理的区别。</p>
+<h1 id="2-设计原则-Design-Principle"><a href="#2-设计原则-Design-Principle" class="headerlink" title="2.设计原则 Design Principle"></a>2.设计原则 Design Principle</h1><p>智商-&gt;完成特定任务<br>情商-&gt;满足用户情感需求<br>个性-&gt;独特<br>IQ和EQ的结合是小冰系统设计的核心</p>
+<h2 id="2-1-IQ-EQ-个性Personality"><a href="#2-1-IQ-EQ-个性Personality" class="headerlink" title="2.1 IQ+EQ+个性Personality"></a>2.1 IQ+EQ+个性Personality</h2><ul>
+<li>IQ:知识和记忆建模、图像和自然语言理解、推理、生成和预测。这些是发展对话技能的基础，可以满足用户的特定需求，帮助用户完成特定的任务。</li>
+<li>EQ:移情empathy与社交技能social skills</li>
+<li>Personality：人格是指一个人独特性格的行为、认识和情感模式的特征集合。表现出一致的个性。</li>
+</ul>
+<h2 id="2-2-每次会话的对话轮数CPS-Conversation-turns-Per-Session"><a href="#2-2-每次会话的对话轮数CPS-Conversation-turns-Per-Session" class="headerlink" title="2.2 每次会话的对话轮数CPS(Conversation-turns Per Session)"></a>2.2 每次会话的对话轮数CPS(Conversation-turns Per Session)</h2><p>CPS越大，社交聊天机器人参与度越好<br>注意要优化的是<strong>长期</strong>的参与度<br>任务完成技能可以有效完成任务，减少短期CPS，但这更适用于<strong>个人助理</strong>，而非<strong>情感陪伴</strong></p>
+<h2 id="2-3-社交聊天-gt-分层决策过程-Hierarchical-Decision-Making"><a href="#2-3-社交聊天-gt-分层决策过程-Hierarchical-Decision-Making" class="headerlink" title="2.3 社交聊天-&gt;分层决策过程(Hierarchical Decision-Making)"></a>2.3 社交聊天-&gt;分层决策过程(Hierarchical Decision-Making)</h2><p>将人机社交聊天作为一个决策过程，优化小冰的长期用户参与，用期望CPS衡量。e.g.促进对话模式多样性来维持用户兴趣，每个会话模式由处理特定类型会话段的技能管理。<br>分层：顶层-总体管理对话，选择不同技能处理不同聊天模式<br>底层：具体技能，选择“原语”(primitive)动作(回应)来生成对话段或完成任务。</p>
+<p>environment:human users<br>state:dialog<br>依据分层对话策略可选择:skill(option)或response(primary action)<br>—-&gt;reward(来自user response)，观测到新的状态，继续该循环，直到对话结束。<br>chatbot的设计目标：寻找最优策略和技能，最大化期望的CPS(reward)</p>
+<h1 id="3-系统架构-System-Architecture"><a href="#3-系统架构-System-Architecture" class="headerlink" title="3.系统架构 System Architecture"></a>3.系统架构 System Architecture</h1><p>三层：用户体验层&lt;-&gt;对话引擎层&lt;-&gt;数据层</p>
+<ul>
+<li>用户体验：两种与用户交流的模式：全双工（基于语音流，用户和小冰可以同时说话）、轮流（基于消息，轮流交谈）。包括处理IO（用户输入、小冰响应）的组件，e.g.语音识别与合成、图像理解、文本规范化。</li>
+<li>对话引擎：对话管理器（跟踪对话状态，使用对话策略选择对话技能或核心聊天，来生成响应）；移情计算（理解用户输入的内容content与移情方面empathetic aspects，如情感、意图、对主题的观点、背景和兴趣）。这反映了小冰的EQ，展示小冰的社交技巧，确保产生与小冰人格相匹配的人际反应。智商体现在特殊技能与核心对话。</li>
+<li>数据：文字-文字对或文字-图像对的会话数据、用于core chat和技能的非会话数据与知识图谱、用户和小冰的profile</li>
+</ul>
+<h1 id="4-对话引擎实现-Implementation-of-Conversation-Engine"><a href="#4-对话引擎实现-Implementation-of-Conversation-Engine" class="headerlink" title="4.对话引擎实现 Implementation of Conversation Engine"></a>4.对话引擎实现 Implementation of Conversation Engine</h1><h2 id="4-1-Dialogue-Manager对话管理器"><a href="#4-1-Dialogue-Manager对话管理器" class="headerlink" title="4.1 Dialogue Manager对话管理器"></a>4.1 Dialogue Manager对话管理器</h2><p>对话系统的中心控制器center controller。</p>
+<h3 id="4-1-1-Global-State-Tracker全局状态跟踪"><a href="#4-1-1-Global-State-Tracker全局状态跟踪" class="headerlink" title="4.1.1 Global State Tracker全局状态跟踪"></a>4.1.1 Global State Tracker全局状态跟踪</h3><p>维护一个working memory来追踪对话状态。在每个session的起初为空，然后保存每轮的用户和小冰的文本对话串、从文本中提取的实体和情感标签。working memery中的信息被编码为对话状态向量$s$</p>
+<h3 id="4-1-2-Dialogue-Policy对话策略"><a href="#4-1-2-Dialogue-Policy对话策略" class="headerlink" title="4.1.2 Dialogue Policy对话策略"></a>4.1.2 Dialogue Policy对话策略</h3><p>HIERARCHICAL分层：顶层管理整个对话，每轮选择core chat或激活技能；低层每个技能一个，用于管理自己的对话段。通过迭代试错优化长期用户参与。</p>
+<ol>
+<li>用户输入是文本：core chat, topic manager</li>
+<li>用户输入是图片或视频：image commenting skill</li>
+<li>特定输入和对话上下文触发task completion, deep engagement, content creation.<h3 id="4-1-3-主题管理-Topic-Manager"><a href="#4-1-3-主题管理-Topic-Manager" class="headerlink" title="4.1.3 主题管理 Topic Manager"></a>4.1.3 主题管理 Topic Manager</h3>由两部分组成</li>
+</ol>
+<ul>
+<li>分类器classifier：决定是否切换。以下两种情况需要切换<ul>
+<li>core chat无法生成任何有效响应候选，只能使用编辑响应editorial response</li>
+<li>生成的响应只是简单重复用户输入或不含新信息</li>
+<li>用户输入变的乏味e.g. “OK”,”I see”,”go on”</li>
+</ul>
+</li>
+<li>主题检索引擎topic retrieval engine：推荐新主题。依据以下几点，由boosted tree ranker生成<ul>
+<li>contextual relevance上下文相关度</li>
+<li>freshness新鲜度</li>
+<li>个人兴趣</li>
+<li>popularity流行度/受欢迎度</li>
+<li>acceptance rate接受度<h2 id="4-2-Empathetic-Computing移情计算"><a href="#4-2-Empathetic-Computing移情计算" class="headerlink" title="4.2 Empathetic Computing移情计算"></a>4.2 Empathetic Computing移情计算</h2>反映小冰的EQ，建模人机对话中的情感方面。<br>给定用户输入$Q$,<br>考虑其上下文$C$并重写为上下文版本$Q_c$,<br>用查询移情向量query empathy vector $e_Q$编码用户感受和对话中的状态，<br>用回复移情向量response empathy vector $e_R$指定回复$R$中的移情方面。</li>
+</ul>
+</li>
+</ul>
+<p>对话状态向量$s=(Q_c, C, e_Q, e_R)$：</p>
+<ul>
+<li>表示移情计算模块的输出</li>
+<li>Dialogue Policy部分的输入，用于选择技能；</li>
+<li>作为激活技能（如Core Chat）部分的输入，用于生成符合小冰人格的人际回复。</li>
+</ul>
+<p>移情计算模块三个组件：</p>
+<ol>
+<li>Contextual Query Understanding(CQU)上下文查询理解<br>CQU根据以下步骤，使用$C$中的上下文信息重写$Q$和$Q_c$<ul>
+<li>命名实体识别：标记$Q$中提到的entity mention，链指到储存在state tracker中的working memory中的对应实体，或在working memory中保存新的实体。</li>
+<li>共指消解：将代词替换对对应实体名称</li>
+<li>语句补全：若$Q$不是完整的句子，使用上下文信息$C$补全</li>
+</ul>
+</li>
+<li>User Understanding用户理解<br> 基于$Q_c$和$C$生成查询移情向量$e_Q$。$e_Q$中包含一个键值对列表，表示用户意图user intents、情感emotions、主题topics、观点opinion、用户性格user persona。这些键值对使用一组分类器生成：<ul>
+<li>主题检测 标注用户是否关注同一主题，还是引入了新主题。主题集是预先编纂好的的。</li>
+<li>意图检测 标注$Q_c$，使用一种对话动作e.g.问候greet、请求request、通知inform等</li>
+<li>情感分析监测用户感情e.g.happy sad angry neural、以及感情如何演化e.g.happy-&gt;sad</li>
+<li>观点检测：用户对主题的反应，e.g.positive negative neural</li>
+<li>如果user id可用，根据用户画像profile生成用户人格向量，包含在$e_Q$中。e.g.性别、年龄、兴趣、职业、性格等</li>
+</ul>
+</li>
+<li>Interpersonal Response Generation人际响应生成<br>生成响应/回复移情向量$e_R$,该向量指明回复中生成的情感方面，且包含了小冰的人格。<br>小冰通过跟踪由Topic Manager决定的同一个主题，共享用户的感受，并按指定的一致consistent和积极的方式进行响应。在$e_R$中，根据指定的意图、情感和观点等的值，以一致consistent和积极的方式作出反应，这些值是根据$e_Q$中的值使用一组启发式计算的。回应必须同时符合小冰的人格，人格的键值对(如年龄、性别、兴趣等)从预编译的小冰的profile中抽取。</li>
+</ol>
+<h2 id="4-3-Core-Chat"><a href="#4-3-Core-Chat" class="headerlink" title="4.3 Core Chat"></a>4.3 Core Chat</h2><p>Core Chat是小冰IQ和EQ的非常重要的组成部分，和移情计算一起提供基本的交流能力，接受文本输入，生成人际响应为输出。<br>包含两部分：通用聊天General Chat和域聊天Domain Chat。二者仅数据集不同，而引擎相同。以General Chat为例</p>
+<p>General Chat是数据驱动的回复生成系统。接纳输入:对话状态$s = (Q_c, C, e_Q, e_R)$，分两阶段输出响应$R$: 响应候选生成、排序。相应候选从数据库中检索得到。数据库由人类生成的对话文本组成的，或由神经生成模型快速生成。(or generated on the fly  by a neural generative model)<br>以下介绍三个候选生成器和一个候选排序器</p>
+<h3 id="Retrieval-Based-Generator-using-Paired-Data使用成对数据的基于检索的生成器"><a href="#Retrieval-Based-Generator-using-Paired-Data使用成对数据的基于检索的生成器" class="headerlink" title="Retrieval-Based Generator using Paired Data使用成对数据的基于检索的生成器"></a>Retrieval-Based Generator using Paired Data使用成对数据的基于检索的生成器</h3><p>成对数据来源：①互联网上的人类交流数据(e.g.社交网络、公共论坛、公告板、新闻评论)②小冰和用户交流产生的人机对话数据<br>为了控制数据集质量：</p>
+<ol>
+<li>基于pair抽取来源的对话上下文、网页元数据和网站、用户profile，使用移情计算模块，将pair转换为tuple$(Q_c, R, e_Q, e_R)$</li>
+<li>基于tuples过滤pairs，保留符合小冰人格的移情响应的对话对</li>
+<li>移除包含个人识别信息（PII）、混乱的代码、不适当的内容、拼写错误等的pairs。</li>
+</ol>
+<p>过滤得到的pairs使用Lucene索引。运行时，使用$s$中的$Q_c$作为query，使用关键词搜索和基于机器学习表示成对数据集的语义搜索，检索400条响应候选。尽管从配对数据集中检索到的候选响应质量很高，但覆盖率coverage很低，因为数据集中不包括论坛上许多新的或不太常讨论的主题。为了增加覆盖率，我们引入了下面描述的另外两个候选生成器。</p>
+<h3 id="Neural-Response-Generator神经响应生成器"><a href="#Neural-Response-Generator神经响应生成器" class="headerlink" title="Neural Response Generator神经响应生成器"></a>Neural Response Generator神经响应生成器</h3><p>使用配对数据集<strong>训练</strong>来模仿人类交流，可以生成任意主题（包含人类交流数据中没有的）。<br>基于神经模型的生成器与基于检索的生成器互补：<br>neural-model-based generator: robustness, high coverage<br>retrieval-based generator: 对流行主题的high-quality<br>小冰使用了 用于对话响应生成的seq2seq框架<br>基于GRU-RNN，与Speraker-Addressee相似<br>输入$(Q_c, e_Q, e_R)$,期望预测用$e_R$建模的小冰(addressee)如何响应用$e_Q$建模的用户(speaker)产生的查询query $Q_c$</p>
+<ol>
+<li>线性组合$e_Q$和$e_R$(query and response empathy vectors)得到一个交互表示$v \in \mathbb{R}^d$，尝试建模小冰对用户的交互风格。$W_Q,W_R\in\mathbb{R}^{k*d}，\sigma$表示sigmoid函数。<script type="math/tex; mode=display">v=\sigma(W_Q^{\perp}e_Q+W_R^{\perp}e_R)</script></li>
+<li>source RNN编码用户查询$Q_c$到一个隐状态向量序列中，向量随后输入target RNN,逐词生成响应$R$，每条响应以EOS结尾。</li>
+<li>用beam search生成20条候选。</li>
+</ol>
+<p>在target RNN一侧，在每个时间步$t$，隐状态$h_t$由①前一个时间步的隐状态$h_{t-1}$、②当前时间步的词嵌入向量$e_t$和③$v$ 组合而成。通过这种方式，在每一个步骤中，移情信息都会被注入到隐藏层中，以帮助在整个生成过程中产生符合小冰人格的人际响应。<br>模型的详细说明见附录A。</p>
+<h3 id="Retrieval-Based-Generator-using-Unaired-Data使用非成对数据的基于检索的生成器"><a href="#Retrieval-Based-Generator-using-Unaired-Data使用非成对数据的基于检索的生成器" class="headerlink" title="Retrieval-Based Generator using Unaired Data使用非成对数据的基于检索的生成器"></a>Retrieval-Based Generator using Unaired Data使用非成对数据的基于检索的生成器</h3><p>除了上述两个响应生成器使用的会话（或成对）数据之外，还有更高质量和更大数量的非会话（或未配对）数据，可用于提高响应的质量和覆盖范围。e.g.公开演讲、新闻文章和报道中的引用。这些句子被视为候选响应$R$.因为我们知道这些句子的作者，所以我们计算每个句子的移情向量$e_R$。与成对数据类似的数据过滤流水线用于保留且仅保留符合小冰人格的响应$(R，e_R)。$<br>这些不成对的数据也用Lucene索引。不同于成对数据集，运行时我们需要将查询query $Q_c$扩展到包含额外主题，以避免检索到简单重复用户说过的话的响应。使用知识图谱KG对查询进行扩展。KG包含$head-relation-tail$的三元组集合$(h,r,t)$，通过加入成对数据和Microsoft Satori（微软的知识图谱）构建而成。当且仅当成对数据集中对话对(conversation pairs)的数量大于预先设定的阈值时，Satori三元组$(h,r,t)$包含到小冰的KG中。成对数据集：$h$出现在$Q_c$中，$t$出现在$R$中。这样的三元组包含了人们经常在同一场交流中提及的两个相关的话题。e.g.(Beijing, Great Wall),(Einstein, Relativity),(Quantum Physics, Schrodinger’s cat).<br>使用非配对数据及和小冰KG生成候选响应的过程：</p>
+<ol>
+<li>识别上下文用户查询$Q_c$中的话题</li>
+<li>对每一个话题，从KG中检索二十个最相关的话题。这些话题依据相关度relevance，使用用人工标注数据训练的boosted tree ranker打分。</li>
+<li>结合$Q_c$中的主题和KG中得到的相关话题，形成query，使用query从非配对数据集中检索最多400条最相关句子，作为响应候选。</li>
+</ol>
+<p>此生成器是对上述其他两个生成器的补充。质量较低、涵盖范围更广。与通常生成<strong>形式</strong>良好但响应较短的神经响应生成器相比，未配对数据的候选对象更长，<strong>内容</strong>更有用。</p>
+<h3 id="Response-Candidate-Ranker响应候选排序器"><a href="#Response-Candidate-Ranker响应候选排序器" class="headerlink" title="Response Candidate Ranker响应候选排序器"></a>Response Candidate Ranker响应候选排序器</h3><p>三个生成器生成的响应使用boosted tree ranker聚合排序。响应从排序分数高于预设阈值的候选中<strong>随机</strong>选择<br>Given 对话状态$s=(Q_c,C,e_Q,e_R)$,基于以下四类特征给每个响应候选$R’$一个排序分数：</p>
+<ol>
+<li>局部耦合特征：好的候选应在语义上与用户输入$Q_c$一致或相关。使用一组在人类交流对human conversation pairs上训练的DSSMs计算$R’$和$Q_c$之间的聚合分数。</li>
+<li>全局耦合特征：好的候选应在语义上与$Q_c$和$C$契合。使用一组用人类对话会话human dialogue sessions训练的DSSMs计算$R’$和$(Q_c,C)$之间的聚合分数coherence socres.因为聚合特征使用了全局上下文信息$C$，当$Q_c$是没有上下文、很难检测主题，平淡乏味bland的query时e.g.”OK”,”why”,”I don’t know”，格外有用。</li>
+<li>移情匹配特征：好的候选应该是符合小冰<strong>人格</strong>的<strong>移情</strong>回复。假设小冰选择$R’$来响应给定的上下文$(Q_c,C)$,使用移情计算模块为$R’$计算响应移情向量response empathy vector，$e_{R’}$，然后通过比较 $e_{R’}$和给定的、编码了<strong>期望</strong>响应expected response的移情特征的$e_R$，计算一组移情匹配特征empathy matching features。<br><em>移情计算模块：将$R’$当做query，$(Q_c,C)$当做上下文，使用上下文查询理解contextual query understand和用户理解user understanding组件来计算查询移情向量query empathy vector $e_{R’}$</em></li>
+<li>检索匹配特征:这些特征额仅应用于成对数据集生成的候选。计算$Q_c$和检索查询-响应对(retrived query-response pairs)的query端的匹配分数，在词语级(例如BM25和TFIDF分数)和语义级(例如DSSM分数)均要计算。<br>排序器在对话-状态-响应对dialogue-state-pairs$(s,R)$上训练。pair有三种标记等级：</li>
+</ol>
+<ul>
+<li>0：响应没有移情或与query不是很相关。可能导致对话终止。</li>
+<li>1：响应可接受，与query相关。可能帮助对话继续。</li>
+<li>2：响应是移情的、人际的interpersonal，使用户感到快乐兴奋。可能驱动对话。<br><em>DSSM：深度结构语义模型Deep Structured Semantic Models/深度语义相似模型Deep Semantic Similarity Model.是用于衡量输入对$(x,y)$语义相似度的深度学习模型。在本文中，$(x,y)$是查询-候选-响应对query-candidate-response pair$(Q_c,C)$</em><h3 id="Editorial-Response编辑响应"><a href="#Editorial-Response编辑响应" class="headerlink" title="Editorial Response编辑响应"></a>Editorial Response编辑响应</h3>如果候选生成器和响应排序器由于各种原因（例如不在索引中not-in-index、模型失败model failure、执行超时或输入查询包含不正确内容），导致未能生成任何有效响应，则选择编辑响应。为了让对话继续下去，<br>编辑响应应该：有同理心empathetic；不应该：安全但温和safe but bland<br>e.g.“嗯，很难说。你怎么想 Hmmm, difficult to say. What do you think？”√<br>“让我们谈点别的 Let us talk about something else.” √<br>“我不知道 I don’t know.”×<br>“我还在学习回答你的问题 I am still learning to answer your question.”×</li>
+</ul>
+<h2 id="4-4-对话技巧Dialogue-Skills"><a href="#4-4-对话技巧Dialogue-Skills" class="headerlink" title="4.4 对话技巧Dialogue Skills"></a>4.4 对话技巧Dialogue Skills</h2><h3 id="4-4-1-Image-Commenting-图片评论"><a href="#4-4-1-Image-Commenting-图片评论" class="headerlink" title="4.4.1 Image Commenting 图片评论"></a>4.4.1 Image Commenting 图片评论</h3><p>图像评论不是为了正确认知描述图像，而是生成反映个人情感、态度、立场的移情评论。</p>
+<h3 id="4-4-2-Content-Creation-内容创造"><a href="#4-4-2-Content-Creation-内容创造" class="headerlink" title="4.4.2 Content Creation 内容创造"></a>4.4.2 Content Creation 内容创造</h3><h3 id="4-4-3-Deep-Engagement-深度参与"><a href="#4-4-3-Deep-Engagement-深度参与" class="headerlink" title="4.4.3 Deep Engagement 深度参与"></a>4.4.3 Deep Engagement 深度参与</h3><p>深度参与技能旨在通过针对特定主题和设置满足用户的特定情感和智能需求，从而提高用户的长期参与度。这些技能可以在两个维度上分为不同系列：IQ 到 EQ，私人一对一 到 小组讨论</p>
+<ul>
+<li>满足用户的智能或情感需求：小冰分享自己在不同的IQ主题(e.g.数学、历史、食物、旅游、名人)上的兴趣、经历、知识。<h3 id="4-4-4-Task-Completion-任务完成"><a href="#4-4-4-Task-Completion-任务完成" class="headerlink" title="4.4.4 Task Completion 任务完成"></a>4.4.4 Task Completion 任务完成</h3><h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1></li>
+</ul>
+<ol>
+<li>同一模型框架</li>
+<li>目标导向、有充足理由的对话 grounded</li>
+<li>积极主动proactive的个人助理：比传统智能个人助手更准确地认知用户兴趣和意图。</li>
+<li>人类水平智能：有认知有意识的AI。移情计算、知识和记忆建模、可解释机器职能、常识推理、神经符号推理、跨媒体连续流AI、建模反映在人类需求中的感情或内在回报</li>
+<li>道德<h1 id="Appendix-A-GRU-RNN-Based-Response-Generator"><a href="#Appendix-A-GRU-RNN-Based-Response-Generator" class="headerlink" title="Appendix A: GRU-RNN Based Response Generator"></a>Appendix A: GRU-RNN Based Response Generator</h1>与speaker-addressee模型类似。<br>给定输入$(Q_c,e_Q,e_R)$，我们希望预测用$e_R$建模小冰(Addressee)如何响应$e_Q$建模的speaker模型产生的$Q_c$。<br>通过线性组合查询移情向量$e_Q$和响应移情向量$e_R$(query and response empathy vectors)，得到一个交互表示$v \in \mathbb{R}^d$，尝试建模小冰对用户(speaker)的交互风格。<script type="math/tex; mode=display">v=\sigma(W_Q^{\perp}e_Q+W_R^{\perp}e_R)</script>其中$W_Q,W_R\in\mathbb{R}^{k*d}，\sigma$表示sigmoid函数。<br>使用source RNN将$Q_c$编码到向量表示$h_Q$中。<br>在target RNN侧的每一个事件步$t$，隐状态$h_t$由①前一个时间步的隐状态$h_{t-1}$、②当前时间步的词嵌入向量$e_t$和③$v$ 组合而成。通过这种方式，在每一个步骤中，移情信息都会被注入到隐藏层中，以帮助在整个生成过程中产生符合小冰人格的人际响应。<br>$u_t$和$z_t$分别表示时间步$t$时，GRU的更新门update和重置门reset.计算$t$时间步的隐状态$h_t$：<script type="math/tex; mode=display">u_t=\sigma(W_u^\perp[h_{t-1};e_t;v])</script><script type="math/tex; mode=display">z_t=\sigma(W_z^\perp[h_{t-1};e_t;v])</script><script type="math/tex; mode=display">l_t=tanh(W_l^\perp[z_t\circ h_{t-1};e_t;v])</script><script type="math/tex; mode=display">h_t^Q=(1-u_t)\circ h_{t-1}+u_t\circ l_t</script>其中$W_u,W_z,W_l \in \mathbb{R}^{3d*d}$是机器学习得到的矩阵，$\circ$表示元素乘。<br>RNN模型定义了$R$中下一个token的概率，用于使用softmax函数预测。<script type="math/tex; mode=display">
+\begin{align}
+p(R|Q_c,e_Q,e_R) &=\prod_{t=1}^{N_R}p(r_t|Q_c,e_Q,e_R,r_1,r_2,...,r_{t-1})\\
+&= \prod_{t=1}^{N_R}\frac{exp(f(h_{t-1},e_{r_t},v))}{\Sigma_{r'}exp(f(h_{t-1},e_{r'},v))}
+\end{align}</script>其中$f(h_{t-1},e_{r_t},v)$表示$h_{t-1},e_{r_t},v$之间的激活函数，$h_{t-1}$是RNN在$t-1$时间步的输出的表示。每个响应以特殊的表示句子结束的符号EOS结尾。<br>响应生成模型参数$\theta=(W_Q,W_R,W_u,W_z,W_l)$通过在训练数据上最大化对数似然训练，使用随机梯度下降法SGD得到。<script type="math/tex; mode=display">\arg\mathop{\max}_{\theta}
+\frac{1}{M} \sum^M_{i=1} log p_{\theta}(R^{(i)}|Q_c^{(i)},e_Q^{(i)},e_R^{(i)})</script></li>
+</ol>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="批标准化Batch Normalization" href="/2020/02/03/batch-normalization/">
+            批标准化Batch Normalization →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2-设计原则-Design-Principle"><span class="toc-text">2.设计原则 Design Principle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-IQ-EQ-个性Personality"><span class="toc-text">2.1 IQ+EQ+个性Personality</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-每次会话的对话轮数CPS-Conversation-turns-Per-Session"><span class="toc-text">2.2 每次会话的对话轮数CPS(Conversation-turns Per Session)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-社交聊天-gt-分层决策过程-Hierarchical-Decision-Making"><span class="toc-text">2.3 社交聊天-&gt;分层决策过程(Hierarchical Decision-Making)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-系统架构-System-Architecture"><span class="toc-text">3.系统架构 System Architecture</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-对话引擎实现-Implementation-of-Conversation-Engine"><span class="toc-text">4.对话引擎实现 Implementation of Conversation Engine</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Dialogue-Manager对话管理器"><span class="toc-text">4.1 Dialogue Manager对话管理器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-Global-State-Tracker全局状态跟踪"><span class="toc-text">4.1.1 Global State Tracker全局状态跟踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-Dialogue-Policy对话策略"><span class="toc-text">4.1.2 Dialogue Policy对话策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-主题管理-Topic-Manager"><span class="toc-text">4.1.3 主题管理 Topic Manager</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Empathetic-Computing移情计算"><span class="toc-text">4.2 Empathetic Computing移情计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Core-Chat"><span class="toc-text">4.3 Core Chat</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Retrieval-Based-Generator-using-Paired-Data使用成对数据的基于检索的生成器"><span class="toc-text">Retrieval-Based Generator using Paired Data使用成对数据的基于检索的生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Neural-Response-Generator神经响应生成器"><span class="toc-text">Neural Response Generator神经响应生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Retrieval-Based-Generator-using-Unaired-Data使用非成对数据的基于检索的生成器"><span class="toc-text">Retrieval-Based Generator using Unaired Data使用非成对数据的基于检索的生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Response-Candidate-Ranker响应候选排序器"><span class="toc-text">Response Candidate Ranker响应候选排序器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Editorial-Response编辑响应"><span class="toc-text">Editorial Response编辑响应</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-对话技巧Dialogue-Skills"><span class="toc-text">4.4 对话技巧Dialogue Skills</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-1-Image-Commenting-图片评论"><span class="toc-text">4.4.1 Image Commenting 图片评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-2-Content-Creation-内容创造"><span class="toc-text">4.4.2 Content Creation 内容创造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-3-Deep-Engagement-深度参与"><span class="toc-text">4.4.3 Deep Engagement 深度参与</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-4-Task-Completion-任务完成"><span class="toc-text">4.4.4 Task Completion 任务完成</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Challenges"><span class="toc-text">Challenges</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Appendix-A-GRU-RNN-Based-Response-Generator"><span class="toc-text">Appendix A: GRU-RNN Based Response Generator</span></a></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Road To Surika &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020/02/11/The-Design-and-Implementation-of-XiaoIce-an-Empathetic-Social-Chatbot/">The Design and Implementation of XiaoIce, an Empathetic Social Chatbot</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020/02/03/batch-normalization/">批标准化Batch Normalization</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020/01/29/deep-learning-optimizer/">深度学习常用优化器及Pytorch使用</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Anaconda/">Anaconda</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataScience/">DataScience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/Pytorch/">Pytorch</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dialogue-System/">Dialogue System</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/Algorithms/">Algorithms</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lesson/">Lesson</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/">Machine Learning</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/Deep-Learning/">Deep Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Pytorch/">Pytorch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/img/73755434_p1.jpg)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/Anaconda/" style="font-size: 18px;">Anaconda</a> <a href="/tags/DataScience/" style="font-size: 20px;">DataScience</a> <a href="/tags/Graph/" style="font-size: 18px;">Graph</a> <a href="/tags/Hadoop/" style="font-size: 14px;">Hadoop</a> <a href="/tags/Hbase/" style="font-size: 14px;">Hbase</a> <a href="/tags/Hexo/" style="font-size: 16px;">Hexo</a> <a href="/tags/IPython/" style="font-size: 14px;">IPython</a> <a href="/tags/LaTeX/" style="font-size: 14px;">LaTeX</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 14px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 16px;">NLP</a> <a href="/tags/Nachos/" style="font-size: 22px;">Nachos</a> <a href="/tags/OperatingSystem/" style="font-size: 22px;">OperatingSystem</a> <a href="/tags/PThreads/" style="font-size: 14px;">PThreads</a> <a href="/tags/Paper/" style="font-size: 14px;">Paper</a> <a href="/tags/ParallelProgramming/" style="font-size: 14px;">ParallelProgramming</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/SDU/" style="font-size: 24px;">SDU</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/SoftwareEngineer/" style="font-size: 14px;">SoftwareEngineer</a> <a href="/tags/diary/" style="font-size: 22px;">diary</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/集体智慧编程/" style="font-size: 14px;">集体智慧编程</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/img/flower.png" alt="Road To Surika">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Road To Surika">Road To Surika &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2020/02/11/The-Design-and-Implementation-of-XiaoIce-an-Empathetic-Social-Chatbot/" class="leancloud-visitors" data-flag-title="The Design and Implementation of XiaoIce, an Empathetic Social Chatbot">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        var bLazy = new Blazy()
+    })
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function(){
+        searchFunc("/")
+    });
+</script>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"superSample":2,"width":300,"height":500,"position":"left","hOffset":0,"vOffset":-10},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
