@@ -194,10 +194,11 @@
 <li>freshness新鲜度</li>
 <li>个人兴趣</li>
 <li>popularity流行度/受欢迎度</li>
-<li>acceptance rate接受度<h2 id="4-2-Empathetic-Computing移情计算"><a href="#4-2-Empathetic-Computing移情计算" class="headerlink" title="4.2 Empathetic Computing移情计算"></a>4.2 Empathetic Computing移情计算</h2>反映小冰的EQ，建模人机对话中的情感方面。<br>给定用户输入$Q$,<br>考虑其上下文$C$并重写为上下文版本$Q_c$,<br>用查询移情向量query empathy vector $e_Q$编码用户感受和对话中的状态，<br>用回复移情向量response empathy vector $e_R$指定回复$R$中的移情方面。</li>
+<li>acceptance rate接受度</li>
 </ul>
 </li>
 </ul>
+<h2 id="4-2-Empathetic-Computing移情计算"><a href="#4-2-Empathetic-Computing移情计算" class="headerlink" title="4.2 Empathetic Computing移情计算"></a>4.2 Empathetic Computing移情计算</h2><p>反映小冰的EQ，建模人机对话中的情感方面。<br>给定用户输入$Q$,<br>考虑其上下文$C$并重写为上下文版本$Q_c$,<br>用查询移情向量query empathy vector $e_Q$编码用户感受和对话中的状态，<br>用回复移情向量response empathy vector $e_R$指定回复$R$中的移情方面。</p>
 <p>对话状态向量$s=(Q_c, C, e_Q, e_R)$：</p>
 <ul>
 <li>表示移情计算模块的输出</li>
@@ -212,7 +213,8 @@
 <li>语句补全：若$Q$不是完整的句子，使用上下文信息$C$补全</li>
 </ul>
 </li>
-<li>User Understanding用户理解<br> 基于$Q_c$和$C$生成查询移情向量$e_Q$。$e_Q$中包含一个键值对列表，表示用户意图user intents、情感emotions、主题topics、观点opinion、用户性格user persona。这些键值对使用一组分类器生成：<ul>
+<li><p>User Understanding用户理解<br> 基于$Q_c$和$C$生成查询移情向量$e_Q$。$e_Q$中包含一个键值对列表，表示用户意图user intents、情感emotions、主题topics、观点opinion、用户性格user persona。这些键值对使用一组分类器生成：</p>
+<ul>
 <li>主题检测 标注用户是否关注同一主题，还是引入了新主题。主题集是预先编纂好的的。</li>
 <li>意图检测 标注$Q_c$，使用一种对话动作e.g.问候greet、请求request、通知inform等</li>
 <li>情感分析监测用户感情e.g.happy sad angry neural、以及感情如何演化e.g.happy-&gt;sad</li>
@@ -220,7 +222,8 @@
 <li>如果user id可用，根据用户画像profile生成用户人格向量，包含在$e_Q$中。e.g.性别、年龄、兴趣、职业、性格等</li>
 </ul>
 </li>
-<li>Interpersonal Response Generation人际响应生成<br>生成响应/回复移情向量$e_R$,该向量指明回复中生成的情感方面，且包含了小冰的人格。<br>小冰通过跟踪由Topic Manager决定的同一个主题，共享用户的感受，并按指定的一致consistent和积极的方式进行响应。在$e_R$中，根据指定的意图、情感和观点等的值，以一致consistent和积极的方式作出反应，这些值是根据$e_Q$中的值使用一组启发式计算的。回应必须同时符合小冰的人格，人格的键值对(如年龄、性别、兴趣等)从预编译的小冰的profile中抽取。</li>
+<li><p>Interpersonal Response Generation人际响应生成<br>生成响应/回复移情向量$e_R$,该向量指明回复中生成的情感方面，且包含了小冰的人格。<br>小冰通过跟踪由Topic Manager决定的同一个主题，共享用户的感受，并按指定的一致consistent和积极的方式进行响应。在$e_R$中，根据指定的意图、情感和观点等的值，以一致consistent和积极的方式作出反应，这些值是根据$e_Q$中的值使用一组启发式计算的。回应必须同时符合小冰的人格，人格的键值对(如年龄、性别、兴趣等)从预编译的小冰的profile中抽取。</p>
+</li>
 </ol>
 <h2 id="4-3-Core-Chat"><a href="#4-3-Core-Chat" class="headerlink" title="4.3 Core Chat"></a>4.3 Core Chat</h2><p>Core Chat是小冰IQ和EQ的非常重要的组成部分，和移情计算一起提供基本的交流能力，接受文本输入，生成人际响应为输出。<br>包含两部分：通用聊天General Chat和域聊天Domain Chat。二者仅数据集不同，而引擎相同。以General Chat为例</p>
 <p>General Chat是数据驱动的回复生成系统。接纳输入:对话状态$s = (Q_c, C, e_Q, e_R)$，分两阶段输出响应$R$: 响应候选生成、排序。相应候选从数据库中检索得到。数据库由人类生成的对话文本组成的，或由神经生成模型快速生成。(or generated on the fly  by a neural generative model)<br>以下介绍三个候选生成器和一个候选排序器</p>
@@ -233,7 +236,7 @@
 <p>过滤得到的pairs使用Lucene索引。运行时，使用$s$中的$Q_c$作为query，使用关键词搜索和基于机器学习表示成对数据集的语义搜索，检索400条响应候选。尽管从配对数据集中检索到的候选响应质量很高，但覆盖率coverage很低，因为数据集中不包括论坛上许多新的或不太常讨论的主题。为了增加覆盖率，我们引入了下面描述的另外两个候选生成器。</p>
 <h3 id="Neural-Response-Generator神经响应生成器"><a href="#Neural-Response-Generator神经响应生成器" class="headerlink" title="Neural Response Generator神经响应生成器"></a>Neural Response Generator神经响应生成器</h3><p>使用配对数据集<strong>训练</strong>来模仿人类交流，可以生成任意主题（包含人类交流数据中没有的）。<br>基于神经模型的生成器与基于检索的生成器互补：<br>neural-model-based generator: robustness, high coverage<br>retrieval-based generator: 对流行主题的high-quality<br>小冰使用了 用于对话响应生成的seq2seq框架<br>基于GRU-RNN，与Speraker-Addressee相似<br>输入$(Q_c, e_Q, e_R)$,期望预测用$e_R$建模的小冰(addressee)如何响应用$e_Q$建模的用户(speaker)产生的查询query $Q_c$</p>
 <ol>
-<li>线性组合$e_Q$和$e_R$(query and response empathy vectors)得到一个交互表示$v \in \mathbb{R}^d$，尝试建模小冰对用户的交互风格。$W_Q,W_R\in\mathbb{R}^{k*d}，\sigma$表示sigmoid函数。<script type="math/tex; mode=display">v=\sigma(W_Q^{\perp}e_Q+W_R^{\perp}e_R)</script></li>
+<li>线性组合$e_Q$和$e_R$(query and response empathy vectors)得到一个交互表示$v \in \mathbb{R}^d$，尝试建模小冰对用户的交互风格。$W_Q,W_R\in\mathbb{R}^{k*d}，\sigma$表示sigmoid函数。<script type="math/tex; mode=display">v=\sigma(W_Q^{\mathrm{ T } }e_Q+W_R^{\mathrm{ T } }e_R)</script></li>
 <li>source RNN编码用户查询$Q_c$到一个隐状态向量序列中，向量随后输入target RNN,逐词生成响应$R$，每条响应以EOS结尾。</li>
 <li>用beam search生成20条候选。</li>
 </ol>
@@ -260,14 +263,14 @@
 <h2 id="4-4-对话技巧Dialogue-Skills"><a href="#4-4-对话技巧Dialogue-Skills" class="headerlink" title="4.4 对话技巧Dialogue Skills"></a>4.4 对话技巧Dialogue Skills</h2><h3 id="4-4-1-Image-Commenting-图片评论"><a href="#4-4-1-Image-Commenting-图片评论" class="headerlink" title="4.4.1 Image Commenting 图片评论"></a>4.4.1 Image Commenting 图片评论</h3><p>图像评论不是为了正确认知描述图像，而是生成反映个人情感、态度、立场的移情评论。</p>
 <h3 id="4-4-2-Content-Creation-内容创造"><a href="#4-4-2-Content-Creation-内容创造" class="headerlink" title="4.4.2 Content Creation 内容创造"></a>4.4.2 Content Creation 内容创造</h3><h3 id="4-4-3-Deep-Engagement-深度参与"><a href="#4-4-3-Deep-Engagement-深度参与" class="headerlink" title="4.4.3 Deep Engagement 深度参与"></a>4.4.3 Deep Engagement 深度参与</h3><p>深度参与技能旨在通过针对特定主题和设置满足用户的特定情感和智能需求，从而提高用户的长期参与度。这些技能可以在两个维度上分为不同系列：IQ 到 EQ，私人一对一 到 小组讨论</p>
 <ul>
-<li>满足用户的智能或情感需求：小冰分享自己在不同的IQ主题(e.g.数学、历史、食物、旅游、名人)上的兴趣、经历、知识。<h3 id="4-4-4-Task-Completion-任务完成"><a href="#4-4-4-Task-Completion-任务完成" class="headerlink" title="4.4.4 Task Completion 任务完成"></a>4.4.4 Task Completion 任务完成</h3><h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1></li>
+<li>满足用户的智能或情感需求：小冰分享自己在不同的IQ主题(e.g.数学、历史、食物、旅游、名人)上的兴趣、经历、知识。</li>
 </ul>
-<ol>
+<h3 id="4-4-4-Task-Completion-任务完成"><a href="#4-4-4-Task-Completion-任务完成" class="headerlink" title="4.4.4 Task Completion 任务完成"></a>4.4.4 Task Completion 任务完成</h3><h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><ol>
 <li>同一模型框架</li>
 <li>目标导向、有充足理由的对话 grounded</li>
 <li>积极主动proactive的个人助理：比传统智能个人助手更准确地认知用户兴趣和意图。</li>
 <li>人类水平智能：有认知有意识的AI。移情计算、知识和记忆建模、可解释机器职能、常识推理、神经符号推理、跨媒体连续流AI、建模反映在人类需求中的感情或内在回报</li>
-<li>道德<h1 id="Appendix-A-GRU-RNN-Based-Response-Generator"><a href="#Appendix-A-GRU-RNN-Based-Response-Generator" class="headerlink" title="Appendix A: GRU-RNN Based Response Generator"></a>Appendix A: GRU-RNN Based Response Generator</h1>与speaker-addressee模型类似。<br>给定输入$(Q_c,e_Q,e_R)$，我们希望预测用$e_R$建模小冰(Addressee)如何响应$e_Q$建模的speaker模型产生的$Q_c$。<br>通过线性组合查询移情向量$e_Q$和响应移情向量$e_R$(query and response empathy vectors)，得到一个交互表示$v \in \mathbb{R}^d$，尝试建模小冰对用户(speaker)的交互风格。<script type="math/tex; mode=display">v=\sigma(W_Q^{\perp}e_Q+W_R^{\perp}e_R)</script>其中$W_Q,W_R\in\mathbb{R}^{k*d}，\sigma$表示sigmoid函数。<br>使用source RNN将$Q_c$编码到向量表示$h_Q$中。<br>在target RNN侧的每一个事件步$t$，隐状态$h_t$由①前一个时间步的隐状态$h_{t-1}$、②当前时间步的词嵌入向量$e_t$和③$v$ 组合而成。通过这种方式，在每一个步骤中，移情信息都会被注入到隐藏层中，以帮助在整个生成过程中产生符合小冰人格的人际响应。<br>$u_t$和$z_t$分别表示时间步$t$时，GRU的更新门update和重置门reset.计算$t$时间步的隐状态$h_t$：<script type="math/tex; mode=display">u_t=\sigma(W_u^\perp[h_{t-1};e_t;v])</script><script type="math/tex; mode=display">z_t=\sigma(W_z^\perp[h_{t-1};e_t;v])</script><script type="math/tex; mode=display">l_t=tanh(W_l^\perp[z_t\circ h_{t-1};e_t;v])</script><script type="math/tex; mode=display">h_t^Q=(1-u_t)\circ h_{t-1}+u_t\circ l_t</script>其中$W_u,W_z,W_l \in \mathbb{R}^{3d*d}$是机器学习得到的矩阵，$\circ$表示元素乘。<br>RNN模型定义了$R$中下一个token的概率，用于使用softmax函数预测。<script type="math/tex; mode=display">
+<li>道德<h1 id="Appendix-A-GRU-RNN-Based-Response-Generator"><a href="#Appendix-A-GRU-RNN-Based-Response-Generator" class="headerlink" title="Appendix A: GRU-RNN Based Response Generator"></a>Appendix A: GRU-RNN Based Response Generator</h1>与speaker-addressee模型类似。<br>给定输入$(Q_c,e_Q,e_R)$，我们希望预测用$e_R$建模小冰(Addressee)如何响应$e_Q$建模的speaker模型产生的$Q_c$。<br>通过线性组合查询移情向量$e_Q$和响应移情向量$e_R$(query and response empathy vectors)，得到一个交互表示$v \in \mathbb{R}^d$，尝试建模小冰对用户(speaker)的交互风格。<script type="math/tex; mode=display">v=\sigma(W_Q^{\mathrm{ T } }e_Q+W_R^{\mathrm{ T } }e_R)</script>其中$W_Q,W_R\in\mathbb{R}^{k*d}，\sigma$表示sigmoid函数。<br>使用source RNN将$Q_c$编码到向量表示$h_Q$中。<br>在target RNN侧的每一个事件步$t$，隐状态$h_t$由①前一个时间步的隐状态$h_{t-1}$、②当前时间步的词嵌入向量$e_t$和③$v$ 组合而成。通过这种方式，在每一个步骤中，移情信息都会被注入到隐藏层中，以帮助在整个生成过程中产生符合小冰人格的人际响应。<br>$u_t$和$z_t$分别表示时间步$t$时，GRU的更新门update和重置门reset.计算$t$时间步的隐状态$h_t$：<script type="math/tex; mode=display">u_t=\sigma(W_u^\mathrm{ T } [h_{t-1};e_t;v])</script><script type="math/tex; mode=display">z_t=\sigma(W_z^\mathrm{ T } [h_{t-1};e_t;v])</script><script type="math/tex; mode=display">l_t=tanh(W_l^\mathrm{ T } [z_t\circ h_{t-1};e_t;v])</script><script type="math/tex; mode=display">h_t^Q=(1-u_t)\circ h_{t-1}+u_t\circ l_t</script>其中$W_u,W_z,W_l \in \mathbb{R}^{3d*d}$是机器学习得到的矩阵，$\circ$表示元素乘。<br>RNN模型定义了$R$中下一个token的概率，用于使用softmax函数预测。<script type="math/tex; mode=display">
 \begin{align}
 p(R|Q_c,e_Q,e_R) &=\prod_{t=1}^{N_R}p(r_t|Q_c,e_Q,e_R,r_1,r_2,...,r_{t-1})\\
 &= \prod_{t=1}^{N_R}\frac{exp(f(h_{t-1},e_{r_t},v))}{\Sigma_{r'}exp(f(h_{t-1},e_{r'},v))}
