@@ -150,16 +150,18 @@
             </div>
             <h1 class="post-full-title">Personalized Dialogue Generation with Diversified Traits</h1>
         </header>
-        <div class="post-full no-image">
+        <div class="post-full ">
+            
+            <figure class="post-full-image" style="background-image: url(/images/62685138_p0.jpg)">
+            </figure>
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <h1 id="Personalized-Dialogue-Generation-with-Diversified-Traits"><a href="#Personalized-Dialogue-Generation-with-Diversified-Traits" class="headerlink" title="Personalized Dialogue Generation with Diversified Traits"></a>Personalized Dialogue Generation with Diversified Traits</h1><h2 id="0-Abstract"><a href="#0-Abstract" class="headerlink" title="0.Abstract"></a>0.Abstract</h2><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><h2 id="2-Related-Works"><a href="#2-Related-Works" class="headerlink" title="2.Related Works"></a>2.Related Works</h2><h2 id="3-Model"><a href="#3-Model" class="headerlink" title="3.Model"></a>3.Model</h2><h2 id="4-Experiments"><a href="#4-Experiments" class="headerlink" title="4.Experiments"></a>4.Experiments</h2><h2 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h2><hr>
-<h2 id="0-Abstract-1"><a href="#0-Abstract-1" class="headerlink" title="0.Abstract"></a>0.Abstract</h2><p><em>是否可以考虑嵌入隐式特征？</em></p>
+                    <h2 id="0-Abstract"><a href="#0-Abstract" class="headerlink" title="0.Abstract"></a>0.Abstract</h2><p><em>是否可以考虑嵌入隐式特征？</em></p>
 <p>本文使用的数据库中特征包括年龄、性别、位置、兴趣、标签(Tags)等等</p>
 <p>提出：seq2seq框架中的性格感知对话生成模型</p>
 <p>显式性格特征用键值对构成，解码过程中用<strong>性格感知注意力 persona-aware attention</strong>和<strong>性格感知偏置 persona-aware bias</strong>来捕捉并处理与特征有关的信息。</p>
-<h2 id="1-Introduction-1"><a href="#1-Introduction-1" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><h3 id="总结过去"><a href="#总结过去" class="headerlink" title="总结过去"></a>总结过去</h3><p>性格设置包括年龄、性别、语言、说法风格、知识水平、专业领域甚至合适的口音。</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><h3 id="总结过去"><a href="#总结过去" class="headerlink" title="总结过去"></a>总结过去</h3><p>性格设置包括年龄、性别、语言、说法风格、知识水平、专业领域甚至合适的口音。</p>
 <p>个性化可分为显式和隐式</p>
 <p>显式：用户用个人画像（键值对）或文字描述的性格 依赖手工标注的数据或众包对话，因此对于大规模数据集不具备扩展性</p>
 <p>隐式：用户用向量表示 简单成功/可解释性差；数据稀疏</p>
@@ -178,9 +180,9 @@
 <li>产生表示的过程中应用了两种方法：性格感知注意力机制（性格表示用于产生注意力权重来在每一个解码位置获取context vector），性格感知偏置（估计词的生成分布）</li>
 </ol>
 <p>We propose persona-aware models which apply a trait fusion module in the encoder-decoder framework to capture and address personality traits in dialogue generation. We devise a persona-aware attention mechanism and persona-aware bias to incorporate the persona information in the decoding process.  Experiments demonstrate that our model is able to address proper traits in different contexts.我们提出了一种基于特征融合模块的角色感知模型，该模型采用编解码器框架中的特征融合模块来捕获和处理对话生成中的性格特征。我们设计了一种角色感知注意机制和角色感知偏见来将角色信息融入解码过程。实验表明，我们的模型能够在不同的环境下处理合适的特征。</p>
-<h2 id="2-Related-Works-1"><a href="#2-Related-Works-1" class="headerlink" title="2.Related Works"></a>2.Related Works</h2><p><em>建模电影角色：3，8;隐式+神经模型:20,23,31,45,46,48;显式：26,47</em></p>
-<p>3 A Movie Dialogue Corpus for Research and<br>Development. ACL 2012</p>
-<p>8 Chameleons in imagined conversations: A new pproach to understanding coordination of linguistic style in dialogs. ACL 2011</p>
+<h2 id="2-Related-Works"><a href="#2-Related-Works" class="headerlink" title="2.Related Works"></a>2.Related Works</h2><p><em>建模电影角色：3，8;隐式+神经模型:20,23,31,45,46,48;显式：26,47</em></p>
+<p>3 A Movie Dialogue Corpus for Research and Development. ACL 2012</p>
+<p>8 Chameleons in imagined conversations: A new approach to understanding coordination of linguistic style in dialogs. ACL 2011</p>
 <p>20 Exploring Personalized Neural Conversational Models, IJCAI 2017</p>
 <p>23 A Persona-Based Neural Conversation Model, Li Jiwei, 2016</p>
 <p>31 Addressee and response selection for multiparty<br>conversation, EMNLP 2016</p>
@@ -189,7 +191,35 @@
 <p>48 Neural personalized response generation as domain adaptation, WWW 2017</p>
 <p>26 Training Millions of Personalized Dialogue Agents, 2018 arXiv</p>
 <p>47 Personalizing Dialogue Agents: I have a dog, do you have pets too? ACL 2018</p>
-<h2 id="3-Model-1"><a href="#3-Model-1" class="headerlink" title="3.Model"></a>3.Model</h2><h2 id="4-Experiments-1"><a href="#4-Experiments-1" class="headerlink" title="4.Experiments"></a>4.Experiments</h2><h2 id="5-1"><a href="#5-1" class="headerlink" title="5."></a>5.</h2>
+<h2 id="3-Model"><a href="#3-Model" class="headerlink" title="3.Model"></a>3.Model</h2><p><em>关系的亲疏？</em><br>在seq2seq中配备一个性格特征融合模块 a personality trait fusion module，用它计算一个整体的性格表示$v_p$, 然后令其作用于解码过程。<br>两种利用$v_p$解码的方法： </p>
+<ol>
+<li>persona-aware attention mechanism 可识别人格的注意力机制</li>
+<li>persona-aware bias 可识别人格的偏置机制<h3 id="3-1-Task-Definition-and-Overview"><a href="#3-1-Task-Definition-and-Overview" class="headerlink" title="3.1 Task Definition and Overview"></a>3.1 Task Definition and Overview</h3><script type="math/tex; mode=display">Y* = \mathop{\argmax}_{Y} P(Y|X,T)</script>T是特征集，其中每个$t_i$是键值对<br>三种用于生成人物角色表示$v_p$的性格特征融合方法，两种将$v_p$引入解码过程的方法。（三种编码方法，两种解码方法）<br>解码：</li>
+<li>使用$v_p$在每个解码位置生成注意力权重，使得在每个位置计算的context vector受$v_p$的约束</li>
+<li>直接在估计生成分布时使用能识别人格的bias<h3 id="3-2-seq2seq"><a href="#3-2-seq2seq" class="headerlink" title="3.2 seq2seq"></a>3.2 seq2seq</h3>带attention<br>encoder:两层双向GRU；decoder:两层GRU<h3 id="3-3-编码-Personality-Trait-Fusion"><a href="#3-3-编码-Personality-Trait-Fusion" class="headerlink" title="3.3 编码 Personality Trait Fusion"></a>3.3 编码 Personality Trait Fusion</h3></li>
+<li>每个特征-&gt;representation vector $v_{t_i}$</li>
+<li>所有特征融合成$v_p$。特征表示集合${v_{t_1} ,v_{t_2}, …,v_{t_N} }$使用<code>人格特征融合函数</code>表示成persona representation $v_p$<br>我们首先计算一个整体的性格表示$v_p$, 然后令其作用于解码过程。<br>$v_p$是特征融合，因此要先表示出每一个特征。$v_p$的构建开始于将每个特点$t_i$使用相应的特征编码器(corresponding trait encoder)映射为一个嵌入表示$v_{t_i}$。本文考虑的特征全部都是单值的single-valued，故可以直接查表look-up tables.<br>其它类型特征e.g.一个个人介绍句子：可以用LSTM</li>
+</ol>
+<p>使用了三种不同的合并方法：</p>
+<ol>
+<li>Traits Attention 权重</li>
+<li>Traits Average 平均<script type="math/tex; mode=display">v_p = \frac{1}{N} \sum^N_{i=1}v_{t_i}</script>是所有特征权重相等的attention特例。</li>
+<li>Traits Concatenation 串联<br>$v_p$长度(=$d_p$)要能被$N$整除,每个特征的向量表示$v_{t_i}$是$d_p/N$</li>
+</ol>
+<h3 id="3-4-解码-Decoding-with-Persona-Representation"><a href="#3-4-解码-Decoding-with-Persona-Representation" class="headerlink" title="3.4 解码 Decoding with Persona Representation"></a>3.4 解码 Decoding with Persona Representation</h3><h4 id="3-4-1-Persona-Aware-Attention-PAA"><a href="#3-4-1-Persona-Aware-Attention-PAA" class="headerlink" title="3.4.1 Persona-Aware Attention(PAA)"></a>3.4.1 Persona-Aware Attention(PAA)</h4><p>扩展了decoder中注意力权重的计算，不仅依赖于decoder的状态，还依赖于人格表示$v_p$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+e_i &= MLP(s_{t-1},h_i,v_p) &= V·tanh(W^1_{\alpha}s_{t-1}+W^2_{\alpha}h_i+W^3_{\alpha}v_p)
+\end{align}</script><p>其中$V \in \mathbb{R}^{d_s},W_{\alpha}^1 \in \mathbb{R}^{d_s × d_s},W_{\alpha}^2 \in \mathbb{R}^{d_s × d_s},W_{\alpha}^3 \in \mathbb{R}^{d_s × d_p}$是可学习的参数。$e_i$是计算注意力权重时softmax的输入。</p>
+<h4 id="3-4-2-Persona-Aware-Bias-PAB"><a href="#3-4-2-Persona-Aware-Bias-PAB" class="headerlink" title="3.4.2 Persona-Aware Bias(PAB)"></a>3.4.2 Persona-Aware Bias(PAB)</h4><p>原始seq2seq的输出层：</p>
+<script type="math/tex; mode=display">
+y_t = softmax(W^1_os_t+b_{out})\\
+s_t=RNN(S_{t-1},c_t,w_{t-1})</script><p>尝试在decoder输出层包含$v_p$。特别的，将人格偏置包含上面的公式中来获取生成分布。设计一个门gate来平衡原始项和人格偏置项。</p>
+<script type="math/tex; mode=display">
+y_t = softmax(a_t · W_o^1s_t +(1-a_t)·W_o^2v_p + b_{out})\\
+a_t=\sigma(V^T_o·s_t)</script><p>其中$w^1_o \in \mathbb{R}^{|V|× d_s},W^2_o \in \mathbb{R}^{|V|× d_p},V_o \in \mathbb{R}^{d_s},b_{out} \in \mathbb{R}^{|V|}$是可学习的参数。<br>尽管$v_p$带来的偏置看起来是上下文独立的（可能会在每个解码步独立选择词语），计算得的scalar variable $a_t \in [0,1]$起到门的作用，控制多少人格相关的特征可以包含在每个时间步里。它可以决定是使用特征相关词语trait related word还是语义相关词语semantic related word，并因此作出一致的回复。<br>PAB在影响生成分布时更为直接，且效果通常好于PAA。《Low-Rank RNN Adaptation for Context-Aware Language Modeling》《Emotional chatting machine: Emotional conversation generation with internal and external memory》（ECM）使用了相似的模型结构。</p>
+<h2 id="4-PERSONALDIALOG数据集"><a href="#4-PERSONALDIALOG数据集" class="headerlink" title="4.PERSONALDIALOG数据集"></a>4.<code>PERSONALDIALOG</code>数据集</h2><h2 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h2><p><em>joint learning 与（从语句中抽取属性）联合训练</em><br><em>关系会演进，而不是一成不变~感情会变-emotion~人工智能是万能的而人不是（考虑百科词典的例子）——情感何时转换？</em></p>
+
                 </article>
                 <ul class="tags-postTags">
                     
@@ -234,7 +264,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Personalized-Dialogue-Generation-with-Diversified-Traits"><span class="toc-text">Personalized Dialogue Generation with Diversified Traits</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-Abstract"><span class="toc-text">0.Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-text">1.Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Related-Works"><span class="toc-text">2.Related Works</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Model"><span class="toc-text">3.Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Experiments"><span class="toc-text">4.Experiments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5"><span class="toc-text">5.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-Abstract-1"><span class="toc-text">0.Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-1"><span class="toc-text">1.Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结过去"><span class="toc-text">总结过去</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己的工作"><span class="toc-text">自己的工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Related-Works-1"><span class="toc-text">2.Related Works</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Model-1"><span class="toc-text">3.Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Experiments-1"><span class="toc-text">4.Experiments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1"><span class="toc-text">5.</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-Abstract"><span class="toc-text">0.Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-text">1.Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结过去"><span class="toc-text">总结过去</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己的工作"><span class="toc-text">自己的工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Related-Works"><span class="toc-text">2.Related Works</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Model"><span class="toc-text">3.Model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Task-Definition-and-Overview"><span class="toc-text">3.1 Task Definition and Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-seq2seq"><span class="toc-text">3.2 seq2seq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-编码-Personality-Trait-Fusion"><span class="toc-text">3.3 编码 Personality Trait Fusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-解码-Decoding-with-Persona-Representation"><span class="toc-text">3.4 解码 Decoding with Persona Representation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-Persona-Aware-Attention-PAA"><span class="toc-text">3.4.1 Persona-Aware Attention(PAA)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-Persona-Aware-Bias-PAB"><span class="toc-text">3.4.2 Persona-Aware Bias(PAB)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-PERSONALDIALOG数据集"><span class="toc-text">4.PERSONALDIALOG数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5"><span class="toc-text">5.</span></a></li></ol>
     </div>
 </div>
 
@@ -336,6 +366,12 @@
       
       
       <li>
+        <a href="/2020/02/15/AI-Powered-Text-Generation-for-Harmonious-HumanMachine-Interaction-Current-State-and-Future-Directions/">AI-Powered Text Generation for Harmonious HumanMachine Interaction Current State and Future Directions</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2020/02/11/The-Design-and-Implementation-of-XiaoIce-an-Empathetic-Social-Chatbot/">The Design and Implementation of XiaoIce, an Empathetic Social Chatbot</a>
       </li>
       
@@ -346,10 +382,6 @@
       </li>
       
       
-      
-      <li>
-        <a href="/2020/01/29/deep-learning-optimizer/">深度学习常用优化器及Pytorch使用</a>
-      </li>
       
       
       
