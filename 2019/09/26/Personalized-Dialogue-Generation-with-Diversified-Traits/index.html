@@ -160,7 +160,7 @@
                     <h2 id="0-Abstract"><a href="#0-Abstract" class="headerlink" title="0.Abstract"></a>0.Abstract</h2><p><em>是否可以考虑嵌入隐式特征？</em></p>
 <p>本文使用的数据库中特征包括年龄、性别、位置、兴趣、标签(Tags)等等</p>
 <p>提出：seq2seq框架中的性格感知对话生成模型</p>
-<p>显式性格特征用键值对构成，解码过程中用<strong>性格感知注意力 persona-aware attention</strong>和<strong>性格感知偏置 persona-aware bias</strong>来捕捉并处理与特征有关的信息。</p>
+<p>显式性格特征用键值对构成，解码过程中用<code>性格感知注意力 persona-aware attention</code>和<code>性格感知偏置 persona-aware bias</code>来捕捉并处理与特征有关的信息。</p>
 <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><h3 id="总结过去"><a href="#总结过去" class="headerlink" title="总结过去"></a>总结过去</h3><p>性格设置包括年龄、性别、语言、说法风格、知识水平、专业领域甚至合适的口音。</p>
 <p>个性化可分为显式和隐式</p>
 <p>显式：用户用个人画像（键值对）或文字描述的性格 依赖手工标注的数据或众包对话，因此对于大规模数据集不具备扩展性</p>
@@ -194,9 +194,15 @@
 <h2 id="3-Model"><a href="#3-Model" class="headerlink" title="3.Model"></a>3.Model</h2><p><em>关系的亲疏？</em><br>在seq2seq中配备一个性格特征融合模块 a personality trait fusion module，用它计算一个整体的性格表示$v_p$, 然后令其作用于解码过程。<br>两种利用$v_p$解码的方法： </p>
 <ol>
 <li>persona-aware attention mechanism 可识别人格的注意力机制</li>
-<li>persona-aware bias 可识别人格的偏置机制<h3 id="3-1-Task-Definition-and-Overview"><a href="#3-1-Task-Definition-and-Overview" class="headerlink" title="3.1 Task Definition and Overview"></a>3.1 Task Definition and Overview</h3><script type="math/tex; mode=display">Y* = \mathop{\argmax}_{Y} P(Y|X,T)</script>T是特征集，其中每个$t_i$是键值对<br>三种用于生成人物角色表示$v_p$的性格特征融合方法，两种将$v_p$引入解码过程的方法。（三种编码方法，两种解码方法）<br>解码：</li>
+<li>persona-aware bias 可识别人格的偏置机制</li>
+</ol>
+<h3 id="3-1-Task-Definition-and-Overview"><a href="#3-1-Task-Definition-and-Overview" class="headerlink" title="3.1 Task Definition and Overview"></a>3.1 Task Definition and Overview</h3><script type="math/tex; mode=display">Y* = \mathop{\arg\max}_{Y} P(Y|X,T)</script><p>T是特征集，其中每个$t_i$是键值对<br>三种用于生成人物角色表示$v_p$的性格特征融合方法，两种将$v_p$引入解码过程的方法。（三种编码方法，两种解码方法）<br>解码：</p>
+<ol>
 <li>使用$v_p$在每个解码位置生成注意力权重，使得在每个位置计算的context vector受$v_p$的约束</li>
-<li>直接在估计生成分布时使用能识别人格的bias<h3 id="3-2-seq2seq"><a href="#3-2-seq2seq" class="headerlink" title="3.2 seq2seq"></a>3.2 seq2seq</h3>带attention<br>encoder:两层双向GRU；decoder:两层GRU<h3 id="3-3-编码-Personality-Trait-Fusion"><a href="#3-3-编码-Personality-Trait-Fusion" class="headerlink" title="3.3 编码 Personality Trait Fusion"></a>3.3 编码 Personality Trait Fusion</h3></li>
+<li>直接在估计生成分布时使用能识别人格的bias</li>
+</ol>
+<h3 id="3-2-seq2seq"><a href="#3-2-seq2seq" class="headerlink" title="3.2 seq2seq"></a>3.2 seq2seq</h3><p>带attention<br>encoder:两层双向GRU；decoder:两层GRU</p>
+<h3 id="3-3-编码-Personality-Trait-Fusion"><a href="#3-3-编码-Personality-Trait-Fusion" class="headerlink" title="3.3 编码 Personality Trait Fusion"></a>3.3 编码 Personality Trait Fusion</h3><ol>
 <li>每个特征-&gt;representation vector $v_{t_i}$</li>
 <li>所有特征融合成$v_p$。特征表示集合${v_{t_1} ,v_{t_2}, …,v_{t_N} }$使用<code>人格特征融合函数</code>表示成persona representation $v_p$<br>我们首先计算一个整体的性格表示$v_p$, 然后令其作用于解码过程。<br>$v_p$是特征融合，因此要先表示出每一个特征。$v_p$的构建开始于将每个特点$t_i$使用相应的特征编码器(corresponding trait encoder)映射为一个嵌入表示$v_{t_i}$。本文考虑的特征全部都是单值的single-valued，故可以直接查表look-up tables.<br>其它类型特征e.g.一个个人介绍句子：可以用LSTM</li>
 </ol>
