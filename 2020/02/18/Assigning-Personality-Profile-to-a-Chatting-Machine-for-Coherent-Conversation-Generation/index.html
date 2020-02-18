@@ -20,7 +20,7 @@
 	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
 	<link rel="preconnect" href="//gravatar.loli.net">
 
-	<title>Target-Guided Open-Domain Conversation | Road To Surika</title>
+	<title>Assigning Personality Profile to a Chatting Machine for Coherent Conversation Generation | Road To Surika</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -48,14 +48,14 @@
 
 	<meta property="og:site_name" content="Road To Surika">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Target-Guided Open-Domain Conversation | Road To Surika">
+	<meta property="og:title" content="Assigning Personality Profile to a Chatting Machine for Coherent Conversation Generation | Road To Surika">
 	<meta property="og:description" content>
-	<meta property="og:url" content="http://yoursite.com/2019/09/24/Target-Guided-Open-Domain-Conversation/">
+	<meta property="og:url" content="http://yoursite.com/2020/02/18/Assigning-Personality-Profile-to-a-Chatting-Machine-for-Coherent-Conversation-Generation/">
 
 	
-	<meta property="article:published_time" content="2019-09-24T22:09:00+08:00"> 
+	<meta property="article:published_time" content="2020-02-18T12:02:00+08:00"> 
 	<meta property="article:author" content="Surika">
-	<meta property="article:published_first" content="Road To Surika, /2019/09/24/Target-Guided-Open-Domain-Conversation/">
+	<meta property="article:published_first" content="Road To Surika, /2020/02/18/Assigning-Personality-Profile-to-a-Chatting-Machine-for-Coherent-Conversation-Generation/">
 	
 
 	
@@ -138,54 +138,81 @@
     <div class="inner">
         <header class="post-full-header">
             <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-09-24T14:08:09.000Z">
-                    2019-09-24
+                <time class="post-full-meta-date" datetime="2020-02-18T04:22:57.000Z">
+                    2020-02-18
                 </time>
                 
                 <span class="date-divider">/</span>
                 
                 
             </div>
-            <h1 class="post-full-title">Target-Guided Open-Domain Conversation</h1>
+            <h1 class="post-full-title">Assigning Personality Profile to a Chatting Machine for Coherent Conversation Generation</h1>
         </header>
         <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <p>ACL 2019</p>
-<h2 id="任务："><a href="#任务：" class="headerlink" title="任务："></a>任务：</h2><p>在开放域上自然地聊天，并主动将对话引导到预先设定好的目标话题上</p>
-<h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p>将整个系统解耦成独立的模块，在不同粒度上分别解决这些挑战。</p>
-<h2 id="要求："><a href="#要求：" class="headerlink" title="要求："></a>要求：</h2><ol>
-<li><p>transition smoothness 转换流畅，引导过程切合当前对话上下文</p>
-</li>
-<li><p>target achievement 达成目标</p>
-</li>
-<li><p>a turn-level keyword transition predictor (section 4.1)<br>用于预测下一句回复的关键词，获得其分布</p>
-</li>
-</ol>
-<p>这一部分主要用于生成流畅的对话，而不考虑引导对话主题</p>
-<p>文章使用了三种方法:</p>
-<ul>
-<li>Parawise PMI-based Transition 点互信息</li>
-<li>基于神经网络预测</li>
-<li>基于核的混合方法<br>第三种效果最佳</li>
-</ul>
+                    <p><a href="https://www.ijcai.org/Proceedings/2018/0595.pdf" target="_blank" rel="noopener">原文链接-IJCAI 2018</a><br><a href="https://blog.csdn.net/aliceyangxi1987/article/details/75276376" target="_blank" rel="noopener">可供参考的博客</a><br>将<code>个人资料</code>基于聊天系统，以获得连贯一致的对话生成<br>通过人格保持<code>一致性COHERENCE</code>。引入<code>键值对</code>的profile表达形式。<br>本文中personality=profile=identity</p>
+<p>为了给聊天机器人设定身份，文章使用有监督的属性检测器 (Profile Detector) 判断用户的问题是否提及聊天机器人的属性设定，以及具体哪一条预设的属性值；然后为了生成包含属性值的一致的回复，文章以属性值为分割点，从属性值到回复句的结尾训练forward decoder，从属性值到回复句的开头训练backward decoder，组成一个双向解码器 (Bidirectional Decoder) ，从而解码得到一个包含属性值的完整回复；此外，为了消除训练数据与预设属性值不一致的问题，文章使用无监督的属性值定位器 (Position Detector) 来帮助模型更好地训练。</p>
+<h1 id="0-Abstract"><a href="#0-Abstract" class="headerlink" title="0.Abstract"></a>0.Abstract</h1><p>目标：使用社交媒体上未标注说话人信息的通用聊天数据生成与profile相关的回复。<br>中心思想：使用<code>profile detector</code>检测 在响应用户post时，是否需要使用profile。如果需要，从profile中选择一个键值对，通过<code>双向decoder</code>生成前向和后向的response，从而生成与人格相关的（个性化的）回复。<br>为了使用通用对话数据训练双向decoder，设计<code>position detector</code>来预测给定profile值后，从哪个词的位置开始解码。<br>主要工作：</p>
 <ol>
-<li>a discourse-level target-guiding strategy (section 4.2)<br>用于完成主动将对话主题引导到目标的任务。即选择下一句生成回复的主题</li>
-</ol>
-<p>要求：</p>
-<ul>
-<li>相关度更高</li>
-<li>离目标更近</li>
+<li>引入键值对列表的形式，可以明确并显式<em>指定人格
+</em>显式：生成与预先设置的人格一致的回复*</li>
+<li>3个组件<ul>
+<li>profile detector</li>
+<li>双向decoder</li>
+<li>position detector<h1 id="3-Model"><a href="#3-Model" class="headerlink" title="3.Model"></a>3.Model</h1><h2 id="3-1-Task-Definition"><a href="#3-1-Task-Definition" class="headerlink" title="3.1 Task Definition"></a>3.1 Task Definition</h2>输入：post $X = x_1x_2…x_n$,定义为一组键值对的显式profile${<k_i,v_i>|i=1,2,…,K}$。personality中包括的属性有姓名、性别、年龄、体重、位置、星座。<br>输出：生成与profile一致的回复$Y=y_1y_2…y_m$ </k_i,v_i></li>
 </ul>
-<p>使用基于规则的方法</p>
-<p>关键在于the augmentation of interpretable coarse-grained keywords 粗粒度关键词的可解释性的提升</p>
-<ol>
-<li>Keyword-augmented response retriever (section 4.3).<br>目标：基于对话历史和预测关键词生成回复</li>
+</li>
 </ol>
-<p>使用检索式方法</p>
-<p>用RNN编码输入对话历史和关键词，以及从数据库中得到的候选回复，然后计算候选特征与历史特征、候选特征与关键词特征(feature)之间的element-wise乘积。拼接得到的两个向量，输入到带sigmoid单个单元(single-unit)的全连接层来获取候选回复的匹配概率值</p>
-<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>tbc.</p>
+<p>生成过程：</p>
+<script type="math/tex; mode=display">P(Y|X),{<k_i,v_i>} = P(z=0|X)·P^{fr}(Y|X) + P(z=1|X)·P^{bi}(Y|X,{k_i,v_i})</script><p>$P(z|X)$指的是给定post $X$后使用profile的概率($P(z|X)$ is the probability of using the profile<br>given post $X$)，由Profile Detector计算得到；<br>$P^{fr}(Y|X)=\prod^m_{t=1}P^{fr}(y_t|Y_{&lt;t},X)$由普通的前向decoder计算得到；<br>Bidirectional Decoder计算得$P^{bi}(Y|X,{k_i,v_i})$</p>
+<p>post/response对$<x,y>$从社交媒体收集得到，而profile值可能不会出现在response $Y$里。这导致训练和测试存在差异。<br>    <code>Profile Detector</code>决定是否使用profile；<code>Bidirectional Decoder</code>决定使用<code>X</code>+profile生成<code>Y</code>；</x,y></p>
+<h2 id="3-2-Overview"><a href="#3-2-Overview" class="headerlink" title="3.2 Overview"></a>3.2 Overview</h2><p>给定post，<code>profile detector</code>预测是否需要使用profile。如果不需要，用通用seq2seq decoder生成回复；如果需要，<code>profile detector</code>进一步选择一个合适的profile key and value.从所选的profile value开始，使用<code>bidirectional decoder</code>前后向生成一个回复。为了在通用对话数据上训练<code>bidirectional decoder</code>，使用<code>position detector</code>预测给定选择的profile value后，解码开始的词语的位置。<code>position detector</code>在测试阶段不使用。</p>
+<h2 id="3-3-Encoder"><a href="#3-3-Encoder" class="headerlink" title="3.3 Encoder"></a>3.3 Encoder</h2><script type="math/tex; mode=display">h_t = GRU(h_{t-1}, x_t)</script><h2 id="3-4-Profile-Detector"><a href="#3-4-Profile-Detector" class="headerlink" title="3.4 Profile Detector"></a>3.4 Profile Detector</h2><p>两个作用</p>
+<ol>
+<li>检测post是否要用profile回应<br>$P(z|X)(z \in {0,1})$,$z=1$意味着使用profile。e.g.“你今天怎么样”$P(z|X)≈0$.“你今年几岁了”$P(z|X)≈1$。$P(z|X)$是一个用标注数据训练的二分类器。更正式的：<script type="math/tex; mode=display">P(z|X)=P(z|\widetilde{h})=\sigma(W_p\widetilde{h})</script>其中$W_p$是分类器参数，$\widetilde{h}=\sum_j h_j$,即所有隐状态的和。其他elaborated(详尽阐述?)的方法，如基于attention的模型也可以。</li>
+<li>选择一个特定键值对，用于回应。<script type="math/tex; mode=display">\beta_i=MLP([\widetilde{h},k_i,v_i])=softmax(W·[\widetilde{h};k_i;v_i])</script>其中$W$是权重，$k_i/v_i$分别是profile key/value的嵌入。$\widetilde{h}=\sum_j h_j$是post的表示。$\beta$是profile keys上的概率分布。<br>具有最大可能性的被选择为最优profile value:$\widetilde{v}=v_j$ ,其中 $j=argmax_i(\beta_i)$.只要获得了profile value$\widetilde{v}$，解码过程可以由<code>双向解码器</code>确定:<script type="math/tex; mode=display">P^{bi}(Y|X,{<k_i,v_i>})=P^{bi}(Y|X,\widetilde{v})</script></li>
+</ol>
+<h2 id="3-5-Bidirectional-Decoder"><a href="#3-5-Bidirectional-Decoder" class="headerlink" title="3.5 Bidirectional Decoder"></a>3.5 Bidirectional Decoder</h2><p>目标是生成使用profile value的response。设计一个包含前向decoder和后向decoder的双向decoder，最重要的差异之处在于使用<code>position detector</code>预测起始编码位置。<br>假设生成response $Y=(Y^b,\widetilde{v},Y^f)=(y_1^b,…,y^b_{t-1},\widetilde{v},y_{t-1}^f,…,y^f_m)$，其中$\widetilde{v}$是被选中的profile value。双向decoder向后生成$Y^b$，向前生成$Y^f$.<br>backward decoder$(P^b)$从给定profile value值$\widetilde{v}$到response的起点，生成$Y^b$；<br>forward decoder$(P^f)$(<em>注意这个decoder不同于$P^{fr}(y_t|Y_{&lt;t},X)$，fr指的是不使用profile的情况</em>)以已经生成的开始一半（即$P^b$的输出）为输入，从$\widetilde{v}$到response的结尾，生成$Y^f$。<br><em>前向和后向都是以中心词为起点而言，故后向生成前半，前向生成后半。</em><br>过程正式定义：</p>
+<script type="math/tex; mode=display">
+P^{bi}(Y|X,\widetilde{v})=P^b(Y^b|X,\widetilde{v})*P^f(Y^f|Y^b,X,\widetilde{v})\\
+P^b(Y^b|X,\widetilde{v})=\prod^1_{j=t-1}P^b(y^b_j|Y^b_{>j},X,\widetilde{v})\\
+P^f(Y^f|Y^b,X,\widetilde{v})=\prod^m_{j=t+1}P^f(y^f_j|Y^f_{<j},Y^b,X,\widetilde{v})</script><p><em>注意$P^b$输入有两部分，而$P^f$输入有三部分，即多了$P^b$。</em></p>
+<p>为了在前向解码器中编码更多上下文，生成response的开始一半$Y^b$、以及profile value $\widetilde{v}$,作为前向decoder的起始输入。$P^b$和$P^f$的概率计算：</p>
+<script type="math/tex; mode=display">
+P^b(y^b_j|Y^b_{>j},X,\widetilde{v})\propto MLP([s^b_j;y^b_{j+1};c^b_j])</script><script type="math/tex; mode=display">
+P^f(y^f_j|Y^f_{<j},Y^b,X,\widetilde{v})\propto MLP([s^f_j;y^f_{j-1};c^f_j])</script><p>其中$s_j^{(<em>)}$是相应decoder的状态，$c_j^{(</em>)}$是上下文向量，$* \in {b,f}$,<br>$b$指的是后向decoder，$f$指的是前向decoder。向量根据下面式子更新：</p>
+<script type="math/tex; mode=display">
+s_j^{(*)}=GRU(s_{j+l}^{(*)},[y_{j+l}^{(*)};c_j^{(*)}])</script><script type="math/tex; mode=display">
+c_j^{(*)}=\sum^n_{t=1}\alpha^{(*)}_{j,t}h_t</script><p>其中$\alpha^{(<em>)}_{j,t} \propto MLP([s_{j+l}^{(</em>)},h_t])$可以视为decoder状态$s_{j+l}^{(<em>)}$和encoder隐状态$h_t$之间的相似度。</em>(注意力可看作编&amp;解码器隐状态之间的相似度。)<em><br>$</em>=b$(backward)时$l=1$，$<em>=f$(forward)时$l=-1$.</em>(即对索引的处理，根据后或前向设置+或-1。)*<br>这些MLPs与(3.4节$\beta_i$)</p>
+<script type="math/tex; mode=display">\beta_i=MLP([\widetilde{h},k_i,v_i])=softmax(W·[\widetilde{h};k_i;v_i])</script><p>形式相同，参数不同。</p>
+<h2 id="3-6-Position-Detector"><a href="#3-6-Position-Detector" class="headerlink" title="3.6 Position Detector"></a>3.6 Position Detector</h2><p>用于为<code>双向decoder</code>提供更多监督。在训练过程中给decoder提供一个起始解码位置。<br>用于确定<code>中心词</code>。<br><strong>目的：找到合适的可以用profile value替代的位置。</strong><br>e.g.</p>
+<pre><code>post X=&#39;你1-有2-什么3-特长4&#39;
+response Y = &#39;我1-非常2-擅长3-小提琴4&#39;
+profile k-v: &lt;特长，钢琴&gt;
+
+position detector预测 response中的&quot;小提琴4&quot;语法上可以被profile value &quot;钢琴&quot;代替，故&quot;小提琴4&quot;被传递到decoder，称为起始解码位置。
+</code></pre><p>在测试阶段，同样是从profile value起双向预测整个序列，但在训练集中，这个value可能很少或从未在response里出现，造成了训练与测试不一致（曝光偏差?）。<br>e.g.</p>
+<pre><code>profile k-v: &lt;特长，冰球&gt;
+冰球可能很少出现在训练集中。
+</code></pre><p>换句话说，即使有训练实例$(X,Y,<k,v>)$，value $v$ 可能完全没在$Y$中出现过。因此，双向decoder不知道应该以哪个词为中心词(response里必须包括哪个词)。<br>这导致了训练和测试的不一致：训练时，decoder不知道编码起始位置；但测试时，编码起始位置已经指明。</k,v></p>
+<p>$P(j|y_1y_2…y_m,<k,v>),1≤j≤m$表示词语$y_j$被profile value $v$替代的概率。<br>思想：相似度越高越可能被替代</k,v></p>
+<script type="math/tex; mode=display">P(j|Y,<k,v>) \propto cos(y_j,v)</script><p>$cos(y_j,v)$即response中的一个词与profile value的<code>余弦相似度</code>。</p>
+<h2 id="3-7-Loss-Function-and-Training"><a href="#3-7-Loss-Function-and-Training" class="headerlink" title="3.7 Loss Function and Training"></a>3.7 Loss Function and Training</h2><p>定义两个损失函数：</p>
+<ol>
+<li>生成概率<br>$D^(c)$是只使用问答对的，$D(pr)$是需要使用profile value的。即两部分的负对数似然函数之和。<script type="math/tex; mode=display">
+\begin{align}
+\mathcal{L}_1(\theta,D^{(c)},D^{(x,y)})
+&=-\sum_{(X,Y)\in D^{(c)}∪ D^{(pr)}} logP(Y|X,{<k_i,v_i>})\\
+&=(-\sum_{(X,Y)\in D^{(c)}}logP^{fr}(Y|X))+(-\sum_{(X,Y)\in D^{(pr)}}logP^{bi}(Y|X,\widetilde{v}))\\
+&=-\sum_{(X,Y)\in D^{(c)}}logP^{fr}(Y|X)-\sum_{(X,Y)\in D^{(pr)}}logP^{bi}(Y|X,\widetilde{v})
+\end{align}</script></li>
+<li>profile detector<br>L2 是 profile detector 预测是否用档案及用哪个关键词的，根据前面定义过的$P(z|x)$和$β_i$</li>
+</ol>
+<h1 id="4-Experiment"><a href="#4-Experiment" class="headerlink" title="4.Experiment"></a>4.Experiment</h1><h1 id="Appendix-双向Decoder"><a href="#Appendix-双向Decoder" class="headerlink" title="Appendix:双向Decoder"></a>Appendix:双向Decoder</h1><p>本文中双向解码参考了论文《Sequence to Backward and Forward Sequences A Content-Introducing Approach to Generative Short-Text Conversation》，有几篇笔记可供参考：<br><a href="https://github.com/xwzhong/papernote/blob/master/chatbot/Sequence%20to%20Backward%20and%20Forward%20Sequences%20A%20Content-Introducing%20Approach%20to%20Generative%20Short-Text%20Conversation.md" target="_blank" rel="noopener">https://github.com/xwzhong/papernote/blob/master/chatbot/Sequence%20to%20Backward%20and%20Forward%20Sequences%20A%20Content-Introducing%20Approach%20to%20Generative%20Short-Text%20Conversation.md</a></p>
+<p><a href="https://chuansongme.com/n/1613737151949" target="_blank" rel="noopener">https://chuansongme.com/n/1613737151949</a></p>
+<p><a href="http://www.xuwei.io/2019/02/20/%E3%80%8Asequence-to-backward-and-forward-sequences-a-content-introducing-approach-to-generative-short-text-conversation%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">http://www.xuwei.io/2019/02/20/%E3%80%8Asequence-to-backward-and-forward-sequences-a-content-introducing-approach-to-generative-short-text-conversation%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</a></p>
 
                 </article>
                 <ul class="tags-postTags">
@@ -198,14 +225,10 @@
     
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="为什么信息熵要定义成log的形式" href="/2019/09/25/entropy-and-log/">
-            ← 为什么信息熵要定义成log的形式
-        </a>
-        
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="GitWithProxy" href="/2019/09/21/GitWithProxy/">
-            GitWithProxy →
+        <a class="next-post" title="Variational Autoencoder" href="/2020/02/16/Variational-Autoencoder/">
+            Variational Autoencoder →
         </a>
         
     </nav>
@@ -231,7 +254,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#任务："><span class="toc-text">任务：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法："><span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#要求："><span class="toc-text">要求：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据集"><span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验"><span class="toc-text">实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-Abstract"><span class="toc-text">0.Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Model"><span class="toc-text">3.Model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Task-Definition"><span class="toc-text">3.1 Task Definition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Overview"><span class="toc-text">3.2 Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Encoder"><span class="toc-text">3.3 Encoder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-Profile-Detector"><span class="toc-text">3.4 Profile Detector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-Bidirectional-Decoder"><span class="toc-text">3.5 Bidirectional Decoder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Position-Detector"><span class="toc-text">3.6 Position Detector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-Loss-Function-and-Training"><span class="toc-text">3.7 Loss Function and Training</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Experiment"><span class="toc-text">4.Experiment</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Appendix-双向Decoder"><span class="toc-text">Appendix:双向Decoder</span></a></li></ol>
     </div>
 </div>
 
@@ -560,7 +583,7 @@
 			<a href="/" title="Road To Surika">Road To Surika &copy; 2020</a>
 			
 				
-			        <span hidden="true" id="/2019/09/24/Target-Guided-Open-Domain-Conversation/" class="leancloud-visitors" data-flag-title="Target-Guided Open-Domain Conversation">
+			        <span hidden="true" id="/2020/02/18/Assigning-Personality-Profile-to-a-Chatting-Machine-for-Coherent-Conversation-Generation/" class="leancloud-visitors" data-flag-title="Assigning Personality Profile to a Chatting Machine for Coherent Conversation Generation">
 			            <span>阅读量 </span>
 			            <span class="leancloud-visitors-count">0</span>
 			        </span>
